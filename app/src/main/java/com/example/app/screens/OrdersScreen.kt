@@ -1,20 +1,45 @@
 package com.example.app.screens
 
+import android.os.Build
+import androidx.annotation.RequiresApi
+import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import com.example.app.models.Order
 import com.example.app.models.OrderStatus
 import com.example.app.models.PaymentType
 import com.example.app.viewmodels.AppViewModel
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
+
+/*************** Formato argentino visible ***************/
+/*
+    En el modelo las fechas se guardan como ISO:
+    yyyy-MM-dd
+
+    En pantalla se muestran como:
+    dd/MM/yyyy
+*/
+@RequiresApi(Build.VERSION_CODES.O)
+private val formatoFechaArgentina: DateTimeFormatter =
+    DateTimeFormatter.ofPattern("dd/MM/yyyy")
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -25,7 +50,16 @@ fun OrdersScreen(
 ) {
     val state by viewModel.state.collectAsState()
 
+    /*************** Estados de pantalla ***************/
     var selectedOrder by remember {
+        mutableStateOf<Order?>(null)
+    }
+
+    var orderToDelete by remember {
+        mutableStateOf<Order?>(null)
+    }
+
+    var labelOrder by remember {
         mutableStateOf<Order?>(null)
     }
 
@@ -34,217 +68,982 @@ fun OrdersScreen(
     }
 
     var statusFilter by remember {
-        mutableStateOf("Todos")
+        mutableStateOf<OrderStatus?>(null)
     }
 
-    val filtered = state.orders.filter { order ->
-        val matchesStatus =
-            statusFilter == "Todos" ||
-                    order.status.label == statusFilter
+    val sheetState = rememberModalBottomSheetState(
+        skipPartiallyExpanded = true
+    )
 
-        val matchesSearch =
-            order.title.contains(search, ignoreCase = true) ||
-                    order.clientName.contains(search, ignoreCase = true) ||
-                    order.filament.label.contains(search, ignoreCase = true)
+    /*************** Filtrado de pedidos ***************/
+    /*
+        Buscador completo:
+        - título
+        - cliente
+        - material
+        - impresora
+        - color
+        - acabado
+        - estado
+    */
+    val filteredOrders = state.orders
+        .filter { order ->
+            val text = search.trim()
 
-        matchesStatus && matchesSearch
-    }
+            val matchesSearch =
+                text.isBlank() ||
+                        order.title.contains(text, ignoreCase = true) ||
+                        order.clientName.contains(text, ignoreCase = true) ||
+                        order.filament.label.contains(text, ignoreCase = true) ||
+                        order.printer.label.contains(text, ignoreCase = true) ||
+                        order.color.contains(text, ignoreCase = true) ||
+                        order.finishType.label.contains(text, ignoreCase = true) ||
+                        order.status.label.contains(text, ignoreCase = true)
 
+            val matchesStatus =
+                statusFilter == null ||
+                        order.status == statusFilter
+
+            matchesSearch && matchesStatus
+        }
+        .sortedByDescending { it.createdAt }
+
+    /*************** Pantalla principal ***************/
     Column(
         modifier = Modifier
             .fillMaxSize()
             .padding(16.dp)
+            .padding(bottom = 88.dp)
     ) {
+        /*************** Encabezado ***************/
         Row(
             horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.CenterVertically,
             modifier = Modifier.fillMaxWidth()
         ) {
-            Text(
-                text = "📦 Pedidos",
-                style = MaterialTheme.typography.headlineSmall,
-                fontWeight = FontWeight.Bold
-            )
+            Column {
+                Text(
+                    text = "📝 Pedidos",
+                    style = MaterialTheme.typography.headlineSmall,
+                    fontWeight = FontWeight.ExtraBold
+                )
 
-            Row {
-                Button(
-                    onClick = onGoToSettings
+                Text(
+                    text = "${filteredOrders.size} pedido(s)",
+                    style = MaterialTheme.typography.bodySmall,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                )
+            }
+
+            Row(
+                horizontalArrangement = Arrangement.spacedBy(8.dp)
+            ) {
+                OutlinedButton(
+                    onClick = onGoToSettings,
+                    shape = RoundedCornerShape(18.dp)
                 ) {
                     Text("Ajustes")
                 }
-
-                Spacer(Modifier.width(8.dp))
 
                 Button(
                     onClick = {
                         viewModel.setEditingOrder(null)
                         onGoToNewQuote()
-                    }
+                    },
+                    shape = RoundedCornerShape(18.dp)
                 ) {
                     Text("Nuevo")
                 }
             }
         }
 
+        Spacer(modifier = Modifier.height(12.dp))
+
+        /*************** Buscador ***************/
         OutlinedTextField(
             value = search,
-            onValueChange = { search = it },
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(vertical = 8.dp),
-            label = {
-                Text("Buscar por título, cliente o material")
+            onValueChange = {
+                search = it
             },
-            shape = RoundedCornerShape(20.dp)
+            modifier = Modifier.fillMaxWidth(),
+            label = {
+                Text("Buscar pedido, cliente, material...")
+            },
+            singleLine = true,
+            shape = RoundedCornerShape(22.dp)
         )
 
+        Spacer(modifier = Modifier.height(12.dp))
+
+        /*************** Filtros por estado ***************/
         Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .horizontalScroll(rememberScrollState()),
             horizontalArrangement = Arrangement.spacedBy(8.dp)
         ) {
-            listOf(
-                "Todos",
-                "Pendiente",
-                "En marcha",
-                "Terminado",
-                "Cancelado"
-            ).forEach { status ->
+            FilterChip(
+                selected = statusFilter == null,
+                onClick = {
+                    statusFilter = null
+                },
+                label = {
+                    Text("Todos")
+                }
+            )
+
+            OrderStatus.values().forEach { status ->
                 FilterChip(
                     selected = statusFilter == status,
                     onClick = {
                         statusFilter = status
                     },
                     label = {
-                        Text(status)
+                        Text(statusLabelWithIcon(status))
                     }
                 )
             }
         }
 
-        Spacer(modifier = Modifier.height(8.dp))
+        Spacer(modifier = Modifier.height(12.dp))
 
-        LazyColumn(
-            verticalArrangement = Arrangement.spacedBy(8.dp)
-        ) {
-            items(filtered) { order ->
-                Card(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .clickable {
+        /*************** Listado visual ***************/
+        if (state.orders.isEmpty()) {
+            EmptyOrdersState(
+                onNewOrder = {
+                    viewModel.setEditingOrder(null)
+                    onGoToNewQuote()
+                }
+            )
+        } else if (filteredOrders.isEmpty()) {
+            EmptySearchState()
+        } else {
+            LazyColumn(
+                modifier = Modifier.fillMaxSize(),
+                verticalArrangement = Arrangement.spacedBy(12.dp)
+            ) {
+                items(
+                    items = filteredOrders,
+                    key = { it.id }
+                ) { order ->
+                    OrderCard(
+                        order = order,
+                        onClick = {
                             selectedOrder = order
-                        },
-                    shape = RoundedCornerShape(24.dp)
-                ) {
-                    Column(
-                        modifier = Modifier.padding(16.dp)
-                    ) {
-                        Text(
-                            text = order.title,
-                            style = MaterialTheme.typography.titleMedium,
-                            fontWeight = FontWeight.Bold
-                        )
-
-                        Text("Cliente: ${order.clientName}")
-                        Text("Entrega: ${order.deliveryDate.ifBlank { "Sin fecha" }}")
-                        Text("Total: ARS ${"%.2f".format(order.totalComputed)}")
-
-                        AssistChip(
-                            onClick = {},
-                            label = {
-                                Text(order.status.label)
-                            },
-                            colors = AssistChipDefaults.assistChipColors(
-                                containerColor = statusColor(order.status)
-                            )
-                        )
-                    }
+                        }
+                    )
                 }
             }
         }
     }
 
+    /*************** Detalle en BottomSheet ***************/
     selectedOrder?.let { order ->
-        AlertDialog(
+        ModalBottomSheet(
             onDismissRequest = {
                 selectedOrder = null
             },
+            sheetState = sheetState,
+            containerColor = Color.White,
+            tonalElevation = 8.dp
+        ) {
+            OrderDetailBottomSheet(
+                order = order,
+                onClose = {
+                    selectedOrder = null
+                },
+                onEdit = {
+                    viewModel.setEditingOrder(order)
+                    selectedOrder = null
+                    onGoToNewQuote()
+                },
+                onDelete = {
+                    orderToDelete = order
+                    selectedOrder = null
+                },
+                onGenerateLabel = {
+                    labelOrder = order
+                    selectedOrder = null
+                },
+                onStatusChange = { newStatus ->
+                    val updated = order.copy(status = newStatus)
+                    viewModel.updateOrder(updated)
+                    selectedOrder = updated
+                }
+            )
+        }
+    }
+
+    /*************** Confirmación de eliminación ***************/
+    orderToDelete?.let { order ->
+        AlertDialog(
+            onDismissRequest = {
+                orderToDelete = null
+            },
             title = {
-                Text(order.title)
+                Text("Eliminar pedido")
             },
             text = {
-                Column(
-                    verticalArrangement = Arrangement.spacedBy(4.dp)
-                ) {
-                    Text("Cliente: ${order.clientName}")
-                    Text("Material: ${order.filament.label}")
-                    Text("Color: ${order.color}")
-                    Text("Acabado: ${order.finishType.label}")
-                    Text("Cantidad: ${order.quantity}")
-                    Text("Fecha presupuesto: ${order.quoteDate}")
-                    Text("Validez: ${order.validityDays} días")
-                    Text("Plazo entrega: ${order.deliveryBusinessDays} días hábiles")
-                    Text("Entrega estimada: ${order.deliveryDate}")
-                    Text("Pago: ${order.paymentType.label}")
-
-                    if (order.paymentType == PaymentType.DEPOSIT) {
-                        Text("Seña: ${order.depositPercentage}%")
-                    }
-
-                    if (order.notes.isNotBlank()) {
-                        Text("Notas: ${order.notes}")
-                    }
-
-                    Text("Total: ARS ${"%.2f".format(order.totalComputed)}")
-                }
+                Text("¿Seguro que querés eliminar “${order.title}”? Esta acción no se puede deshacer.")
             },
             confirmButton = {
                 TextButton(
                     onClick = {
-                        viewModel.setEditingOrder(order)
-                        selectedOrder = null
-                        onGoToNewQuote()
+                        viewModel.deleteOrder(order.id)
+                        orderToDelete = null
                     }
                 ) {
-                    Text("Editar")
+                    Text(
+                        text = "Eliminar",
+                        color = MaterialTheme.colorScheme.error,
+                        fontWeight = FontWeight.Bold
+                    )
                 }
             },
             dismissButton = {
-                Row {
-                    TextButton(
-                        onClick = {
-                            val next = when (order.status) {
-                                OrderStatus.PENDING -> OrderStatus.PRINTING
-                                OrderStatus.PRINTING -> OrderStatus.DONE
-                                OrderStatus.DONE -> OrderStatus.CANCELED
-                                OrderStatus.CANCELED -> OrderStatus.PENDING
-                            }
-
-                            viewModel.updateOrder(
-                                order.copy(status = next)
-                            )
-
-                            selectedOrder = null
-                        }
-                    ) {
-                        Text("Cambiar Estado")
+                TextButton(
+                    onClick = {
+                        orderToDelete = null
                     }
+                ) {
+                    Text("Cancelar")
+                }
+            }
+        )
+    }
 
-                    TextButton(
-                        onClick = {
-                            selectedOrder = null
-                        }
-                    ) {
-                        Text("Cerrar")
+    /*************** Etiqueta generada ***************/
+    /*
+        En esta etapa se genera una previsualización de etiqueta.
+        La impresión/exportación real a PDF o imagen puede venir en una etapa posterior.
+    */
+    labelOrder?.let { order ->
+        AlertDialog(
+            onDismissRequest = {
+                labelOrder = null
+            },
+            title = {
+                Text("Etiqueta generada")
+            },
+            text = {
+                PrintableLabelPreview(order = order)
+            },
+            confirmButton = {
+                TextButton(
+                    onClick = {
+                        labelOrder = null
                     }
+                ) {
+                    Text("Cerrar")
                 }
             }
         )
     }
 }
 
-private fun statusColor(status: OrderStatus): Color {
+/*************** Tarjeta visual de pedido ***************/
+@Composable
+private fun OrderCard(
+    order: Order,
+    onClick: () -> Unit
+) {
+    Card(
+        modifier = Modifier
+            .fillMaxWidth()
+            .clickable {
+                onClick()
+            },
+        shape = RoundedCornerShape(28.dp),
+        colors = CardDefaults.cardColors(
+            containerColor = Color.White
+        ),
+        border = BorderStroke(
+            width = 2.dp,
+            color = Color(0xFFFFD1DC)
+        )
+    ) {
+        Column(
+            modifier = Modifier.padding(16.dp)
+        ) {
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceBetween,
+                verticalAlignment = Alignment.Top
+            ) {
+                Column(
+                    modifier = Modifier.weight(1f)
+                ) {
+                    Text(
+                        text = order.title,
+                        style = MaterialTheme.typography.titleMedium,
+                        fontWeight = FontWeight.ExtraBold,
+                        maxLines = 1,
+                        overflow = TextOverflow.Ellipsis
+                    )
+
+                    Text(
+                        text = "👤 ${order.clientName}",
+                        style = MaterialTheme.typography.bodySmall,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant,
+                        maxLines = 1,
+                        overflow = TextOverflow.Ellipsis
+                    )
+                }
+
+                Text(
+                    text = "ARS ${"%.2f".format(order.totalComputed)}",
+                    style = MaterialTheme.typography.titleMedium,
+                    fontWeight = FontWeight.ExtraBold,
+                    color = Color(0xFFB584E8)
+                )
+            }
+
+            Spacer(modifier = Modifier.height(12.dp))
+
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.spacedBy(8.dp)
+            ) {
+                StatusPill(status = order.status)
+
+                SmallPill(
+                    text = "${order.quantity} un."
+                )
+
+                SmallPill(
+                    text = order.filament.label
+                )
+            }
+
+            Spacer(modifier = Modifier.height(8.dp))
+
+            Text(
+                text = "Entrega: ${formatearFechaArgentina(order.deliveryDate.ifBlank { order.createdAt })}",
+                style = MaterialTheme.typography.bodySmall,
+                color = MaterialTheme.colorScheme.onSurfaceVariant
+            )
+        }
+    }
+}
+
+/*************** BottomSheet de detalle ***************/
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+private fun OrderDetailBottomSheet(
+    order: Order,
+    onClose: () -> Unit,
+    onEdit: () -> Unit,
+    onDelete: () -> Unit,
+    onGenerateLabel: () -> Unit,
+    onStatusChange: (OrderStatus) -> Unit
+) {
+    var selectedStatus by remember(order.id, order.status) {
+        mutableStateOf(order.status)
+    }
+
+    Column(
+        modifier = Modifier
+            .fillMaxWidth()
+            .navigationBarsPadding()
+            .padding(horizontal = 20.dp, vertical = 12.dp)
+            .verticalScroll(rememberScrollState())
+    ) {
+        /*************** Cabecera ***************/
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.Top
+        ) {
+            Column(
+                modifier = Modifier.weight(1f)
+            ) {
+                Text(
+                    text = "Detalles Pedido 🌸",
+                    style = MaterialTheme.typography.titleLarge,
+                    fontWeight = FontWeight.ExtraBold
+                )
+
+                Text(
+                    text = order.title,
+                    style = MaterialTheme.typography.headlineSmall,
+                    fontWeight = FontWeight.ExtraBold
+                )
+
+                Text(
+                    text = "👤 ${order.clientName}",
+                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                )
+            }
+
+            TextButton(
+                onClick = onClose
+            ) {
+                Text("Cerrar")
+            }
+        }
+
+        Spacer(modifier = Modifier.height(16.dp))
+
+        /*************** Cambio manual de estado ***************/
+        Text(
+            text = "Estado del pedido",
+            fontWeight = FontWeight.Bold
+        )
+
+        Spacer(modifier = Modifier.height(6.dp))
+
+        StatusDropdown(
+            selectedStatus = selectedStatus,
+            onStatusSelected = { newStatus ->
+                selectedStatus = newStatus
+                onStatusChange(newStatus)
+            }
+        )
+
+        Spacer(modifier = Modifier.height(16.dp))
+
+        /*************** Datos principales ***************/
+        DetailCard {
+            DetailRow(
+                label = "Material",
+                value = "${order.filament.label} - ${order.weightGramsPerUnit} g x ${order.quantity}"
+            )
+
+            DetailRow(
+                label = "Impresora",
+                value = order.printer.label
+            )
+
+            DetailRow(
+                label = "Tiempo estimado",
+                value = "${order.printTimeHours} h ${order.printTimeMinutes} min"
+            )
+
+            DetailRow(
+                label = "Color",
+                value = order.color
+            )
+
+            DetailRow(
+                label = "Acabado",
+                value = order.finishType.label
+            )
+
+            DetailRow(
+                label = "Diseño",
+                value = order.designType.label
+            )
+
+            Divider(
+                modifier = Modifier.padding(vertical = 8.dp)
+            )
+
+            DetailRow(
+                label = "Fecha presupuesto",
+                value = formatearFechaArgentina(order.quoteDate)
+            )
+
+            DetailRow(
+                label = "Validez",
+                value = "${order.validityDays} días"
+            )
+
+            DetailRow(
+                label = "Plazo entrega",
+                value = "${order.deliveryBusinessDays} días hábiles"
+            )
+
+            DetailRow(
+                label = "Entrega estimada",
+                value = formatearFechaArgentina(order.deliveryDate)
+            )
+
+            Divider(
+                modifier = Modifier.padding(vertical = 8.dp)
+            )
+
+            DetailRow(
+                label = "Pago",
+                value = order.paymentType.label
+            )
+
+            if (order.paymentType == PaymentType.DEPOSIT) {
+                DetailRow(
+                    label = "Seña",
+                    value = "${order.depositPercentage}%"
+                )
+            }
+
+            if (order.isFriend) {
+                DetailRow(
+                    label = "Descuento amigo",
+                    value = "Aplicado"
+                )
+            }
+
+            if (order.notes.isNotBlank()) {
+                DetailRow(
+                    label = "Notas",
+                    value = order.notes
+                )
+            }
+
+            Divider(
+                modifier = Modifier.padding(vertical = 8.dp)
+            )
+
+            DetailRow(
+                label = "TOTAL",
+                value = "ARS ${"%.2f".format(order.totalComputed)}",
+                highlight = true
+            )
+        }
+
+        Spacer(modifier = Modifier.height(16.dp))
+
+        /*************** Acciones ***************/
+        Button(
+            onClick = onGenerateLabel,
+            modifier = Modifier.fillMaxWidth(),
+            shape = RoundedCornerShape(20.dp),
+            colors = ButtonDefaults.buttonColors(
+                containerColor = Color(0xFFFF8BA7)
+            )
+        ) {
+            Text("🏷️ Generar Etiqueta")
+        }
+
+        Spacer(modifier = Modifier.height(8.dp))
+
+        Button(
+            onClick = onEdit,
+            modifier = Modifier.fillMaxWidth(),
+            shape = RoundedCornerShape(20.dp)
+        ) {
+            Text("📝 Editar Presupuesto")
+        }
+
+        Spacer(modifier = Modifier.height(8.dp))
+
+        OutlinedButton(
+            onClick = onDelete,
+            modifier = Modifier.fillMaxWidth(),
+            shape = RoundedCornerShape(20.dp),
+            colors = ButtonDefaults.outlinedButtonColors(
+                contentColor = MaterialTheme.colorScheme.error
+            )
+        ) {
+            Text("Eliminar Pedido")
+        }
+
+        Spacer(modifier = Modifier.height(12.dp))
+    }
+}
+
+/*************** Dropdown manual de estado ***************/
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+private fun StatusDropdown(
+    selectedStatus: OrderStatus,
+    onStatusSelected: (OrderStatus) -> Unit
+) {
+    var expanded by remember {
+        mutableStateOf(false)
+    }
+
+    ExposedDropdownMenuBox(
+        expanded = expanded,
+        onExpandedChange = {
+            expanded = !expanded
+        }
+    ) {
+        OutlinedTextField(
+            value = statusLabelWithIcon(selectedStatus),
+            onValueChange = {},
+            readOnly = true,
+            label = {
+                Text("Estado")
+            },
+            modifier = Modifier
+                .menuAnchor()
+                .fillMaxWidth(),
+            shape = RoundedCornerShape(20.dp)
+        )
+
+        ExposedDropdownMenu(
+            expanded = expanded,
+            onDismissRequest = {
+                expanded = false
+            }
+        ) {
+            OrderStatus.values().forEach { status ->
+                DropdownMenuItem(
+                    text = {
+                        Text(statusLabelWithIcon(status))
+                    },
+                    onClick = {
+                        onStatusSelected(status)
+                        expanded = false
+                    }
+                )
+            }
+        }
+    }
+}
+
+/*************** Tarjeta de detalle ***************/
+@Composable
+private fun DetailCard(
+    content: @Composable ColumnScope.() -> Unit
+) {
+    Card(
+        shape = RoundedCornerShape(28.dp),
+        colors = CardDefaults.cardColors(
+            containerColor = Color(0xFFFFF5F7)
+        ),
+        border = BorderStroke(
+            width = 2.dp,
+            color = Color(0xFFFFD1DC)
+        ),
+        modifier = Modifier.fillMaxWidth()
+    ) {
+        Column(
+            modifier = Modifier.padding(16.dp),
+            verticalArrangement = Arrangement.spacedBy(8.dp)
+        ) {
+            content()
+        }
+    }
+}
+
+/*************** Fila de detalle ***************/
+@Composable
+private fun DetailRow(
+    label: String,
+    value: String,
+    highlight: Boolean = false
+) {
+    Row(
+        modifier = Modifier.fillMaxWidth(),
+        horizontalArrangement = Arrangement.SpaceBetween,
+        verticalAlignment = Alignment.Top
+    ) {
+        Text(
+            text = label,
+            modifier = Modifier.weight(1f),
+            color = MaterialTheme.colorScheme.onSurfaceVariant,
+            fontWeight = FontWeight.Bold
+        )
+
+        Text(
+            text = value,
+            modifier = Modifier.weight(1.2f),
+            fontWeight = if (highlight) {
+                FontWeight.ExtraBold
+            } else {
+                FontWeight.Bold
+            },
+            color = if (highlight) {
+                Color(0xFFB584E8)
+            } else {
+                MaterialTheme.colorScheme.onSurface
+            }
+        )
+    }
+}
+
+/*************** Previsualización de etiqueta ***************/
+@Composable
+private fun PrintableLabelPreview(
+    order: Order
+) {
+    Column(
+        modifier = Modifier
+            .fillMaxWidth()
+            .background(Color.White)
+    ) {
+        Box(
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(192.dp)
+                .background(Color.White)
+        ) {
+            Column(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(10.dp)
+                    .clip(RoundedCornerShape(0.dp))
+                    .background(Color.White)
+            ) {
+                Column(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .background(Color.White)
+                        .padding(8.dp)
+                ) {
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.SpaceBetween,
+                        verticalAlignment = Alignment.Top
+                    ) {
+                        Column(
+                            modifier = Modifier.weight(1f)
+                        ) {
+                            Text(
+                                text = order.title,
+                                color = Color.Black,
+                                fontWeight = FontWeight.ExtraBold,
+                                maxLines = 2,
+                                overflow = TextOverflow.Ellipsis
+                            )
+
+                            Text(
+                                text = "Cliente: ${order.clientName}",
+                                color = Color.Black,
+                                fontWeight = FontWeight.Bold,
+                                style = MaterialTheme.typography.bodySmall
+                            )
+                        }
+
+                        Column(
+                            horizontalAlignment = Alignment.End
+                        ) {
+                            Text(
+                                text = "Entrega",
+                                color = Color.Gray,
+                                fontWeight = FontWeight.Bold,
+                                style = MaterialTheme.typography.labelSmall
+                            )
+
+                            Text(
+                                text = formatearFechaArgentina(order.deliveryDate),
+                                color = Color.Black,
+                                fontWeight = FontWeight.ExtraBold
+                            )
+                        }
+                    }
+
+                    Divider(
+                        color = Color.Gray,
+                        modifier = Modifier.padding(vertical = 8.dp)
+                    )
+
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.SpaceBetween
+                    ) {
+                        LabelMiniBlock(
+                            title = "Material",
+                            value = order.filament.label
+                        )
+
+                        LabelMiniBlock(
+                            title = "Color",
+                            value = order.color
+                        )
+                    }
+
+                    Spacer(modifier = Modifier.height(6.dp))
+
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.SpaceBetween
+                    ) {
+                        LabelMiniBlock(
+                            title = "Cantidad",
+                            value = "${order.quantity} un."
+                        )
+
+                        LabelMiniBlock(
+                            title = "Total",
+                            value = "ARS ${"%.2f".format(order.totalComputed)}"
+                        )
+                    }
+
+                    Spacer(modifier = Modifier.weight(1f))
+
+                    Text(
+                        text = "PikiPrint 3D // REF: ${order.id.take(8).uppercase()}",
+                        color = Color.Gray,
+                        fontFamily = FontFamily.Monospace,
+                        style = MaterialTheme.typography.labelSmall,
+                        modifier = Modifier.align(Alignment.CenterHorizontally)
+                    )
+                }
+            }
+        }
+    }
+}
+
+/*************** Bloque pequeño de etiqueta ***************/
+@Composable
+private fun LabelMiniBlock(
+    title: String,
+    value: String
+) {
+    Column(
+        modifier = Modifier.width(120.dp)
+    ) {
+        Text(
+            text = title,
+            color = Color.Gray,
+            fontWeight = FontWeight.Bold,
+            style = MaterialTheme.typography.labelSmall
+        )
+
+        Text(
+            text = value,
+            color = Color.Black,
+            fontWeight = FontWeight.ExtraBold,
+            maxLines = 1,
+            overflow = TextOverflow.Ellipsis
+        )
+    }
+}
+
+/*************** Estado vacío: sin pedidos ***************/
+@Composable
+private fun EmptyOrdersState(
+    onNewOrder: () -> Unit
+) {
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(top = 48.dp),
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        Text(
+            text = "🥺",
+            style = MaterialTheme.typography.displayMedium
+        )
+
+        Text(
+            text = "No hay pedidos todavía",
+            style = MaterialTheme.typography.titleLarge,
+            fontWeight = FontWeight.ExtraBold
+        )
+
+        Text(
+            text = "Creá tu primer presupuesto alegre 🌸",
+            color = MaterialTheme.colorScheme.onSurfaceVariant
+        )
+
+        Spacer(modifier = Modifier.height(16.dp))
+
+        Button(
+            onClick = onNewOrder,
+            shape = RoundedCornerShape(20.dp)
+        ) {
+            Text("Nuevo Pedido")
+        }
+    }
+}
+
+/*************** Estado vacío: búsqueda sin resultados ***************/
+@Composable
+private fun EmptySearchState() {
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(top = 48.dp),
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        Text(
+            text = "🕵️‍♀️",
+            style = MaterialTheme.typography.displayMedium
+        )
+
+        Text(
+            text = "No se encontraron resultados",
+            style = MaterialTheme.typography.titleLarge,
+            fontWeight = FontWeight.ExtraBold
+        )
+    }
+}
+
+/*************** Píldora de estado ***************/
+@Composable
+private fun StatusPill(
+    status: OrderStatus
+) {
+    SmallPill(
+        text = statusLabelWithIcon(status),
+        background = statusBackgroundColor(status),
+        foreground = statusTextColor(status)
+    )
+}
+
+/*************** Píldora pequeña ***************/
+@Composable
+private fun SmallPill(
+    text: String,
+    background: Color = Color(0xFFFFF5F7),
+    foreground: Color = Color(0xFF5D4E60)
+) {
+    Box(
+        modifier = Modifier
+            .clip(RoundedCornerShape(12.dp))
+            .background(background)
+            .padding(horizontal = 10.dp, vertical = 5.dp)
+    ) {
+        Text(
+            text = text,
+            color = foreground,
+            style = MaterialTheme.typography.labelSmall,
+            fontWeight = FontWeight.ExtraBold
+        )
+    }
+}
+
+/*************** Texto de estado con ícono ***************/
+private fun statusLabelWithIcon(
+    status: OrderStatus
+): String {
     return when (status) {
-        OrderStatus.PENDING -> Color(0xFFE5E7EB)
-        OrderStatus.PRINTING -> Color(0xFFFFE4C7)
-        OrderStatus.DONE -> Color(0xFFD1FAE5)
-        OrderStatus.CANCELED -> Color(0xFFFECACA)
+        OrderStatus.PENDING -> "⏳ Pendiente"
+        OrderStatus.PRINTING -> "🖨️ En marcha"
+        OrderStatus.DONE -> "✨ Terminado"
+        OrderStatus.CANCELED -> "❌ Cancelado"
+    }
+}
+
+/*************** Color de fondo de estado ***************/
+private fun statusBackgroundColor(
+    status: OrderStatus
+): Color {
+    return when (status) {
+        OrderStatus.PENDING -> Color(0xFFFFF9E6)
+        OrderStatus.PRINTING -> Color(0xFFF0F7FF)
+        OrderStatus.DONE -> Color(0xFFF0FFF4)
+        OrderStatus.CANCELED -> Color(0xFFFFF1F2)
+    }
+}
+
+/*************** Color de texto de estado ***************/
+private fun statusTextColor(
+    status: OrderStatus
+): Color {
+    return when (status) {
+        OrderStatus.PENDING -> Color(0xFFB0892B)
+        OrderStatus.PRINTING -> Color(0xFF2563EB)
+        OrderStatus.DONE -> Color(0xFF2D5A27)
+        OrderStatus.CANCELED -> Color(0xFFE11D48)
+    }
+}
+
+/*************** Formateo de fecha argentina ***************/
+private fun formatearFechaArgentina(
+    value: String
+): String {
+    if (value.isBlank()) {
+        return "Sin fecha"
+    }
+
+    return try {
+        LocalDate
+            .parse(value)
+            .format(formatoFechaArgentina)
+    } catch (e: Exception) {
+        value
     }
 }
