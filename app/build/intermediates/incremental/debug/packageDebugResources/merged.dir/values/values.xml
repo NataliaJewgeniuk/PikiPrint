@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="brand_bg">#FFF5F7</color>
+    <color name="brand_blue">#63B3ED</color>
+    <color name="brand_border">#FFD1DC</color>
+    <color name="brand_coral">#FF8BA7</color>
+    <color name="brand_green">#68D391</color>
+    <color name="brand_lilac">#B584E8</color>
+    <color name="brand_orange">#FFB347</color>
+    <color name="brand_pink">#FFB7B2</color>
+    <color name="brand_text">#5D4E60</color>
+    <color name="brand_text_muted">#8D6E63</color>
+    <string name="app_name">3D Kawaii Tracker</string>
+    <style name="Theme.App" parent="android:Theme.Material.Light.NoActionBar"/>
+</resources>

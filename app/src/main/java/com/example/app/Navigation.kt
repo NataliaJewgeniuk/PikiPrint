@@ -1,7 +1,8 @@
 package com.example.app
 
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Scaffold
@@ -16,11 +17,14 @@ import com.example.app.screens.SettingsScreen
 import com.example.app.viewmodels.AppViewModel
 
 enum class Screen(val title: String) {
-    Orders("Pedidos"), Quotes("Presupuestos"), Settings("Ajustes"), Expenses("Gastos")
+    Orders("Pedidos"),
+    Quotes("Presupuestos"),
+    Settings("Ajustes"),
+    Expenses("Gastos")
 }
 
 @Composable
-fun Navigation(viewModel: AppViewModel = viewModel()) {
+fun Navigation(appViewModel: AppViewModel = viewModel()) {
     var currentScreen by remember { mutableStateOf(Screen.Orders) }
 
     Scaffold(
@@ -37,19 +41,32 @@ fun Navigation(viewModel: AppViewModel = viewModel()) {
             }
         }
     ) { paddingValues ->
-        Modifier.padding(paddingValues).let { mod ->
+
+        /*************** Contenedor con padding del Scaffold ***************/
+        /*
+            Esto evita que la barra inferior tape botones o contenido
+            de las pantallas.
+        */
+        Box(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(paddingValues)
+        ) {
             when (currentScreen) {
                 Screen.Orders -> OrdersScreen(
-                    viewModel,
+                    viewModel = appViewModel,
                     onGoToNewQuote = { currentScreen = Screen.Quotes },
                     onGoToSettings = { currentScreen = Screen.Settings }
                 )
+
                 Screen.Quotes -> QuotesScreen(
-                    viewModel,
+                    viewModel = appViewModel,
                     onGoToOrders = { currentScreen = Screen.Orders }
                 )
-                Screen.Settings -> SettingsScreen(viewModel)
-                Screen.Expenses -> ExpensesScreen(viewModel)
+
+                Screen.Settings -> SettingsScreen(appViewModel)
+
+                Screen.Expenses -> ExpensesScreen(appViewModel)
             }
         }
     }

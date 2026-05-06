@@ -1,0 +1,21 @@
+R_DEF: Internal format may change without notice
+local
+color brand_bg
+color brand_blue
+color brand_border
+color brand_coral
+color brand_green
+color brand_lilac
+color brand_orange
+color brand_pink
+color brand_text
+color brand_text_muted
+drawable ic_launcher_background
+drawable ic_launcher_foreground
+mipmap ic_launcher
+mipmap ic_launcher_round
+string app_name
+style Theme.App
+xml backup_rules
+xml data_extraction_rules
+xml filepaths
