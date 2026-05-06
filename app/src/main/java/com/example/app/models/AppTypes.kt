@@ -140,7 +140,6 @@ data class QuoteSettings(
 */
 data class Order(
     val id: String,
-    val orderNumber: Int = 0,
     val title: String,
     val clientName: String,
 

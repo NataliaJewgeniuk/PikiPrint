@@ -92,6 +92,7 @@ fun OrdersScreen(
 
             val matchesSearch =
                 text.isBlank() ||
+                        obtenerRefPedido(order).contains(text, ignoreCase = true) ||
                         order.title.contains(text, ignoreCase = true) ||
                         order.clientName.contains(text, ignoreCase = true) ||
                         order.filament.label.contains(text, ignoreCase = true) ||
@@ -370,7 +371,7 @@ private fun OrderCard(
         ) {
             /*************** Número de pedido ***************/
             Text(
-                text = "Pedido N° ${formatearNumeroPedido(order)}",
+                text = "REF ${obtenerRefPedido(order)}",
                 style = MaterialTheme.typography.labelSmall,
                 fontWeight = FontWeight.ExtraBold,
                 color = Color(0xFF8D6E63)
@@ -1066,15 +1067,17 @@ private fun statusTextColor(
 
 /*************** Formateo de fecha argentina ***************/
 
-/*************** Formatear número de pedido ***************/
-private fun formatearNumeroPedido(
+/*************** REF visible del pedido ***************/
+/*
+    Usa los primeros 8 caracteres del id interno.
+    Es el mismo criterio que usaba la etiqueta.
+*/
+private fun obtenerRefPedido(
     order: Order
 ): String {
-    return if (order.orderNumber > 0) {
-        order.orderNumber.toString()
-    } else {
-        "Sin asignar"
-    }
+    return order.id
+        .take(8)
+        .uppercase()
 }
 
 /*************** Formatear tiempo de impresión ***************/
