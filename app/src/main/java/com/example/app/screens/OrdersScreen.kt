@@ -108,6 +108,8 @@ fun OrdersScreen(
         }
         .sortedByDescending { it.createdAt }
 
+
+
     /*************** Pantalla principal ***************/
     Column(
         modifier = Modifier
@@ -341,6 +343,7 @@ fun OrdersScreen(
     }
 }
 
+
 /*************** Tarjeta visual de pedido ***************/
 @Composable
 private fun OrderCard(
@@ -365,6 +368,17 @@ private fun OrderCard(
         Column(
             modifier = Modifier.padding(16.dp)
         ) {
+            /*************** Número de pedido ***************/
+            Text(
+                text = "Pedido N° ${formatearNumeroPedido(order)}",
+                style = MaterialTheme.typography.labelSmall,
+                fontWeight = FontWeight.ExtraBold,
+                color = Color(0xFF8D6E63)
+            )
+
+            Spacer(modifier = Modifier.height(2.dp))
+
+            /*************** Título, cliente y total ***************/
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceBetween,
@@ -400,6 +414,7 @@ private fun OrderCard(
 
             Spacer(modifier = Modifier.height(12.dp))
 
+            /*************** Datos rápidos tipo pastillas ***************/
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.spacedBy(8.dp)
@@ -412,6 +427,24 @@ private fun OrderCard(
 
                 SmallPill(
                     text = order.filament.label
+                )
+            }
+
+            Spacer(modifier = Modifier.height(8.dp))
+
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.spacedBy(8.dp)
+            ) {
+                SmallPill(
+                    text = order.printer.label
+                )
+
+                SmallPill(
+                    text = formatearTiempoImpresion(
+                        hours = order.printTimeHours,
+                        minutes = order.printTimeMinutes
+                    )
                 )
             }
 
@@ -1032,6 +1065,30 @@ private fun statusTextColor(
 }
 
 /*************** Formateo de fecha argentina ***************/
+
+/*************** Formatear número de pedido ***************/
+private fun formatearNumeroPedido(
+    order: Order
+): String {
+    return if (order.orderNumber > 0) {
+        order.orderNumber.toString()
+    } else {
+        "Sin asignar"
+    }
+}
+
+/*************** Formatear tiempo de impresión ***************/
+private fun formatearTiempoImpresion(
+    hours: Int,
+    minutes: Int
+): String {
+    return when {
+        hours > 0 && minutes > 0 -> "${hours}h ${minutes}m"
+        hours > 0 -> "${hours}h"
+        minutes > 0 -> "${minutes}m"
+        else -> "0m"
+    }
+}
 private fun formatearFechaArgentina(
     value: String
 ): String {
