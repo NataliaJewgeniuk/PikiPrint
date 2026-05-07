@@ -1,15 +1,16 @@
 R_DEF: Internal format may change without notice
 local
-color brand_bg
-color brand_blue
-color brand_border
-color brand_coral
-color brand_green
-color brand_lilac
-color brand_orange
-color brand_pink
-color brand_text
-color brand_text_muted
+color piki_border
+color piki_clay
+color piki_leaf
+color piki_leaf_dark
+color piki_paper
+color piki_paper_dark
+color piki_paper_light
+color piki_sky
+color piki_sky_dark
+color piki_wood
+color piki_wood_soft
 drawable ic_launcher_background
 drawable ic_launcher_foreground
 mipmap ic_launcher
