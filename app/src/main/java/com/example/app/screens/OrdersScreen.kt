@@ -2,8 +2,8 @@ package com.example.app.screens
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.core.tween
-import androidx.compose.animation.fadeIn
 import androidx.compose.animation.expandVertically
+import androidx.compose.animation.fadeIn
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -43,7 +43,6 @@ import com.example.app.ui.components.PikiPill
 import com.example.app.ui.components.PikiPrimaryButton
 import com.example.app.ui.components.PikiSecondaryButton
 import com.example.app.ui.components.PikiStatusPill
-import com.example.app.ui.components.PikiTextField
 import com.example.app.ui.theme.PikiCanceledBg
 import com.example.app.ui.theme.PikiCanceledText
 import com.example.app.ui.theme.PikiClay
@@ -157,8 +156,12 @@ fun OrdersScreen(
 
         PikiSearchField(
             value = search,
-            onValueChange = { search = it },
-            onClear = { search = "" }
+            onValueChange = {
+                search = it
+            },
+            onClear = {
+                search = ""
+            }
         )
 
         Spacer(modifier = Modifier.height(12.dp))
@@ -360,8 +363,13 @@ private fun OrdersHeader(
 ) {
     Card(
         shape = RoundedCornerShape(32.dp),
-        colors = CardDefaults.cardColors(containerColor = PikiPaperLight),
-        border = BorderStroke(2.dp, PikiCreamLine),
+        colors = CardDefaults.cardColors(
+            containerColor = PikiPaperLight
+        ),
+        border = BorderStroke(
+            width = 2.dp,
+            color = PikiCreamLine
+        ),
         modifier = Modifier.fillMaxWidth()
     ) {
         Row(
@@ -371,7 +379,9 @@ private fun OrdersHeader(
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically
         ) {
-            Column(modifier = Modifier.weight(1f)) {
+            Column(
+                modifier = Modifier.weight(1f)
+            ) {
                 Text(
                     text = "Mural del Taller 🧺",
                     style = MaterialTheme.typography.headlineSmall,
@@ -387,7 +397,7 @@ private fun OrdersHeader(
                 ) {
                     Text(
                         text = if (totalOrders == 0) {
-                            "Sin pedidos guardados"
+                            " Sin pedidos guardados "
                         } else {
                             " $totalVisible de $totalOrders pedidos "
                         },
@@ -399,14 +409,22 @@ private fun OrdersHeader(
                 }
             }
 
-            Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+            Row(
+                horizontalArrangement = Arrangement.spacedBy(8.dp)
+            ) {
                 IconButton(
                     onClick = onSettings,
                     modifier = Modifier
                         .size(44.dp)
-                        .background(PikiPaperDark, RoundedCornerShape(14.dp))
+                        .background(
+                            color = PikiPaperDark,
+                            shape = RoundedCornerShape(14.dp)
+                        )
                 ) {
-                    Text("⚙️", fontSize = 20.sp)
+                    Text(
+                        text = "⚙️",
+                        fontSize = 20.sp
+                    )
                 }
 
                 Button(
@@ -563,12 +581,16 @@ private fun WorkshopOrderCard(
 
             Spacer(modifier = Modifier.height(4.dp))
 
-            Row(verticalAlignment = Alignment.CenterVertically) {
+            Row(
+                verticalAlignment = Alignment.CenterVertically
+            ) {
                 Text(
                     text = "👤",
                     style = MaterialTheme.typography.bodySmall
                 )
+
                 Spacer(modifier = Modifier.width(4.dp))
+
                 Text(
                     text = order.clientName,
                     style = MaterialTheme.typography.bodyMedium,
@@ -600,7 +622,6 @@ private fun WorkshopOrderCard(
                     foreground = PikiSkyDark
                 )
 
-                /*************** Impresora del pedido ***************/
                 PikiPill(
                     text = order.printer.label,
                     background = PikiLeaf.copy(alpha = 0.45f),
@@ -617,6 +638,14 @@ private fun WorkshopOrderCard(
                 )
             }
 
+            Spacer(modifier = Modifier.height(16.dp))
+
+            HorizontalDivider(
+                color = PikiCreamLine.copy(alpha = 0.5f)
+            )
+
+            Spacer(modifier = Modifier.height(12.dp))
+
             /*************** Footer: Entrega y Total ***************/
             Row(
                 modifier = Modifier.fillMaxWidth(),
@@ -630,21 +659,29 @@ private fun WorkshopOrderCard(
                         color = PikiMutedText,
                         fontWeight = FontWeight.Bold
                     )
+
                     Text(
-                        text = formatearFechaArgentina(order.deliveryDate.ifBlank { order.createdAt }),
+                        text = formatearFechaArgentina(
+                            order.deliveryDate.ifBlank {
+                                order.createdAt
+                            }
+                        ),
                         style = MaterialTheme.typography.bodySmall,
                         color = PikiWood,
                         fontWeight = FontWeight.ExtraBold
                     )
                 }
 
-                Column(horizontalAlignment = Alignment.End) {
+                Column(
+                    horizontalAlignment = Alignment.End
+                ) {
                     Text(
                         text = "Total",
                         style = MaterialTheme.typography.labelSmall,
                         color = PikiMutedText,
                         fontWeight = FontWeight.Bold
                     )
+
                     Text(
                         text = "ARS ${"%.2f".format(obtenerTotalHistorico(order))}",
                         style = MaterialTheme.typography.titleMedium,
@@ -658,33 +695,18 @@ private fun WorkshopOrderCard(
 }
 
 /*************** BottomSheet de detalle ***************/
-/*************** BottomSheet de detalle ***************/
 /*
-    Hoja del pedido rediseñada.
-
-    La estructura ahora es:
-    - Hero visual del pedido
-    - Producción
-    - Comercial
-    - Acciones
+    Hoja del pedido inspirada en el mockup visual enviado.
 
     Objetivo:
-    que se sienta como una hoja de taller desplegada y no como una
-    tabla plana de datos.
-*/
-/*************** BottomSheet de detalle ***************/
-/*
-    Versión inspirada en la web.
+    - más visual;
+    - menos tabla plana;
+    - más parecido a una ficha de producto;
+    - sin quitar datos.
 
-    Busca parecerse más al modal de OrdersView.tsx:
-    - fondo crema;
-    - tarjetas blancas;
-    - bordes amplios;
-    - título protagonista;
-    - total destacado;
-    - acciones grandes y blanditas.
-
-    No se quita información: se reorganiza visualmente.
+    Todavía no hay imagen real persistida en Order, por eso se muestra
+    un placeholder visual. En la subetapa 6.3-b.2 se puede agregar
+    imagen real desde galería.
 */
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -706,8 +728,20 @@ private fun OrderDetailBottomSheet(
         Calculator.calculateQuote(order, settings)
     }
 
+    val subtotalHistorico =
+        order.subtotal.ifZeroUse(breakdown.subtotal)
+
+    val margenHistorico =
+        order.margenMonto.ifZeroUse(breakdown.margenMonto)
+
+    val descuentoCantidadHistorico =
+        order.descuentoCantidad.ifZeroUse(breakdown.descuentoCantidad)
+
+    val descuentoAmigoHistorico =
+        order.descuentoAmigo.ifZeroUse(breakdown.descuentoAmigo)
+
     val descuentosAplicados =
-        order.descuentoCantidad + order.descuentoAmigo
+        descuentoCantidadHistorico + descuentoAmigoHistorico
 
     Column(
         modifier = Modifier
@@ -716,15 +750,23 @@ private fun OrderDetailBottomSheet(
             .padding(horizontal = 18.dp, vertical = 12.dp)
             .verticalScroll(rememberScrollState())
     ) {
-        /*************** Cabecera estilo modal web ***************/
-        DetailTopBar(
+        /*************** Header superior ***************/
+        DetailMockupTopBar(
+            order = order,
             onClose = onClose
         )
 
-        Spacer(modifier = Modifier.height(14.dp))
+        Spacer(modifier = Modifier.height(18.dp))
 
-        /*************** Tarjeta principal del pedido ***************/
-        OrderWebStyleHeroCard(
+        /*************** Hero visual / futuro espacio para foto ***************/
+        ProductHeroPlaceholder(
+            order = order
+        )
+
+        Spacer(modifier = Modifier.height(16.dp))
+
+        /*************** Card principal del pedido ***************/
+        ProductMainCard(
             order = order,
             selectedStatus = selectedStatus,
             onStatusSelected = { newStatus ->
@@ -735,61 +777,49 @@ private fun OrderDetailBottomSheet(
 
         Spacer(modifier = Modifier.height(16.dp))
 
-        /*************** Resumen del taller ***************/
-        WebStyleInfoCard(
-            title = "Resumen del taller",
-            icon = "🛠️"
-        ) {
-            DetailRow(
-                label = "Material",
-                value = order.filament.label
-            )
-
-            DetailRow(
-                label = "Peso estimado",
-                value = "${order.weightGramsPerUnit} g x ${order.quantity}"
-            )
-
-            DetailRow(
-                label = "Unidades",
-                value = "${order.quantity}"
-            )
-
-            DetailRow(
-                label = "Impresora",
-                value = order.printer.label
-            )
-
-            DetailRow(
-                label = "Tiempo estimado",
-                value = formatearTiempoImpresion(
-                    hours = order.printTimeHours,
-                    minutes = order.printTimeMinutes
+        /*************** Mini cards técnicas ***************/
+        TwoColumnInfoGrid(
+            first = {
+                MiniSpecCard(
+                    label = "MATERIAL",
+                    value = order.filament.label
                 )
-            )
+            },
+            second = {
+                MiniSpecCard(
+                    label = "IMPRESORA",
+                    value = order.printer.label
+                )
+            }
+        )
 
-            DetailRow(
-                label = "Color",
-                value = order.color
-            )
+        Spacer(modifier = Modifier.height(10.dp))
 
-            DetailRow(
-                label = "Acabado",
-                value = order.finishType.label
-            )
+        TwoColumnInfoGrid(
+            first = {
+                MiniSpecCard(
+                    label = "PESO",
+                    value = "${order.weightGramsPerUnit} g x ${order.quantity}"
+                )
+            },
+            second = {
+                MiniSpecCard(
+                    label = "TIEMPO",
+                    value = formatearTiempoImpresion(
+                        hours = order.printTimeHours,
+                        minutes = order.printTimeMinutes
+                    )
+                )
+            }
+        )
 
-            DetailRow(
-                label = "Diseño",
-                value = order.designType.label
-            )
-        }
-
-        Spacer(modifier = Modifier.height(14.dp))
+        Spacer(modifier = Modifier.height(16.dp))
 
         /*************** Análisis de costos ***************/
-        WebStyleInfoCard(
+        VisualSectionCard(
             title = "Análisis de costos",
-            icon = "💰"
+            icon = "🧾",
+            accentColor = PikiClay
         ) {
             DetailRow(
                 label = "Costo material",
@@ -819,23 +849,33 @@ private fun OrderDetailBottomSheet(
 
             DetailRow(
                 label = "Subtotal costos",
-                value = "ARS ${"%.2f".format(order.subtotal.ifZeroUse(breakdown.subtotal))}"
+                value = "ARS ${"%.2f".format(subtotalHistorico)}",
+                highlight = true
             )
+        }
 
+        Spacer(modifier = Modifier.height(16.dp))
+
+        /*************** Precios y descuentos ***************/
+        VisualSectionCard(
+            title = "Precios y descuentos",
+            icon = "🏷️",
+            accentColor = PikiLeafDark
+        ) {
             DetailRow(
                 label = "Margen de ganancia",
-                value = "ARS ${"%.2f".format(order.margenMonto.ifZeroUse(breakdown.margenMonto))}",
+                value = "ARS ${"%.2f".format(margenHistorico)}",
                 highlight = true
             )
 
             DetailRow(
                 label = "Descuento por cantidad",
-                value = "ARS ${"%.2f".format(order.descuentoCantidad.ifZeroUse(breakdown.descuentoCantidad))}"
+                value = "ARS ${"%.2f".format(descuentoCantidadHistorico)}"
             )
 
             DetailRow(
                 label = "Descuento amigo",
-                value = "ARS ${"%.2f".format(order.descuentoAmigo.ifZeroUse(breakdown.descuentoAmigo))}"
+                value = "ARS ${"%.2f".format(descuentoAmigoHistorico)}"
             )
 
             HorizontalDivider(
@@ -846,53 +886,61 @@ private fun OrderDetailBottomSheet(
 
             DetailRow(
                 label = "Descuentos aplicados",
-                value = "ARS ${"%.2f".format(
-                    order.descuentoCantidad.ifZeroUse(breakdown.descuentoCantidad) +
-                            order.descuentoAmigo.ifZeroUse(breakdown.descuentoAmigo)
-                )}"
-            )
-
-            DetailRow(
-                label = "Total final",
-                value = "ARS ${"%.2f".format(obtenerTotalHistorico(order))}",
-                highlight = true
+                value = "ARS ${"%.2f".format(descuentosAplicados)}",
+                highlight = descuentosAplicados > 0.0
             )
         }
 
-        Spacer(modifier = Modifier.height(14.dp))
+        Spacer(modifier = Modifier.height(16.dp))
+
+        /*************** Total protagonista ***************/
+        GrandTotalCard(
+            total = obtenerTotalHistorico(order)
+        )
+
+        Spacer(modifier = Modifier.height(16.dp))
+
+        /*************** Fechas ***************/
+        TwoColumnInfoGrid(
+            first = {
+                MiniSpecCard(
+                    label = "FECHA PRESUP.",
+                    value = formatearFechaArgentina(order.quoteDate)
+                )
+            },
+            second = {
+                MiniSpecCard(
+                    label = "ENTREGA",
+                    value = formatearFechaArgentina(order.deliveryDate)
+                )
+            }
+        )
+
+        Spacer(modifier = Modifier.height(10.dp))
+
+        TwoColumnInfoGrid(
+            first = {
+                MiniSpecCard(
+                    label = "VALIDEZ",
+                    value = "${order.validityDays} días"
+                )
+            },
+            second = {
+                MiniSpecCard(
+                    label = "PLAZO",
+                    value = "${order.deliveryBusinessDays} días hábiles"
+                )
+            }
+        )
+
+        Spacer(modifier = Modifier.height(16.dp))
 
         /*************** Condiciones comerciales ***************/
-        WebStyleInfoCard(
-            title = "Condiciones del pedido",
-            icon = "📒"
+        VisualSectionCard(
+            title = "Condiciones comerciales",
+            icon = "📋",
+            accentColor = PikiSkyDark
         ) {
-            DetailRow(
-                label = "Fecha presupuesto",
-                value = formatearFechaArgentina(order.quoteDate)
-            )
-
-            DetailRow(
-                label = "Validez de la oferta",
-                value = "${order.validityDays} días"
-            )
-
-            DetailRow(
-                label = "Plazo de entrega",
-                value = "${order.deliveryBusinessDays} días hábiles"
-            )
-
-            DetailRow(
-                label = "Entrega estimada",
-                value = formatearFechaArgentina(order.deliveryDate),
-                highlight = true
-            )
-
-            HorizontalDivider(
-                modifier = Modifier.padding(vertical = 8.dp),
-                thickness = DividerDefaults.Thickness,
-                color = PikiCreamLine.copy(alpha = 0.65f)
-            )
-
             DetailRow(
                 label = "Forma de pago",
                 value = order.paymentType.label
@@ -913,91 +961,160 @@ private fun OrderDetailBottomSheet(
                     "No aplicado"
                 }
             )
-
-            if (order.notes.isNotBlank()) {
-                HorizontalDivider(
-                    modifier = Modifier.padding(vertical = 8.dp),
-                    thickness = DividerDefaults.Thickness,
-                    color = PikiCreamLine.copy(alpha = 0.65f)
-                )
-
-                NotesBubble(
-                    notes = order.notes
-                )
-            }
         }
 
+        if (order.notes.isNotBlank()) {
+            Spacer(modifier = Modifier.height(16.dp))
 
-        Spacer(modifier = Modifier.height(18.dp))
+            SpecialNotesCard(
+                notes = order.notes
+            )
+        }
 
-        /*************** Total estilo web ***************/
-        WebStyleTotalCard(
-            total = obtenerTotalHistorico(order)
-        )
-
-        Spacer(modifier = Modifier.height(18.dp))
+        Spacer(modifier = Modifier.height(22.dp))
 
         /*************** Acciones ***************/
-        WebStyleActions(
+        VisualActionButtons(
             onShareQuote = onShareQuote,
             onGenerateLabel = onGenerateLabel,
             onEdit = onEdit,
             onDelete = onDelete
         )
 
-        Spacer(modifier = Modifier.height(16.dp))
+        Spacer(modifier = Modifier.height(18.dp))
     }
 }
 
-/*************** Barra superior del detalle ***************/
+/*************** Header superior estilo mockup ***************/
 @Composable
-private fun DetailTopBar(
+private fun DetailMockupTopBar(
+    order: Order,
     onClose: () -> Unit
 ) {
     Row(
         modifier = Modifier.fillMaxWidth(),
-        horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically
     ) {
-        Text(
-            text = "Detalle del Pedido 🌿",
-            style = MaterialTheme.typography.titleLarge,
-            fontWeight = FontWeight.ExtraBold,
-            color = PikiWood
-        )
-
         IconButton(
             onClick = onClose,
             modifier = Modifier
-                .size(42.dp)
+                .size(44.dp)
                 .clip(RoundedCornerShape(999.dp))
-                .background(PikiWhite)
+                .background(PikiPaperLight)
                 .border(
                     width = 2.dp,
-                    color = PikiCreamLine,
+                    color = PikiClay,
                     shape = RoundedCornerShape(999.dp)
                 )
         ) {
-            Icon(
-                imageVector = Icons.Default.Close,
-                contentDescription = "Cerrar",
-                tint = PikiWood
+            Text(
+                text = "←",
+                fontWeight = FontWeight.ExtraBold,
+                color = PikiClay,
+                fontSize = 22.sp
+            )
+        }
+
+        Spacer(modifier = Modifier.width(12.dp))
+
+        Column(
+            modifier = Modifier.weight(1f)
+        ) {
+            Text(
+                text = "Detalle del Pedido",
+                style = MaterialTheme.typography.titleLarge,
+                fontWeight = FontWeight.ExtraBold,
+                color = PikiWood
+            )
+
+            Text(
+                text = "REF: #PK-${obtenerRefPedido(order)}",
+                style = MaterialTheme.typography.labelSmall,
+                fontWeight = FontWeight.ExtraBold,
+                color = PikiClay
             )
         }
     }
 }
 
-/*************** Hero inspirado en el modal web ***************/
+/*************** Hero visual del producto ***************/
+/*
+    Placeholder visual.
+
+    En 6.3-b.2 se reemplaza por imagen real opcional.
+*/
+@Composable
+private fun ProductHeroPlaceholder(
+    order: Order
+) {
+    Box(
+        modifier = Modifier
+            .fillMaxWidth()
+            .height(220.dp)
+            .clip(RoundedCornerShape(32.dp))
+            .background(
+                Brush.radialGradient(
+                    colors = listOf(
+                        PikiSky.copy(alpha = 0.42f),
+                        PikiPaperLight,
+                        PikiPaperDark
+                    )
+                )
+            )
+            .border(
+                width = 3.dp,
+                color = PikiWhite,
+                shape = RoundedCornerShape(32.dp)
+            ),
+        contentAlignment = Alignment.Center
+    ) {
+        Column(
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            Text(
+                text = when {
+                    order.title.contains("dragon", ignoreCase = true) ||
+                            order.title.contains("dragón", ignoreCase = true) -> "🐉"
+
+                    order.title.contains("llavero", ignoreCase = true) -> "🔑"
+
+                    order.title.contains("soporte", ignoreCase = true) -> "🧩"
+
+                    else -> "🖨️"
+                },
+                fontSize = 76.sp
+            )
+
+            Spacer(modifier = Modifier.height(8.dp))
+
+            Text(
+                text = "Imagen del producto",
+                style = MaterialTheme.typography.labelMedium,
+                color = PikiMutedText,
+                fontWeight = FontWeight.ExtraBold
+            )
+
+            Text(
+                text = "Se podrá agregar en la siguiente subetapa",
+                style = MaterialTheme.typography.labelSmall,
+                color = PikiMutedText,
+                fontWeight = FontWeight.Bold
+            )
+        }
+    }
+}
+
+/*************** Card principal del pedido ***************/
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-private fun OrderWebStyleHeroCard(
+private fun ProductMainCard(
     order: Order,
     selectedStatus: OrderStatus,
     onStatusSelected: (OrderStatus) -> Unit
 ) {
     Card(
         modifier = Modifier.fillMaxWidth(),
-        shape = RoundedCornerShape(28.dp),
+        shape = RoundedCornerShape(30.dp),
         colors = CardDefaults.cardColors(
             containerColor = PikiWhite
         ),
@@ -1013,15 +1130,6 @@ private fun OrderWebStyleHeroCard(
             modifier = Modifier.padding(20.dp)
         ) {
             Text(
-                text = "Nombre del trabajo",
-                style = MaterialTheme.typography.labelSmall,
-                fontWeight = FontWeight.ExtraBold,
-                color = PikiMutedText
-            )
-
-            Spacer(modifier = Modifier.height(4.dp))
-
-            Text(
                 text = order.title,
                 style = MaterialTheme.typography.headlineSmall,
                 fontWeight = FontWeight.ExtraBold,
@@ -1033,63 +1141,178 @@ private fun OrderWebStyleHeroCard(
 
             Spacer(modifier = Modifier.height(10.dp))
 
+            StatusDropdown(
+                selectedStatus = selectedStatus,
+                onStatusSelected = onStatusSelected
+            )
+
+            Spacer(modifier = Modifier.height(12.dp))
+
             Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.spacedBy(8.dp),
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Surface(
-                    shape = RoundedCornerShape(14.dp),
-                    color = PikiPaper,
-                    border = BorderStroke(
-                        width = 1.dp,
-                        color = PikiCreamLine
-                    )
+                    shape = RoundedCornerShape(999.dp),
+                    color = PikiSky.copy(alpha = 0.25f)
                 ) {
                     Text(
-                        text = "REF ${obtenerRefPedido(order)}",
-                        modifier = Modifier.padding(horizontal = 10.dp, vertical = 5.dp),
-                        style = MaterialTheme.typography.labelSmall,
-                        fontWeight = FontWeight.ExtraBold,
-                        color = PikiClay
+                        text = "👤",
+                        modifier = Modifier.padding(horizontal = 10.dp, vertical = 6.dp),
+                        fontSize = 14.sp
                     )
                 }
 
-                Surface(
-                    shape = RoundedCornerShape(14.dp),
-                    color = PikiSky.copy(alpha = 0.22f)
-                ) {
-                    Text(
-                        text = "👤 ${order.clientName}",
-                        modifier = Modifier.padding(horizontal = 10.dp, vertical = 5.dp),
-                        style = MaterialTheme.typography.labelSmall,
-                        fontWeight = FontWeight.ExtraBold,
-                        color = PikiWood
-                    )
-                }
+                Spacer(modifier = Modifier.width(8.dp))
+
+                Text(
+                    text = order.clientName,
+                    style = MaterialTheme.typography.bodyMedium,
+                    color = PikiMutedText,
+                    fontWeight = FontWeight.ExtraBold
+                )
             }
 
             Spacer(modifier = Modifier.height(16.dp))
 
-            /*************** Estado editable ***************/
-            StatusDropdown(
-                selectedStatus = selectedStatus,
-                onStatusSelected = onStatusSelected
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .horizontalScroll(rememberScrollState()),
+                horizontalArrangement = Arrangement.spacedBy(10.dp)
+            ) {
+                VisualMiniChip(
+                    icon = "🎨",
+                    label = order.color
+                )
+
+                VisualMiniChip(
+                    icon = "✨",
+                    label = order.finishType.label
+                )
+
+                VisualMiniChip(
+                    icon = "📐",
+                    label = order.designType.label
+                )
+            }
+        }
+    }
+}
+
+/*************** Chip visual interno ***************/
+@Composable
+private fun VisualMiniChip(
+    icon: String,
+    label: String
+) {
+    Column(
+        modifier = Modifier
+            .widthIn(min = 92.dp)
+            .clip(RoundedCornerShape(20.dp))
+            .background(PikiPaper)
+            .border(
+                width = 1.dp,
+                color = PikiCreamLine,
+                shape = RoundedCornerShape(20.dp)
+            )
+            .padding(horizontal = 12.dp, vertical = 10.dp),
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        Text(
+            text = icon,
+            fontSize = 18.sp
+        )
+
+        Spacer(modifier = Modifier.height(4.dp))
+
+        Text(
+            text = label,
+            style = MaterialTheme.typography.labelSmall,
+            color = PikiWood,
+            fontWeight = FontWeight.ExtraBold,
+            textAlign = TextAlign.Center,
+            maxLines = 2,
+            overflow = TextOverflow.Ellipsis
+        )
+    }
+}
+
+/*************** Grilla de dos columnas ***************/
+@Composable
+private fun TwoColumnInfoGrid(
+    first: @Composable () -> Unit,
+    second: @Composable () -> Unit
+) {
+    Row(
+        modifier = Modifier.fillMaxWidth(),
+        horizontalArrangement = Arrangement.spacedBy(12.dp)
+    ) {
+        Box(
+            modifier = Modifier.weight(1f)
+        ) {
+            first()
+        }
+
+        Box(
+            modifier = Modifier.weight(1f)
+        ) {
+            second()
+        }
+    }
+}
+
+/*************** Mini card técnica ***************/
+@Composable
+private fun MiniSpecCard(
+    label: String,
+    value: String
+) {
+    Card(
+        modifier = Modifier.fillMaxWidth(),
+        shape = RoundedCornerShape(24.dp),
+        colors = CardDefaults.cardColors(
+            containerColor = PikiWhite
+        ),
+        border = BorderStroke(
+            width = 1.dp,
+            color = PikiCreamLine
+        )
+    ) {
+        Column(
+            modifier = Modifier.padding(16.dp)
+        ) {
+            Text(
+                text = label,
+                style = MaterialTheme.typography.labelSmall,
+                fontWeight = FontWeight.ExtraBold,
+                color = PikiClay
+            )
+
+            Spacer(modifier = Modifier.height(6.dp))
+
+            Text(
+                text = value,
+                style = MaterialTheme.typography.bodyMedium,
+                fontWeight = FontWeight.ExtraBold,
+                color = PikiWood,
+                maxLines = 3,
+                overflow = TextOverflow.Ellipsis
             )
         }
     }
 }
 
-/*************** Card interna estilo web ***************/
+/*************** Sección visual ***************/
 @Composable
-private fun WebStyleInfoCard(
+private fun VisualSectionCard(
     title: String,
     icon: String,
+    accentColor: Color,
     content: @Composable ColumnScope.() -> Unit
 ) {
     Card(
         modifier = Modifier.fillMaxWidth(),
-        shape = RoundedCornerShape(26.dp),
+        shape = RoundedCornerShape(30.dp),
         colors = CardDefaults.cardColors(
             containerColor = PikiWhite
         ),
@@ -1108,24 +1331,18 @@ private fun WebStyleInfoCard(
             Row(
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                Surface(
-                    shape = RoundedCornerShape(14.dp),
-                    color = PikiPaper
-                ) {
-                    Text(
-                        text = icon,
-                        modifier = Modifier.padding(horizontal = 10.dp, vertical = 6.dp),
-                        fontSize = 16.sp
-                    )
-                }
+                Text(
+                    text = icon,
+                    fontSize = 20.sp
+                )
 
-                Spacer(modifier = Modifier.width(10.dp))
+                Spacer(modifier = Modifier.width(8.dp))
 
                 Text(
                     text = title,
                     style = MaterialTheme.typography.titleMedium,
                     fontWeight = FontWeight.ExtraBold,
-                    color = PikiWood
+                    color = accentColor
                 )
             }
 
@@ -1140,221 +1357,128 @@ private fun WebStyleInfoCard(
     }
 }
 
-/*************** Burbuja de notas ***************/
+/*************** Total protagonista ***************/
 @Composable
-private fun NotesBubble(
-    notes: String
-) {
-    Box(
-        modifier = Modifier
-            .fillMaxWidth()
-            .clip(RoundedCornerShape(18.dp))
-            .background(PikiPaper)
-            .border(
-                width = 1.dp,
-                color = PikiCreamLine,
-                shape = RoundedCornerShape(18.dp)
-            )
-            .padding(14.dp)
-    ) {
-        Column {
-            Text(
-                text = "Notas",
-                style = MaterialTheme.typography.labelSmall,
-                fontWeight = FontWeight.ExtraBold,
-                color = PikiMutedText
-            )
-
-            Spacer(modifier = Modifier.height(4.dp))
-
-            Text(
-                text = notes,
-                style = MaterialTheme.typography.bodyMedium,
-                fontWeight = FontWeight.Bold,
-                color = PikiWood
-            )
-        }
-    }
-}
-
-/*************** Total estilo web / ticket ***************/
-@Composable
-private fun WebStyleTotalCard(
+private fun GrandTotalCard(
     total: Double
 ) {
     Card(
         modifier = Modifier.fillMaxWidth(),
-        shape = RoundedCornerShape(28.dp),
+        shape = RoundedCornerShape(30.dp),
         colors = CardDefaults.cardColors(
-            containerColor = PikiLeafDark
+            containerColor = PikiSky
         ),
         elevation = CardDefaults.cardElevation(
             defaultElevation = 2.dp
         )
     ) {
-        Row(
+        Column(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(22.dp),
-            horizontalArrangement = Arrangement.SpaceBetween,
-            verticalAlignment = Alignment.CenterVertically
+                .padding(24.dp),
+            horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Column {
-                Text(
-                    text = "Total a cobrar",
-                    style = MaterialTheme.typography.bodyMedium,
-                    fontWeight = FontWeight.ExtraBold,
-                    color = PikiWhite.copy(alpha = 0.85f)
-                )
+            Text(
+                text = "TOTAL A COBRAR",
+                style = MaterialTheme.typography.labelMedium,
+                fontWeight = FontWeight.ExtraBold,
+                color = PikiWood.copy(alpha = 0.65f),
+                letterSpacing = 1.sp
+            )
 
-                Text(
-                    text = "Importe final del pedido",
-                    style = MaterialTheme.typography.labelSmall,
-                    fontWeight = FontWeight.Bold,
-                    color = PikiWhite.copy(alpha = 0.65f)
-                )
-            }
+            Spacer(modifier = Modifier.height(6.dp))
 
             Text(
                 text = "ARS ${"%.2f".format(total)}",
-                style = MaterialTheme.typography.headlineSmall,
-                fontWeight = FontWeight.ExtraBold,
-                color = PikiWhite
+                style = MaterialTheme.typography.headlineMedium,
+                fontWeight = FontWeight.Black,
+                color = PikiWood
             )
         }
     }
 }
 
-/*************** Acciones estilo web ***************/
+/*************** Notas especiales ***************/
 @Composable
-private fun WebStyleActions(
+private fun SpecialNotesCard(
+    notes: String
+) {
+    Card(
+        modifier = Modifier.fillMaxWidth(),
+        shape = RoundedCornerShape(28.dp),
+        colors = CardDefaults.cardColors(
+            containerColor = PikiPendingBg.copy(alpha = 0.65f)
+        )
+    ) {
+        Column(
+            modifier = Modifier.padding(18.dp)
+        ) {
+            Text(
+                text = "📝 Notas especiales",
+                style = MaterialTheme.typography.labelMedium,
+                fontWeight = FontWeight.ExtraBold,
+                color = PikiClay
+            )
+
+            Spacer(modifier = Modifier.height(8.dp))
+
+            Text(
+                text = notes,
+                style = MaterialTheme.typography.bodyMedium,
+                fontWeight = FontWeight.Bold,
+                color = PikiWood,
+                lineHeight = 22.sp
+            )
+        }
+    }
+}
+
+/*************** Botones de acción visuales ***************/
+@Composable
+private fun VisualActionButtons(
     onShareQuote: () -> Unit,
     onGenerateLabel: () -> Unit,
     onEdit: () -> Unit,
     onDelete: () -> Unit
 ) {
-    Column(
-        verticalArrangement = Arrangement.spacedBy(10.dp)
+    PikiPrimaryButton(
+        text = "📤 Compartir Presupuesto",
+        onClick = onShareQuote
+    )
+
+    Spacer(modifier = Modifier.height(8.dp))
+
+    PikiSecondaryButton(
+        text = "🏷️ Generar Etiqueta",
+        onClick = onGenerateLabel
+    )
+
+    Spacer(modifier = Modifier.height(8.dp))
+
+    PikiOutlinedButton(
+        text = "📝 Editar Presupuesto",
+        onClick = onEdit
+    )
+
+    Spacer(modifier = Modifier.height(8.dp))
+
+    OutlinedButton(
+        onClick = onDelete,
+        modifier = Modifier.fillMaxWidth(),
+        shape = RoundedCornerShape(22.dp),
+        border = BorderStroke(
+            width = 2.dp,
+            color = PikiCanceledBg
+        ),
+        colors = ButtonDefaults.outlinedButtonColors(
+            containerColor = PikiPaperLight,
+            contentColor = PikiCanceledText
+        )
     ) {
-        Button(
-            onClick = onShareQuote,
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(54.dp),
-            shape = RoundedCornerShape(20.dp),
-            colors = ButtonDefaults.buttonColors(
-                containerColor = PikiLeafDark,
-                contentColor = PikiWhite
-            )
-        ) {
-            Text(
-                text = "📤 Compartir Presupuesto",
-                fontWeight = FontWeight.ExtraBold
-            )
-        }
-
-        Button(
-            onClick = onGenerateLabel,
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(54.dp),
-            shape = RoundedCornerShape(20.dp),
-            colors = ButtonDefaults.buttonColors(
-                containerColor = PikiSky,
-                contentColor = PikiWood
-            )
-        ) {
-            Text(
-                text = "🏷️ Generar Etiqueta",
-                fontWeight = FontWeight.ExtraBold
-            )
-        }
-
-        OutlinedButton(
-            onClick = onEdit,
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(52.dp),
-            shape = RoundedCornerShape(20.dp),
-            border = BorderStroke(
-                width = 2.dp,
-                color = PikiCreamLine
-            ),
-            colors = ButtonDefaults.outlinedButtonColors(
-                containerColor = PikiWhite,
-                contentColor = PikiWood
-            )
-        ) {
-            Text(
-                text = "📝 Editar Presupuesto",
-                fontWeight = FontWeight.ExtraBold
-            )
-        }
-
-        OutlinedButton(
-            onClick = onDelete,
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(50.dp),
-            shape = RoundedCornerShape(20.dp),
-            border = BorderStroke(
-                width = 2.dp,
-                color = PikiCanceledBg
-            ),
-            colors = ButtonDefaults.outlinedButtonColors(
-                containerColor = PikiPaperLight,
-                contentColor = PikiCanceledText
-            )
-        ) {
-            Text(
-                text = "Eliminar Pedido",
-                fontWeight = FontWeight.ExtraBold
-            )
-        }
-    }
-}
-
-/*************** Fallback para valores históricos ***************/
-private fun Double.ifZeroUse(
-    fallback: Double
-): Double {
-    return if (this > 0.0) {
-        this
-    } else {
-        fallback
-    }
-}
-
-/*************** Nueva Sección de Información ***************/
-@Composable
-private fun InfoSection(
-    title: String,
-    icon: String,
-    content: @Composable ColumnScope.() -> Unit
-) {
-    Column(modifier = Modifier.fillMaxWidth()) {
-        Row(verticalAlignment = Alignment.CenterVertically) {
-            Text(text = icon, fontSize = 20.sp)
-            Spacer(modifier = Modifier.width(8.dp))
-            Text(
-                text = title,
-                style = MaterialTheme.typography.labelLarge,
-                fontWeight = FontWeight.Black,
-                letterSpacing = 1.sp,
-                color = PikiWood
-            )
-        }
-        Spacer(modifier = Modifier.height(12.dp))
-        Column(
-            modifier = Modifier
-                .fillMaxWidth()
-                .background(PikiWhite, RoundedCornerShape(24.dp))
-                .border(2.dp, PikiCreamLine, RoundedCornerShape(24.dp))
-                .padding(16.dp),
-            verticalArrangement = Arrangement.spacedBy(10.dp)
-        ) {
-            content()
-        }
+        Text(
+            text = "Eliminar Pedido",
+            fontWeight = FontWeight.ExtraBold
+        )
     }
 }
 
@@ -1423,7 +1547,7 @@ private fun StatusDropdown(
     }
 }
 
-/*************** Fila de detalle estilo web ***************/
+/*************** Fila de detalle ***************/
 @Composable
 private fun DetailRow(
     label: String,
@@ -1641,7 +1765,9 @@ private fun PikiSearchField(
         },
         trailingIcon = {
             if (value.isNotEmpty()) {
-                IconButton(onClick = onClear) {
+                IconButton(
+                    onClick = onClear
+                ) {
                     Icon(
                         imageVector = Icons.Default.Close,
                         contentDescription = "Limpiar",
@@ -1679,7 +1805,10 @@ private fun EmptyOrdersState(
                 .size(140.dp)
                 .background(
                     Brush.radialGradient(
-                        listOf(PikiLeaf.copy(alpha = 0.2f), Color.Transparent)
+                        listOf(
+                            PikiLeaf.copy(alpha = 0.2f),
+                            Color.Transparent
+                        )
                     )
                 )
         ) {
@@ -1834,5 +1963,16 @@ private fun formatearFechaArgentina(
             .format(formatoFechaArgentina)
     } catch (e: Exception) {
         value
+    }
+}
+
+/*************** Fallback para valores históricos ***************/
+private fun Double.ifZeroUse(
+    fallback: Double
+): Double {
+    return if (this > 0.0) {
+        this
+    } else {
+        fallback
     }
 }
