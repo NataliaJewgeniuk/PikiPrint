@@ -315,4 +315,4 @@ int styleable GradientColorItem_android_color 0
 int styleable GradientColorItem_android_offset 1
 int xml backup_rules 0x7f0c0000
 int xml data_extraction_rules 0x7f0c0001
-int xml filepaths 0x7f0c0002
+int xml file_paths 0x7f0c0002

@@ -36,6 +36,10 @@
         "source": "com.example.app-main-51:/mipmap-anydpi-v26/ic_launcher_round.xml"
     },
     {
+        "merged": "com.example.app-merged_res-49:/xml_file_paths.xml.flat",
+        "source": "com.example.app-main-51:/xml/file_paths.xml"
+    },
+    {
         "merged": "com.example.app-merged_res-49:/mipmap-xhdpi_ic_launcher.webp.flat",
         "source": "com.example.app-main-51:/mipmap-xhdpi/ic_launcher.webp"
     },
@@ -58,10 +62,6 @@
     {
         "merged": "com.example.app-merged_res-49:/mipmap-xxxhdpi_ic_launcher_round.webp.flat",
         "source": "com.example.app-main-51:/mipmap-xxxhdpi/ic_launcher_round.webp"
-    },
-    {
-        "merged": "com.example.app-merged_res-49:/xml_filepaths.xml.flat",
-        "source": "com.example.app-main-51:/xml/filepaths.xml"
     },
     {
         "merged": "com.example.app-merged_res-49:/mipmap-hdpi_ic_launcher.webp.flat",

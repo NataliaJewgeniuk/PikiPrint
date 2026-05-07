@@ -1,7 +1,6 @@
 package com.example.app.screens
 
 import android.os.Build
-import androidx.annotation.RequiresApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -41,7 +40,6 @@ import java.util.UUID
 
     Eso evita problemas al calcular, ordenar o persistir fechas.
 */
-@RequiresApi(Build.VERSION_CODES.O)
 private val formatoFechaArgentina: DateTimeFormatter =
     DateTimeFormatter.ofPattern("dd/MM/yyyy")
 

@@ -1,7 +1,6 @@
 package com.example.app.screens
 
 import android.os.Build
-import androidx.annotation.RequiresApi
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -18,6 +17,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
@@ -26,18 +26,10 @@ import com.example.app.models.Order
 import com.example.app.models.OrderStatus
 import com.example.app.models.PaymentType
 import com.example.app.viewmodels.AppViewModel
+import com.example.app.utils.shareQuoteImage
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 
-/*************** Formato argentino visible ***************/
-/*
-    En el modelo las fechas se guardan como ISO:
-    yyyy-MM-dd
-
-    En pantalla se muestran como:
-    dd/MM/yyyy
-*/
-@RequiresApi(Build.VERSION_CODES.O)
 private val formatoFechaArgentina: DateTimeFormatter =
     DateTimeFormatter.ofPattern("dd/MM/yyyy")
 
@@ -49,8 +41,8 @@ fun OrdersScreen(
     onGoToSettings: () -> Unit
 ) {
     val state by viewModel.state.collectAsState()
+    val context = LocalContext.current
 
-    /*************** Estados de pantalla ***************/
     var selectedOrder by remember {
         mutableStateOf<Order?>(null)
     }
@@ -75,17 +67,6 @@ fun OrdersScreen(
         skipPartiallyExpanded = true
     )
 
-    /*************** Filtrado de pedidos ***************/
-    /*
-        Buscador completo:
-        - título
-        - cliente
-        - material
-        - impresora
-        - color
-        - acabado
-        - estado
-    */
     val filteredOrders = state.orders
         .filter { order ->
             val text = search.trim()
@@ -109,16 +90,12 @@ fun OrdersScreen(
         }
         .sortedByDescending { it.createdAt }
 
-
-
-    /*************** Pantalla principal ***************/
     Column(
         modifier = Modifier
             .fillMaxSize()
             .padding(16.dp)
             .padding(bottom = 88.dp)
     ) {
-        /*************** Encabezado ***************/
         Row(
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically,
@@ -162,7 +139,6 @@ fun OrdersScreen(
 
         Spacer(modifier = Modifier.height(12.dp))
 
-        /*************** Buscador ***************/
         OutlinedTextField(
             value = search,
             onValueChange = {
@@ -170,7 +146,7 @@ fun OrdersScreen(
             },
             modifier = Modifier.fillMaxWidth(),
             label = {
-                Text("Buscar pedido, cliente, material...")
+                Text("Buscar REF, pedido, cliente, material...")
             },
             singleLine = true,
             shape = RoundedCornerShape(22.dp)
@@ -178,7 +154,6 @@ fun OrdersScreen(
 
         Spacer(modifier = Modifier.height(12.dp))
 
-        /*************** Filtros por estado ***************/
         Row(
             modifier = Modifier
                 .fillMaxWidth()
@@ -210,7 +185,6 @@ fun OrdersScreen(
 
         Spacer(modifier = Modifier.height(12.dp))
 
-        /*************** Listado visual ***************/
         if (state.orders.isEmpty()) {
             EmptyOrdersState(
                 onNewOrder = {
@@ -240,7 +214,6 @@ fun OrdersScreen(
         }
     }
 
-    /*************** Detalle en BottomSheet ***************/
     selectedOrder?.let { order ->
         ModalBottomSheet(
             onDismissRequest = {
@@ -268,6 +241,13 @@ fun OrdersScreen(
                     labelOrder = order
                     selectedOrder = null
                 },
+                onShareQuote = {
+                    shareQuoteImage(
+                        context = context,
+                        order = order,
+                        settings = state.quoteSettings
+                    )
+                },
                 onStatusChange = { newStatus ->
                     val updated = order.copy(status = newStatus)
                     viewModel.updateOrder(updated)
@@ -277,7 +257,6 @@ fun OrdersScreen(
         }
     }
 
-    /*************** Confirmación de eliminación ***************/
     orderToDelete?.let { order ->
         AlertDialog(
             onDismissRequest = {
@@ -315,11 +294,6 @@ fun OrdersScreen(
         )
     }
 
-    /*************** Etiqueta generada ***************/
-    /*
-        En esta etapa se genera una previsualización de etiqueta.
-        La impresión/exportación real a PDF o imagen puede venir en una etapa posterior.
-    */
     labelOrder?.let { order ->
         AlertDialog(
             onDismissRequest = {
@@ -344,8 +318,6 @@ fun OrdersScreen(
     }
 }
 
-
-/*************** Tarjeta visual de pedido ***************/
 @Composable
 private fun OrderCard(
     order: Order,
@@ -369,9 +341,8 @@ private fun OrderCard(
         Column(
             modifier = Modifier.padding(16.dp)
         ) {
-            /*************** Número de pedido ***************/
             Text(
-                text = "REF ${obtenerRefPedido(order)}",
+                text = "Pedido REF ${obtenerRefPedido(order)}",
                 style = MaterialTheme.typography.labelSmall,
                 fontWeight = FontWeight.ExtraBold,
                 color = Color(0xFF8D6E63)
@@ -379,7 +350,6 @@ private fun OrderCard(
 
             Spacer(modifier = Modifier.height(2.dp))
 
-            /*************** Título, cliente y total ***************/
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceBetween,
@@ -415,7 +385,6 @@ private fun OrderCard(
 
             Spacer(modifier = Modifier.height(12.dp))
 
-            /*************** Datos rápidos tipo pastillas ***************/
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.spacedBy(8.dp)
@@ -460,7 +429,6 @@ private fun OrderCard(
     }
 }
 
-/*************** BottomSheet de detalle ***************/
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 private fun OrderDetailBottomSheet(
@@ -469,6 +437,7 @@ private fun OrderDetailBottomSheet(
     onEdit: () -> Unit,
     onDelete: () -> Unit,
     onGenerateLabel: () -> Unit,
+    onShareQuote: () -> Unit,
     onStatusChange: (OrderStatus) -> Unit
 ) {
     var selectedStatus by remember(order.id, order.status) {
@@ -482,7 +451,6 @@ private fun OrderDetailBottomSheet(
             .padding(horizontal = 20.dp, vertical = 12.dp)
             .verticalScroll(rememberScrollState())
     ) {
-        /*************** Cabecera ***************/
         Row(
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.SpaceBetween,
@@ -504,6 +472,12 @@ private fun OrderDetailBottomSheet(
                 )
 
                 Text(
+                    text = "REF: ${obtenerRefPedido(order)}",
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    fontWeight = FontWeight.Bold
+                )
+
+                Text(
                     text = "👤 ${order.clientName}",
                     color = MaterialTheme.colorScheme.onSurfaceVariant
                 )
@@ -518,7 +492,6 @@ private fun OrderDetailBottomSheet(
 
         Spacer(modifier = Modifier.height(16.dp))
 
-        /*************** Cambio manual de estado ***************/
         Text(
             text = "Estado del pedido",
             fontWeight = FontWeight.Bold
@@ -536,7 +509,6 @@ private fun OrderDetailBottomSheet(
 
         Spacer(modifier = Modifier.height(16.dp))
 
-        /*************** Datos principales ***************/
         DetailCard {
             DetailRow(
                 label = "Material",
@@ -635,7 +607,19 @@ private fun OrderDetailBottomSheet(
 
         Spacer(modifier = Modifier.height(16.dp))
 
-        /*************** Acciones ***************/
+        Button(
+            onClick = onShareQuote,
+            modifier = Modifier.fillMaxWidth(),
+            shape = RoundedCornerShape(20.dp),
+            colors = ButtonDefaults.buttonColors(
+                containerColor = Color(0xFFB584E8)
+            )
+        ) {
+            Text("📤 Compartir Presupuesto")
+        }
+
+        Spacer(modifier = Modifier.height(8.dp))
+
         Button(
             onClick = onGenerateLabel,
             modifier = Modifier.fillMaxWidth(),
@@ -674,7 +658,6 @@ private fun OrderDetailBottomSheet(
     }
 }
 
-/*************** Dropdown manual de estado ***************/
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 private fun StatusDropdown(
@@ -725,7 +708,6 @@ private fun StatusDropdown(
     }
 }
 
-/*************** Tarjeta de detalle ***************/
 @Composable
 private fun DetailCard(
     content: @Composable ColumnScope.() -> Unit
@@ -750,7 +732,6 @@ private fun DetailCard(
     }
 }
 
-/*************** Fila de detalle ***************/
 @Composable
 private fun DetailRow(
     label: String,
@@ -786,7 +767,6 @@ private fun DetailRow(
     }
 }
 
-/*************** Previsualización de etiqueta ***************/
 @Composable
 private fun PrintableLabelPreview(
     order: Order
@@ -897,7 +877,7 @@ private fun PrintableLabelPreview(
                     Spacer(modifier = Modifier.weight(1f))
 
                     Text(
-                        text = "PikiPrint 3D // REF: ${order.id.take(8).uppercase()}",
+                        text = "PikiPrint 3D // PEDIDO REF: ${obtenerRefPedido(order)}",
                         color = Color.Gray,
                         fontFamily = FontFamily.Monospace,
                         style = MaterialTheme.typography.labelSmall,
@@ -909,7 +889,6 @@ private fun PrintableLabelPreview(
     }
 }
 
-/*************** Bloque pequeño de etiqueta ***************/
 @Composable
 private fun LabelMiniBlock(
     title: String,
@@ -935,7 +914,6 @@ private fun LabelMiniBlock(
     }
 }
 
-/*************** Estado vacío: sin pedidos ***************/
 @Composable
 private fun EmptyOrdersState(
     onNewOrder: () -> Unit
@@ -973,7 +951,6 @@ private fun EmptyOrdersState(
     }
 }
 
-/*************** Estado vacío: búsqueda sin resultados ***************/
 @Composable
 private fun EmptySearchState() {
     Column(
@@ -995,7 +972,6 @@ private fun EmptySearchState() {
     }
 }
 
-/*************** Píldora de estado ***************/
 @Composable
 private fun StatusPill(
     status: OrderStatus
@@ -1007,7 +983,6 @@ private fun StatusPill(
     )
 }
 
-/*************** Píldora pequeña ***************/
 @Composable
 private fun SmallPill(
     text: String,
@@ -1029,7 +1004,6 @@ private fun SmallPill(
     }
 }
 
-/*************** Texto de estado con ícono ***************/
 private fun statusLabelWithIcon(
     status: OrderStatus
 ): String {
@@ -1041,7 +1015,6 @@ private fun statusLabelWithIcon(
     }
 }
 
-/*************** Color de fondo de estado ***************/
 private fun statusBackgroundColor(
     status: OrderStatus
 ): Color {
@@ -1053,7 +1026,6 @@ private fun statusBackgroundColor(
     }
 }
 
-/*************** Color de texto de estado ***************/
 private fun statusTextColor(
     status: OrderStatus
 ): Color {
@@ -1065,13 +1037,6 @@ private fun statusTextColor(
     }
 }
 
-/*************** Formateo de fecha argentina ***************/
-
-/*************** REF visible del pedido ***************/
-/*
-    Usa los primeros 8 caracteres del id interno.
-    Es el mismo criterio que usaba la etiqueta.
-*/
 private fun obtenerRefPedido(
     order: Order
 ): String {
@@ -1080,7 +1045,6 @@ private fun obtenerRefPedido(
         .uppercase()
 }
 
-/*************** Formatear tiempo de impresión ***************/
 private fun formatearTiempoImpresion(
     hours: Int,
     minutes: Int
@@ -1092,6 +1056,7 @@ private fun formatearTiempoImpresion(
         else -> "0m"
     }
 }
+
 private fun formatearFechaArgentina(
     value: String
 ): String {

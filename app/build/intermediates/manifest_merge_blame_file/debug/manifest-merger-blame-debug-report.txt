@@ -13,142 +13,152 @@
 11-->C:\Users\jewgeniuk.natalia\Documents\GitHub\PikiPrint\app\src\main\AndroidManifest.xml:5:22-74
 12
 13    <permission
-13-->[androidx.core:core:1.12.0] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\4d50ddaf7a0767751ae592447536c089\transformed\core-1.12.0\AndroidManifest.xml:22:5-24:47
+13-->[androidx.core:core:1.12.0] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\a4da6486d016c892f04eaac237b21f47\transformed\core-1.12.0\AndroidManifest.xml:22:5-24:47
 14        android:name="com.example.app.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
-14-->[androidx.core:core:1.12.0] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\4d50ddaf7a0767751ae592447536c089\transformed\core-1.12.0\AndroidManifest.xml:23:9-81
+14-->[androidx.core:core:1.12.0] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\a4da6486d016c892f04eaac237b21f47\transformed\core-1.12.0\AndroidManifest.xml:23:9-81
 15        android:protectionLevel="signature" />
-15-->[androidx.core:core:1.12.0] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\4d50ddaf7a0767751ae592447536c089\transformed\core-1.12.0\AndroidManifest.xml:24:9-44
+15-->[androidx.core:core:1.12.0] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\a4da6486d016c892f04eaac237b21f47\transformed\core-1.12.0\AndroidManifest.xml:24:9-44
 16
 17    <uses-permission android:name="com.example.app.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
-17-->[androidx.core:core:1.12.0] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\4d50ddaf7a0767751ae592447536c089\transformed\core-1.12.0\AndroidManifest.xml:26:5-97
-17-->[androidx.core:core:1.12.0] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\4d50ddaf7a0767751ae592447536c089\transformed\core-1.12.0\AndroidManifest.xml:26:22-94
+17-->[androidx.core:core:1.12.0] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\a4da6486d016c892f04eaac237b21f47\transformed\core-1.12.0\AndroidManifest.xml:26:5-97
+17-->[androidx.core:core:1.12.0] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\a4da6486d016c892f04eaac237b21f47\transformed\core-1.12.0\AndroidManifest.xml:26:22-94
 18
 19    <application
-19-->C:\Users\jewgeniuk.natalia\Documents\GitHub\PikiPrint\app\src\main\AndroidManifest.xml:7:5-23:19
+19-->C:\Users\jewgeniuk.natalia\Documents\GitHub\PikiPrint\app\src\main\AndroidManifest.xml:7:5-33:19
 20        android:allowBackup="true"
 20-->C:\Users\jewgeniuk.natalia\Documents\GitHub\PikiPrint\app\src\main\AndroidManifest.xml:8:9-35
 21        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
-21-->[androidx.core:core:1.12.0] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\4d50ddaf7a0767751ae592447536c089\transformed\core-1.12.0\AndroidManifest.xml:28:18-86
+21-->[androidx.core:core:1.12.0] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\a4da6486d016c892f04eaac237b21f47\transformed\core-1.12.0\AndroidManifest.xml:28:18-86
 22        android:debuggable="true"
 23        android:extractNativeLibs="false"
-24        android:icon="@mipmap/ic_launcher"
-24-->C:\Users\jewgeniuk.natalia\Documents\GitHub\PikiPrint\app\src\main\AndroidManifest.xml:9:9-43
-25        android:label="@string/app_name"
-25-->C:\Users\jewgeniuk.natalia\Documents\GitHub\PikiPrint\app\src\main\AndroidManifest.xml:10:9-41
-26        android:roundIcon="@mipmap/ic_launcher_round"
-26-->C:\Users\jewgeniuk.natalia\Documents\GitHub\PikiPrint\app\src\main\AndroidManifest.xml:11:9-54
-27        android:supportsRtl="true"
-27-->C:\Users\jewgeniuk.natalia\Documents\GitHub\PikiPrint\app\src\main\AndroidManifest.xml:12:9-35
-28        android:testOnly="true"
-29        android:theme="@style/Theme.App" >
-29-->C:\Users\jewgeniuk.natalia\Documents\GitHub\PikiPrint\app\src\main\AndroidManifest.xml:13:9-41
-30        <activity
-30-->C:\Users\jewgeniuk.natalia\Documents\GitHub\PikiPrint\app\src\main\AndroidManifest.xml:14:9-22:20
-31            android:name="com.example.app.MainActivity"
-31-->C:\Users\jewgeniuk.natalia\Documents\GitHub\PikiPrint\app\src\main\AndroidManifest.xml:15:13-41
-32            android:exported="true"
-32-->C:\Users\jewgeniuk.natalia\Documents\GitHub\PikiPrint\app\src\main\AndroidManifest.xml:16:13-36
-33            android:theme="@style/Theme.App" >
-33-->C:\Users\jewgeniuk.natalia\Documents\GitHub\PikiPrint\app\src\main\AndroidManifest.xml:17:13-45
-34            <intent-filter>
-34-->C:\Users\jewgeniuk.natalia\Documents\GitHub\PikiPrint\app\src\main\AndroidManifest.xml:18:13-21:29
-35                <action android:name="android.intent.action.MAIN" />
-35-->C:\Users\jewgeniuk.natalia\Documents\GitHub\PikiPrint\app\src\main\AndroidManifest.xml:19:17-69
-35-->C:\Users\jewgeniuk.natalia\Documents\GitHub\PikiPrint\app\src\main\AndroidManifest.xml:19:25-66
-36
-37                <category android:name="android.intent.category.LAUNCHER" />
-37-->C:\Users\jewgeniuk.natalia\Documents\GitHub\PikiPrint\app\src\main\AndroidManifest.xml:20:17-77
-37-->C:\Users\jewgeniuk.natalia\Documents\GitHub\PikiPrint\app\src\main\AndroidManifest.xml:20:27-74
-38            </intent-filter>
-39        </activity>
-40
-41        <provider
-41-->[androidx.emoji2:emoji2:1.4.0] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\ab2988f6dbb95b2f23bb63377772a35f\transformed\jetified-emoji2-1.4.0\AndroidManifest.xml:24:9-32:20
-42            android:name="androidx.startup.InitializationProvider"
-42-->[androidx.emoji2:emoji2:1.4.0] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\ab2988f6dbb95b2f23bb63377772a35f\transformed\jetified-emoji2-1.4.0\AndroidManifest.xml:25:13-67
-43            android:authorities="com.example.app.androidx-startup"
-43-->[androidx.emoji2:emoji2:1.4.0] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\ab2988f6dbb95b2f23bb63377772a35f\transformed\jetified-emoji2-1.4.0\AndroidManifest.xml:26:13-68
-44            android:exported="false" >
-44-->[androidx.emoji2:emoji2:1.4.0] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\ab2988f6dbb95b2f23bb63377772a35f\transformed\jetified-emoji2-1.4.0\AndroidManifest.xml:27:13-37
-45            <meta-data
-45-->[androidx.emoji2:emoji2:1.4.0] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\ab2988f6dbb95b2f23bb63377772a35f\transformed\jetified-emoji2-1.4.0\AndroidManifest.xml:29:13-31:52
-46                android:name="androidx.emoji2.text.EmojiCompatInitializer"
-46-->[androidx.emoji2:emoji2:1.4.0] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\ab2988f6dbb95b2f23bb63377772a35f\transformed\jetified-emoji2-1.4.0\AndroidManifest.xml:30:17-75
-47                android:value="androidx.startup" />
-47-->[androidx.emoji2:emoji2:1.4.0] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\ab2988f6dbb95b2f23bb63377772a35f\transformed\jetified-emoji2-1.4.0\AndroidManifest.xml:31:17-49
-48            <meta-data
-48-->[androidx.lifecycle:lifecycle-process:2.7.0] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\4e301e89d11d9f2d82485d0ef2194cac\transformed\jetified-lifecycle-process-2.7.0\AndroidManifest.xml:29:13-31:52
-49                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
-49-->[androidx.lifecycle:lifecycle-process:2.7.0] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\4e301e89d11d9f2d82485d0ef2194cac\transformed\jetified-lifecycle-process-2.7.0\AndroidManifest.xml:30:17-78
-50                android:value="androidx.startup" />
-50-->[androidx.lifecycle:lifecycle-process:2.7.0] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\4e301e89d11d9f2d82485d0ef2194cac\transformed\jetified-lifecycle-process-2.7.0\AndroidManifest.xml:31:17-49
+24        android:label="@string/app_name"
+24-->C:\Users\jewgeniuk.natalia\Documents\GitHub\PikiPrint\app\src\main\AndroidManifest.xml:9:9-41
+25        android:supportsRtl="true"
+25-->C:\Users\jewgeniuk.natalia\Documents\GitHub\PikiPrint\app\src\main\AndroidManifest.xml:10:9-35
+26        android:testOnly="true"
+27        android:theme="@style/Theme.App" >
+27-->C:\Users\jewgeniuk.natalia\Documents\GitHub\PikiPrint\app\src\main\AndroidManifest.xml:11:9-41
+28        <activity
+28-->C:\Users\jewgeniuk.natalia\Documents\GitHub\PikiPrint\app\src\main\AndroidManifest.xml:13:9-20:20
+29            android:name="com.example.app.MainActivity"
+29-->C:\Users\jewgeniuk.natalia\Documents\GitHub\PikiPrint\app\src\main\AndroidManifest.xml:14:13-41
+30            android:exported="true" >
+30-->C:\Users\jewgeniuk.natalia\Documents\GitHub\PikiPrint\app\src\main\AndroidManifest.xml:15:13-36
+31            <intent-filter>
+31-->C:\Users\jewgeniuk.natalia\Documents\GitHub\PikiPrint\app\src\main\AndroidManifest.xml:16:13-19:29
+32                <action android:name="android.intent.action.MAIN" />
+32-->C:\Users\jewgeniuk.natalia\Documents\GitHub\PikiPrint\app\src\main\AndroidManifest.xml:17:17-69
+32-->C:\Users\jewgeniuk.natalia\Documents\GitHub\PikiPrint\app\src\main\AndroidManifest.xml:17:25-66
+33
+34                <category android:name="android.intent.category.LAUNCHER" />
+34-->C:\Users\jewgeniuk.natalia\Documents\GitHub\PikiPrint\app\src\main\AndroidManifest.xml:18:17-77
+34-->C:\Users\jewgeniuk.natalia\Documents\GitHub\PikiPrint\app\src\main\AndroidManifest.xml:18:27-74
+35            </intent-filter>
+36        </activity>
+37
+38        <provider
+39            android:name="androidx.core.content.FileProvider"
+39-->C:\Users\jewgeniuk.natalia\Documents\GitHub\PikiPrint\app\src\main\AndroidManifest.xml:24:13-62
+40            android:authorities="com.example.app.fileprovider"
+40-->C:\Users\jewgeniuk.natalia\Documents\GitHub\PikiPrint\app\src\main\AndroidManifest.xml:25:13-64
+41            android:exported="false"
+41-->C:\Users\jewgeniuk.natalia\Documents\GitHub\PikiPrint\app\src\main\AndroidManifest.xml:26:13-37
+42            android:grantUriPermissions="true" >
+42-->C:\Users\jewgeniuk.natalia\Documents\GitHub\PikiPrint\app\src\main\AndroidManifest.xml:27:13-47
+43            <meta-data
+43-->C:\Users\jewgeniuk.natalia\Documents\GitHub\PikiPrint\app\src\main\AndroidManifest.xml:28:13-30:54
+44                android:name="android.support.FILE_PROVIDER_PATHS"
+44-->C:\Users\jewgeniuk.natalia\Documents\GitHub\PikiPrint\app\src\main\AndroidManifest.xml:29:17-67
+45                android:resource="@xml/file_paths" />
+45-->C:\Users\jewgeniuk.natalia\Documents\GitHub\PikiPrint\app\src\main\AndroidManifest.xml:30:17-51
+46        </provider>
+47        <provider
+47-->[androidx.emoji2:emoji2:1.4.0] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\6e1c25ed914ca47fbf38b33962791db4\transformed\jetified-emoji2-1.4.0\AndroidManifest.xml:24:9-32:20
+48            android:name="androidx.startup.InitializationProvider"
+48-->[androidx.emoji2:emoji2:1.4.0] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\6e1c25ed914ca47fbf38b33962791db4\transformed\jetified-emoji2-1.4.0\AndroidManifest.xml:25:13-67
+49            android:authorities="com.example.app.androidx-startup"
+49-->[androidx.emoji2:emoji2:1.4.0] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\6e1c25ed914ca47fbf38b33962791db4\transformed\jetified-emoji2-1.4.0\AndroidManifest.xml:26:13-68
+50            android:exported="false" >
+50-->[androidx.emoji2:emoji2:1.4.0] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\6e1c25ed914ca47fbf38b33962791db4\transformed\jetified-emoji2-1.4.0\AndroidManifest.xml:27:13-37
 51            <meta-data
-51-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\17edfa32608fe3ce40165f608a04906c\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:29:13-31:52
-52                android:name="androidx.profileinstaller.ProfileInstallerInitializer"
-52-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\17edfa32608fe3ce40165f608a04906c\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:30:17-85
+51-->[androidx.emoji2:emoji2:1.4.0] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\6e1c25ed914ca47fbf38b33962791db4\transformed\jetified-emoji2-1.4.0\AndroidManifest.xml:29:13-31:52
+52                android:name="androidx.emoji2.text.EmojiCompatInitializer"
+52-->[androidx.emoji2:emoji2:1.4.0] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\6e1c25ed914ca47fbf38b33962791db4\transformed\jetified-emoji2-1.4.0\AndroidManifest.xml:30:17-75
 53                android:value="androidx.startup" />
-53-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\17edfa32608fe3ce40165f608a04906c\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:31:17-49
-54        </provider>
-55
-56        <activity
-56-->[androidx.compose.ui:ui-test-manifest:1.5.0] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\97c955e773cb88f59155262bf38ddd99\transformed\jetified-ui-test-manifest-1.5.0\AndroidManifest.xml:23:9-25:39
-57            android:name="androidx.activity.ComponentActivity"
-57-->[androidx.compose.ui:ui-test-manifest:1.5.0] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\97c955e773cb88f59155262bf38ddd99\transformed\jetified-ui-test-manifest-1.5.0\AndroidManifest.xml:24:13-63
-58            android:exported="true" />
-58-->[androidx.compose.ui:ui-test-manifest:1.5.0] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\97c955e773cb88f59155262bf38ddd99\transformed\jetified-ui-test-manifest-1.5.0\AndroidManifest.xml:25:13-36
-59        <activity
-59-->[androidx.compose.ui:ui-tooling-android:1.5.0] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\038a70f7e6997205982169f4923ea88e\transformed\jetified-ui-tooling-release\AndroidManifest.xml:23:9-25:39
-60            android:name="androidx.compose.ui.tooling.PreviewActivity"
-60-->[androidx.compose.ui:ui-tooling-android:1.5.0] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\038a70f7e6997205982169f4923ea88e\transformed\jetified-ui-tooling-release\AndroidManifest.xml:24:13-71
-61            android:exported="true" />
-61-->[androidx.compose.ui:ui-tooling-android:1.5.0] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\038a70f7e6997205982169f4923ea88e\transformed\jetified-ui-tooling-release\AndroidManifest.xml:25:13-36
-62
-63        <service
-63-->[androidx.room:room-runtime:2.6.1] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\70f59490c7735e23aa8f18f3acc85b6b\transformed\room-runtime-2.6.1\AndroidManifest.xml:24:9-28:63
-64            android:name="androidx.room.MultiInstanceInvalidationService"
-64-->[androidx.room:room-runtime:2.6.1] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\70f59490c7735e23aa8f18f3acc85b6b\transformed\room-runtime-2.6.1\AndroidManifest.xml:25:13-74
-65            android:directBootAware="true"
-65-->[androidx.room:room-runtime:2.6.1] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\70f59490c7735e23aa8f18f3acc85b6b\transformed\room-runtime-2.6.1\AndroidManifest.xml:26:13-43
-66            android:exported="false" />
-66-->[androidx.room:room-runtime:2.6.1] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\70f59490c7735e23aa8f18f3acc85b6b\transformed\room-runtime-2.6.1\AndroidManifest.xml:27:13-37
-67
-68        <receiver
-68-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\17edfa32608fe3ce40165f608a04906c\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:34:9-52:20
-69            android:name="androidx.profileinstaller.ProfileInstallReceiver"
-69-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\17edfa32608fe3ce40165f608a04906c\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:35:13-76
-70            android:directBootAware="false"
-70-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\17edfa32608fe3ce40165f608a04906c\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:36:13-44
-71            android:enabled="true"
-71-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\17edfa32608fe3ce40165f608a04906c\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:37:13-35
-72            android:exported="true"
-72-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\17edfa32608fe3ce40165f608a04906c\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:38:13-36
-73            android:permission="android.permission.DUMP" >
-73-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\17edfa32608fe3ce40165f608a04906c\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:39:13-57
-74            <intent-filter>
-74-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\17edfa32608fe3ce40165f608a04906c\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:40:13-42:29
-75                <action android:name="androidx.profileinstaller.action.INSTALL_PROFILE" />
-75-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\17edfa32608fe3ce40165f608a04906c\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:41:17-91
-75-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\17edfa32608fe3ce40165f608a04906c\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:41:25-88
-76            </intent-filter>
-77            <intent-filter>
-77-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\17edfa32608fe3ce40165f608a04906c\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:43:13-45:29
-78                <action android:name="androidx.profileinstaller.action.SKIP_FILE" />
-78-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\17edfa32608fe3ce40165f608a04906c\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:44:17-85
-78-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\17edfa32608fe3ce40165f608a04906c\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:44:25-82
-79            </intent-filter>
+53-->[androidx.emoji2:emoji2:1.4.0] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\6e1c25ed914ca47fbf38b33962791db4\transformed\jetified-emoji2-1.4.0\AndroidManifest.xml:31:17-49
+54            <meta-data
+54-->[androidx.lifecycle:lifecycle-process:2.7.0] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\5f2f4f1e0764c19c6286a72e2fb9abc8\transformed\jetified-lifecycle-process-2.7.0\AndroidManifest.xml:29:13-31:52
+55                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
+55-->[androidx.lifecycle:lifecycle-process:2.7.0] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\5f2f4f1e0764c19c6286a72e2fb9abc8\transformed\jetified-lifecycle-process-2.7.0\AndroidManifest.xml:30:17-78
+56                android:value="androidx.startup" />
+56-->[androidx.lifecycle:lifecycle-process:2.7.0] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\5f2f4f1e0764c19c6286a72e2fb9abc8\transformed\jetified-lifecycle-process-2.7.0\AndroidManifest.xml:31:17-49
+57            <meta-data
+57-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\7cf97d602c8cc8c6f8d0afe11376081c\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:29:13-31:52
+58                android:name="androidx.profileinstaller.ProfileInstallerInitializer"
+58-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\7cf97d602c8cc8c6f8d0afe11376081c\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:30:17-85
+59                android:value="androidx.startup" />
+59-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\7cf97d602c8cc8c6f8d0afe11376081c\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:31:17-49
+60        </provider>
+61
+62        <activity
+62-->[androidx.compose.ui:ui-test-manifest:1.5.0] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\4cbc93277a83540229801dc2344fda2d\transformed\jetified-ui-test-manifest-1.5.0\AndroidManifest.xml:23:9-25:39
+63            android:name="androidx.activity.ComponentActivity"
+63-->[androidx.compose.ui:ui-test-manifest:1.5.0] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\4cbc93277a83540229801dc2344fda2d\transformed\jetified-ui-test-manifest-1.5.0\AndroidManifest.xml:24:13-63
+64            android:exported="true" />
+64-->[androidx.compose.ui:ui-test-manifest:1.5.0] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\4cbc93277a83540229801dc2344fda2d\transformed\jetified-ui-test-manifest-1.5.0\AndroidManifest.xml:25:13-36
+65        <activity
+65-->[androidx.compose.ui:ui-tooling-android:1.5.0] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\b8d3c1fab315cb697b7c8ab462f7af54\transformed\jetified-ui-tooling-release\AndroidManifest.xml:23:9-25:39
+66            android:name="androidx.compose.ui.tooling.PreviewActivity"
+66-->[androidx.compose.ui:ui-tooling-android:1.5.0] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\b8d3c1fab315cb697b7c8ab462f7af54\transformed\jetified-ui-tooling-release\AndroidManifest.xml:24:13-71
+67            android:exported="true" />
+67-->[androidx.compose.ui:ui-tooling-android:1.5.0] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\b8d3c1fab315cb697b7c8ab462f7af54\transformed\jetified-ui-tooling-release\AndroidManifest.xml:25:13-36
+68
+69        <service
+69-->[androidx.room:room-runtime:2.6.1] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\22d015ddbcb704082af82d887b9e6a9c\transformed\room-runtime-2.6.1\AndroidManifest.xml:24:9-28:63
+70            android:name="androidx.room.MultiInstanceInvalidationService"
+70-->[androidx.room:room-runtime:2.6.1] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\22d015ddbcb704082af82d887b9e6a9c\transformed\room-runtime-2.6.1\AndroidManifest.xml:25:13-74
+71            android:directBootAware="true"
+71-->[androidx.room:room-runtime:2.6.1] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\22d015ddbcb704082af82d887b9e6a9c\transformed\room-runtime-2.6.1\AndroidManifest.xml:26:13-43
+72            android:exported="false" />
+72-->[androidx.room:room-runtime:2.6.1] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\22d015ddbcb704082af82d887b9e6a9c\transformed\room-runtime-2.6.1\AndroidManifest.xml:27:13-37
+73
+74        <receiver
+74-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\7cf97d602c8cc8c6f8d0afe11376081c\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:34:9-52:20
+75            android:name="androidx.profileinstaller.ProfileInstallReceiver"
+75-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\7cf97d602c8cc8c6f8d0afe11376081c\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:35:13-76
+76            android:directBootAware="false"
+76-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\7cf97d602c8cc8c6f8d0afe11376081c\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:36:13-44
+77            android:enabled="true"
+77-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\7cf97d602c8cc8c6f8d0afe11376081c\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:37:13-35
+78            android:exported="true"
+78-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\7cf97d602c8cc8c6f8d0afe11376081c\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:38:13-36
+79            android:permission="android.permission.DUMP" >
+79-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\7cf97d602c8cc8c6f8d0afe11376081c\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:39:13-57
 80            <intent-filter>
-80-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\17edfa32608fe3ce40165f608a04906c\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:46:13-48:29
-81                <action android:name="androidx.profileinstaller.action.SAVE_PROFILE" />
-81-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\17edfa32608fe3ce40165f608a04906c\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:47:17-88
-81-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\17edfa32608fe3ce40165f608a04906c\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:47:25-85
+80-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\7cf97d602c8cc8c6f8d0afe11376081c\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:40:13-42:29
+81                <action android:name="androidx.profileinstaller.action.INSTALL_PROFILE" />
+81-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\7cf97d602c8cc8c6f8d0afe11376081c\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:41:17-91
+81-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\7cf97d602c8cc8c6f8d0afe11376081c\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:41:25-88
 82            </intent-filter>
 83            <intent-filter>
-83-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\17edfa32608fe3ce40165f608a04906c\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:49:13-51:29
-84                <action android:name="androidx.profileinstaller.action.BENCHMARK_OPERATION" />
-84-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\17edfa32608fe3ce40165f608a04906c\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:50:17-95
-84-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\17edfa32608fe3ce40165f608a04906c\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:50:25-92
+83-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\7cf97d602c8cc8c6f8d0afe11376081c\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:43:13-45:29
+84                <action android:name="androidx.profileinstaller.action.SKIP_FILE" />
+84-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\7cf97d602c8cc8c6f8d0afe11376081c\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:44:17-85
+84-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\7cf97d602c8cc8c6f8d0afe11376081c\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:44:25-82
 85            </intent-filter>
-86        </receiver>
-87    </application>
-88
-89</manifest>
+86            <intent-filter>
+86-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\7cf97d602c8cc8c6f8d0afe11376081c\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:46:13-48:29
+87                <action android:name="androidx.profileinstaller.action.SAVE_PROFILE" />
+87-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\7cf97d602c8cc8c6f8d0afe11376081c\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:47:17-88
+87-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\7cf97d602c8cc8c6f8d0afe11376081c\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:47:25-85
+88            </intent-filter>
+89            <intent-filter>
+89-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\7cf97d602c8cc8c6f8d0afe11376081c\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:49:13-51:29
+90                <action android:name="androidx.profileinstaller.action.BENCHMARK_OPERATION" />
+90-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\7cf97d602c8cc8c6f8d0afe11376081c\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:50:17-95
+90-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\7cf97d602c8cc8c6f8d0afe11376081c\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:50:25-92
+91            </intent-filter>
+92        </receiver>
+93    </application>
+94
+95</manifest>

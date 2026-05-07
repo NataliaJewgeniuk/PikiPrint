@@ -1,3 +1,4 @@
+com.example.app:xml/file_paths = 0x7f0c0002
 com.example.app:xml/data_extraction_rules = 0x7f0c0001
 com.example.app:xml/backup_rules = 0x7f0c0000
 com.example.app:styleable/Capability = 0x7f0b0000
@@ -23,7 +24,6 @@ com.example.app:string/dialog = 0x7f090031
 com.example.app:string/date_range_picker_title = 0x7f09002e
 com.example.app:string/date_range_picker_start_headline = 0x7f09002d
 com.example.app:string/date_range_picker_scroll_to_next_month = 0x7f09002b
-com.example.app:xml/filepaths = 0x7f0c0002
 com.example.app:string/date_range_picker_end_headline = 0x7f09002a
 com.example.app:string/date_range_picker_day_in_range = 0x7f090029
 com.example.app:style/Theme.App = 0x7f0a0008
