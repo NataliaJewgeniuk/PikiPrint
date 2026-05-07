@@ -235,9 +235,24 @@ fun QuotesScreen(
             settings = state.quoteSettings
         )
 
-        order.totalComputed = result.totalFinal
+        /*************** Pedido con desglose histórico ***************/
+        /*
+            Estos valores quedan guardados dentro del pedido.
 
-        currentOrderData = order
+            Así, si en el futuro se modifican los precios o descuentos en Ajustes,
+            el presupuesto compartido seguirá usando los importes originales.
+        */
+        val orderWithBreakdown = order.copy(
+            totalComputed = result.totalFinal,
+
+            subtotal = result.subtotal,
+            margenMonto = result.margenMonto,
+            descuentoCantidad = result.descuentoCantidad,
+            descuentoAmigo = result.descuentoAmigo,
+            totalFinal = result.totalFinal
+        )
+
+        currentOrderData = orderWithBreakdown
         breakdown = result
     }
 

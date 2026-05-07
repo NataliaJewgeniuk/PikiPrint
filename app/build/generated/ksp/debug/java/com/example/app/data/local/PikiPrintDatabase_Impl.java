@@ -41,14 +41,14 @@ public final class PikiPrintDatabase_Impl extends PikiPrintDatabase {
   @Override
   @NonNull
   protected SupportSQLiteOpenHelper createOpenHelper(@NonNull final DatabaseConfiguration config) {
-    final SupportSQLiteOpenHelper.Callback _openCallback = new RoomOpenHelper(config, new RoomOpenHelper.Delegate(1) {
+    final SupportSQLiteOpenHelper.Callback _openCallback = new RoomOpenHelper(config, new RoomOpenHelper.Delegate(2) {
       @Override
       public void createAllTables(@NonNull final SupportSQLiteDatabase db) {
-        db.execSQL("CREATE TABLE IF NOT EXISTS `orders` (`id` TEXT NOT NULL, `title` TEXT NOT NULL, `clientName` TEXT NOT NULL, `filament` TEXT NOT NULL, `printer` TEXT NOT NULL, `printTimeHours` INTEGER NOT NULL, `printTimeMinutes` INTEGER NOT NULL, `weightGramsPerUnit` INTEGER NOT NULL, `quantity` INTEGER NOT NULL, `designType` TEXT NOT NULL, `color` TEXT NOT NULL, `isFriend` INTEGER NOT NULL, `status` TEXT NOT NULL, `createdAt` TEXT NOT NULL, `totalComputed` REAL NOT NULL, `quoteDate` TEXT NOT NULL, `validityDays` INTEGER NOT NULL, `deliveryBusinessDays` INTEGER NOT NULL, `deliveryDate` TEXT NOT NULL, `paymentType` TEXT NOT NULL, `depositPercentage` INTEGER NOT NULL, `finishType` TEXT NOT NULL, `notes` TEXT NOT NULL, PRIMARY KEY(`id`))");
+        db.execSQL("CREATE TABLE IF NOT EXISTS `orders` (`id` TEXT NOT NULL, `title` TEXT NOT NULL, `clientName` TEXT NOT NULL, `filament` TEXT NOT NULL, `printer` TEXT NOT NULL, `printTimeHours` INTEGER NOT NULL, `printTimeMinutes` INTEGER NOT NULL, `weightGramsPerUnit` INTEGER NOT NULL, `quantity` INTEGER NOT NULL, `designType` TEXT NOT NULL, `color` TEXT NOT NULL, `isFriend` INTEGER NOT NULL, `status` TEXT NOT NULL, `createdAt` TEXT NOT NULL, `totalComputed` REAL NOT NULL, `quoteDate` TEXT NOT NULL, `validityDays` INTEGER NOT NULL, `deliveryBusinessDays` INTEGER NOT NULL, `deliveryDate` TEXT NOT NULL, `paymentType` TEXT NOT NULL, `depositPercentage` INTEGER NOT NULL, `finishType` TEXT NOT NULL, `notes` TEXT NOT NULL, `subtotal` REAL NOT NULL, `margenMonto` REAL NOT NULL, `descuentoCantidad` REAL NOT NULL, `descuentoAmigo` REAL NOT NULL, `totalFinal` REAL NOT NULL, PRIMARY KEY(`id`))");
         db.execSQL("CREATE TABLE IF NOT EXISTS `expenses` (`id` TEXT NOT NULL, `title` TEXT NOT NULL, `amount` REAL NOT NULL, `date` TEXT NOT NULL, `category` TEXT NOT NULL, PRIMARY KEY(`id`))");
         db.execSQL("CREATE TABLE IF NOT EXISTS `quote_settings` (`id` INTEGER NOT NULL, `filamentPlaCost` REAL NOT NULL, `filamentPetgCost` REAL NOT NULL, `filamentFlexCost` REAL NOT NULL, `energyRate` REAL NOT NULL, `marginPercentage` REAL NOT NULL, `friendDiscountPercentage` REAL NOT NULL, `a1ComboPrice` REAL NOT NULL, `a1ComboLifespanHours` INTEGER NOT NULL, `a1ComboPowerKw` REAL NOT NULL, `a1MiniPrice` REAL NOT NULL, `a1MiniLifespanHours` INTEGER NOT NULL, `a1MiniPowerKw` REAL NOT NULL, `discount25` REAL NOT NULL, `discount50` REAL NOT NULL, `discount75` REAL NOT NULL, `discount100` REAL NOT NULL, `designExternalCost` REAL NOT NULL, `designOwnCost` REAL NOT NULL, `designDetailsCost` REAL NOT NULL, `designModificationsCost` REAL NOT NULL, PRIMARY KEY(`id`))");
         db.execSQL("CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)");
-        db.execSQL("INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '4812ac50d3122241250d4ad822a9556d')");
+        db.execSQL("INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '8a7efca2844b0a23b78c5802828a125a')");
       }
 
       @Override
@@ -99,7 +99,7 @@ public final class PikiPrintDatabase_Impl extends PikiPrintDatabase {
       @NonNull
       public RoomOpenHelper.ValidationResult onValidateSchema(
           @NonNull final SupportSQLiteDatabase db) {
-        final HashMap<String, TableInfo.Column> _columnsOrders = new HashMap<String, TableInfo.Column>(23);
+        final HashMap<String, TableInfo.Column> _columnsOrders = new HashMap<String, TableInfo.Column>(28);
         _columnsOrders.put("id", new TableInfo.Column("id", "TEXT", true, 1, null, TableInfo.CREATED_FROM_ENTITY));
         _columnsOrders.put("title", new TableInfo.Column("title", "TEXT", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
         _columnsOrders.put("clientName", new TableInfo.Column("clientName", "TEXT", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
@@ -123,6 +123,11 @@ public final class PikiPrintDatabase_Impl extends PikiPrintDatabase {
         _columnsOrders.put("depositPercentage", new TableInfo.Column("depositPercentage", "INTEGER", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
         _columnsOrders.put("finishType", new TableInfo.Column("finishType", "TEXT", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
         _columnsOrders.put("notes", new TableInfo.Column("notes", "TEXT", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
+        _columnsOrders.put("subtotal", new TableInfo.Column("subtotal", "REAL", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
+        _columnsOrders.put("margenMonto", new TableInfo.Column("margenMonto", "REAL", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
+        _columnsOrders.put("descuentoCantidad", new TableInfo.Column("descuentoCantidad", "REAL", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
+        _columnsOrders.put("descuentoAmigo", new TableInfo.Column("descuentoAmigo", "REAL", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
+        _columnsOrders.put("totalFinal", new TableInfo.Column("totalFinal", "REAL", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
         final HashSet<TableInfo.ForeignKey> _foreignKeysOrders = new HashSet<TableInfo.ForeignKey>(0);
         final HashSet<TableInfo.Index> _indicesOrders = new HashSet<TableInfo.Index>(0);
         final TableInfo _infoOrders = new TableInfo("orders", _columnsOrders, _foreignKeysOrders, _indicesOrders);
@@ -180,7 +185,7 @@ public final class PikiPrintDatabase_Impl extends PikiPrintDatabase {
         }
         return new RoomOpenHelper.ValidationResult(true, null);
       }
-    }, "4812ac50d3122241250d4ad822a9556d", "af33ededf243edd5e9104fa3c93264c4");
+    }, "8a7efca2844b0a23b78c5802828a125a", "5c54996e5f97a5309254a7f513f0aaa5");
     final SupportSQLiteOpenHelper.Configuration _sqliteConfig = SupportSQLiteOpenHelper.Configuration.builder(config.context).name(config.name).callback(_openCallback).build();
     final SupportSQLiteOpenHelper _helper = config.sqliteOpenHelperFactory.create(_sqliteConfig);
     return _helper;

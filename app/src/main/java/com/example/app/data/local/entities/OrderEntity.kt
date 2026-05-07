@@ -5,13 +5,9 @@ import androidx.room.PrimaryKey
 
 /*************** Entidad Room: pedido ***************/
 /*
-    Esta tabla guarda los pedidos/presupuestos.
+    Guarda el pedido completo y su desglose histórico.
 
-    Los enum se guardan como String usando name:
-    - FilamentType.PLA -> "PLA"
-    - OrderStatus.PENDING -> "PENDING"
-
-    Después se reconstruyen en los mappers.
+    Los enum se guardan como String usando .name.
 */
 @Entity(tableName = "orders")
 data class OrderEntity(
@@ -48,5 +44,12 @@ data class OrderEntity(
     val depositPercentage: Int,
 
     val finishType: String,
-    val notes: String
+    val notes: String,
+
+    /*************** Desglose histórico ***************/
+    val subtotal: Double,
+    val margenMonto: Double,
+    val descuentoCantidad: Double,
+    val descuentoAmigo: Double,
+    val totalFinal: Double
 )

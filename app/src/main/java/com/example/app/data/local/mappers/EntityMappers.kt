@@ -62,7 +62,13 @@ fun Order.toEntity(): OrderEntity {
         depositPercentage = depositPercentage,
 
         finishType = finishType.name,
-        notes = notes
+        notes = notes,
+
+        subtotal = subtotal,
+        margenMonto = margenMonto,
+        descuentoCantidad = descuentoCantidad,
+        descuentoAmigo = descuentoAmigo,
+        totalFinal = totalFinal
     )
 }
 
@@ -124,7 +130,13 @@ fun OrderEntity.toDomain(): Order {
             default = FinishType.VISIBLE_LINES
         ),
 
-        notes = notes
+        notes = notes,
+
+        subtotal = subtotal,
+        margenMonto = margenMonto,
+        descuentoCantidad = descuentoCantidad,
+        descuentoAmigo = descuentoAmigo,
+        totalFinal = totalFinal
     )
 }
 

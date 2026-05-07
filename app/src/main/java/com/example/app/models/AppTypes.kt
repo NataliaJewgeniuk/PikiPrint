@@ -159,22 +159,13 @@ data class Order(
     var status: OrderStatus,
     val createdAt: String,
 
+    /*************** Total visible usado por pantallas existentes ***************/
     var totalComputed: Double = 0.0,
 
     /*************** Campos comerciales del presupuesto ***************/
     val quoteDate: String = "",
     val validityDays: Int = 15,
-
-    /*
-        Plazo de entrega expresado en días hábiles.
-        Sábado y domingo no cuentan.
-    */
     val deliveryBusinessDays: Int = 7,
-
-    /*
-        Fecha estimada de entrega ya calculada.
-        Se calcula desde quoteDate + deliveryBusinessDays.
-    */
     val deliveryDate: String = "",
 
     val paymentType: PaymentType = PaymentType.FULL,
@@ -182,7 +173,21 @@ data class Order(
 
     val finishType: FinishType = FinishType.VISIBLE_LINES,
 
-    val notes: String = ""
+    val notes: String = "",
+
+    /*************** Desglose histórico del presupuesto ***************/
+    /*
+        Estos valores se guardan al momento de calcular el presupuesto.
+
+        Motivo:
+        si más adelante se modifican precios, margen o descuentos en Ajustes,
+        el presupuesto compartido debe seguir mostrando los valores originales.
+    */
+    val subtotal: Double = 0.0,
+    val margenMonto: Double = 0.0,
+    val descuentoCantidad: Double = 0.0,
+    val descuentoAmigo: Double = 0.0,
+    val totalFinal: Double = 0.0
 )
 
 /*************** Gastos ***************/

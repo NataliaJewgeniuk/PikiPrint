@@ -23,20 +23,32 @@ import java.time.format.DateTimeFormatter
 import java.util.Locale
 
 /*************** Compartir imagen de presupuesto ***************/
+/*
+    La imagen usa el desglose histórico guardado dentro del pedido.
+
+    Ya no recalcula usando la configuración actual.
+    Esto evita que un presupuesto viejo cambie si se modifican valores en Ajustes.
+*/
+@Suppress("UNUSED_PARAMETER")
 fun shareQuoteImage(
     context: Context,
     order: Order,
     settings: QuoteSettings
 ) {
-    val breakdown = Calculator.calculateQuote(order, settings)
+    val totalHistorico = obtenerTotalHistorico(order)
+
+    val descuentosAplicados =
+        order.descuentoCantidad +
+                order.descuentoAmigo
+
     val bitmap = createQuoteBitmap(
         order = order,
-        total = breakdown.totalFinal,
-        discountQuantity = breakdown.descuentoCantidad,
-        discountFriend = breakdown.descuentoAmigo
+        total = totalHistorico,
+        descuentosAplicados = descuentosAplicados
     )
 
     val sharedDir = File(context.cacheDir, "shared_images")
+
     if (!sharedDir.exists()) {
         sharedDir.mkdirs()
     }
@@ -75,8 +87,7 @@ fun shareQuoteImage(
 private fun createQuoteBitmap(
     order: Order,
     total: Double,
-    discountQuantity: Double,
-    discountFriend: Double
+    descuentosAplicados: Double
 ): Bitmap {
     val width = 1200
     val outerPadding = 56
@@ -114,11 +125,21 @@ private fun createQuoteBitmap(
         isFakeBoldText = true
     }
 
-    val formatter = NumberFormat.getCurrencyInstance(Locale("es", "AR")).apply {
+    val formatter = NumberFormat.getCurrencyInstance(
+        Locale("es", "AR")
+    ).apply {
         minimumFractionDigits = 2
         maximumFractionDigits = 2
     }
 
+    /*************** Datos visibles en la imagen ***************/
+    /*
+        Se muestra "Descuentos aplicados" como suma de:
+        - descuento por cantidad
+        - descuento amigo
+
+        No se distinguen ambos en la imagen final.
+    */
     val lines = listOf(
         "REF: ${obtenerRefPedido(order)}",
         "Fecha: ${formatearFechaArgentina(order.quoteDate)}",
@@ -126,8 +147,7 @@ private fun createQuoteBitmap(
         "Cliente: ${order.clientName}",
         "Total: ${formatter.format(total)}",
         "Unidades: ${order.quantity}",
-        "Descuento por cantidad: ${formatter.format(discountQuantity)}",
-        "Descuento amigo: ${formatter.format(discountFriend)}",
+        "Descuentos aplicados: ${formatter.format(descuentosAplicados)}",
         "Validez de la oferta: ${order.validityDays} días",
         "Plazo de entrega: ${order.deliveryBusinessDays} días hábiles",
         "Forma de pago: ${textoFormaPago(order)}",
@@ -179,6 +199,7 @@ private fun createQuoteBitmap(
     )
 
     val canvas = Canvas(bitmap)
+
     canvas.drawRect(
         0f,
         0f,
@@ -205,6 +226,7 @@ private fun createQuoteBitmap(
         x = outerPadding + innerPadding.toFloat(),
         y = currentY.toFloat()
     )
+
     currentY += titleLayout.height + 24
 
     lineLayouts.forEach { layout ->
@@ -214,6 +236,7 @@ private fun createQuoteBitmap(
             x = outerPadding + innerPadding.toFloat(),
             y = currentY.toFloat()
         )
+
         currentY += layout.height + 20
     }
 
@@ -253,6 +276,17 @@ private fun drawLayout(
     canvas.translate(x, y)
     layout.draw(canvas)
     canvas.restore()
+}
+
+/*************** Total histórico ***************/
+private fun obtenerTotalHistorico(
+    order: Order
+): Double {
+    return when {
+        order.totalFinal > 0.0 -> order.totalFinal
+        order.totalComputed > 0.0 -> order.totalComputed
+        else -> 0.0
+    }
 }
 
 /*************** REF visible ***************/
