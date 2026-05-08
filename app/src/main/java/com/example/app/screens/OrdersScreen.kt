@@ -160,7 +160,8 @@ fun OrdersScreen(
                         order.title.contains(text, ignoreCase = true) ||
                         order.clientName.contains(text, ignoreCase = true) ||
                         order.filament.label.contains(text, ignoreCase = true) ||
-                        order.printer.label.contains(text, ignoreCase = true) ||
+                        obtenerNombreImpresora(order).contains(text, ignoreCase = true) ||
+                        obtenerNombreImpresora(order).contains(text, ignoreCase = true) ||
                         order.color.contains(text, ignoreCase = true) ||
                         order.finishType.label.contains(text, ignoreCase = true) ||
                         order.status.label.contains(text, ignoreCase = true)
@@ -845,7 +846,7 @@ private fun TechnicalWebGrid(
                 modifier = Modifier.weight(1f),
                 icon = Icons.Outlined.LocalPrintshop,
                 label = "Impresora",
-                value = order.printer.label
+                value = obtenerNombreImpresora(order)
             )
         }
 
@@ -1062,7 +1063,7 @@ private fun OrderDetailBottomSheet(
             second = {
                 MiniSpecCard(
                     label = "IMPRESORA",
-                    value = order.printer.label
+                    value = obtenerNombreImpresora(order)
                 )
             }
         )
@@ -1627,7 +1628,7 @@ private fun PrinterTimeStrip(
         TechnicalMiniLine(
             icon = Icons.Outlined.LocalPrintshop,
             label = "Impresora",
-            value = order.printer.label
+            value = obtenerNombreImpresora(order)
         )
 
         TechnicalMiniLine(
@@ -2885,5 +2886,18 @@ private fun Double.ifZeroUse(
         this
     } else {
         fallback
+    }
+}
+
+/*************** Nombre visible de impresora ***************/
+/*
+    Usa el nombre congelado del pedido.
+    Si el pedido es viejo y no tiene snapshot, usa el enum heredado.
+*/
+private fun obtenerNombreImpresora(
+    order: Order
+): String {
+    return order.printerNameSnapshot.ifBlank {
+        obtenerNombreImpresora(order)
     }
 }

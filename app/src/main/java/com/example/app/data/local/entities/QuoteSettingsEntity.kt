@@ -7,8 +7,8 @@ import androidx.room.PrimaryKey
 /*
     Guardamos una sola fila con id = 1.
 
-    En vez de guardar mapas en Room, se guardan columnas simples.
-    Esto hace que la base sea más clara y fácil de migrar después.
+    Se mantienen columnas heredadas para A1 Combo y A1 Mini,
+    pero se suma printerProfilesSerialized para la flota dinámica.
 */
 @Entity(tableName = "quote_settings")
 data class QuoteSettingsEntity(
@@ -25,15 +25,18 @@ data class QuoteSettingsEntity(
     val marginPercentage: Double,
     val friendDiscountPercentage: Double,
 
-    /*************** A1 Combo ***************/
+    /*************** A1 Combo heredada ***************/
     val a1ComboPrice: Double,
     val a1ComboLifespanHours: Int,
     val a1ComboPowerKw: Double,
 
-    /*************** A1 Mini ***************/
+    /*************** A1 Mini heredada ***************/
     val a1MiniPrice: Double,
     val a1MiniLifespanHours: Int,
     val a1MiniPowerKw: Double,
+
+    /*************** Flota dinámica ***************/
+    val printerProfilesSerialized: String,
 
     /*************** Descuentos por cantidad ***************/
     val discount25: Double,

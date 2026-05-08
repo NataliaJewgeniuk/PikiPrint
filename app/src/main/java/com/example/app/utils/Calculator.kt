@@ -1,6 +1,7 @@
 package com.example.app.utils
 
 import com.example.app.models.Order
+import com.example.app.models.PrinterSettings
 import com.example.app.models.QuoteSettings
 
 /*************** Desglose del presupuesto ***************/
@@ -25,9 +26,6 @@ data class QuoteBreakdown(
 /*
     Esta clase contiene lógica pura.
     No depende de Compose, Android UI ni ViewModel.
-
-    Eso permite testear el cálculo aparte y mantener la misma lógica
-    que tiene la app web en calculator.ts.
 */
 object Calculator {
 
@@ -51,23 +49,47 @@ object Calculator {
     ): QuoteBreakdown {
 
         /*************** Tiempo total ***************/
-        val minutosTotales = (data.printTimeHours * 60) + data.printTimeMinutes
-        val horasTotales = minutosTotales / 60.0
+        val minutosTotales =
+            (data.printTimeHours * 60) + data.printTimeMinutes
+
+        val horasTotales =
+            minutosTotales / 60.0
 
         /*************** 1. Costo de material ***************/
-        val kgUsados = data.weightGramsPerUnit / 1000.0
-        val precioKgFilamento = settings.filamentCost[data.filament] ?: 0.0
+        val kgUsados =
+            data.weightGramsPerUnit / 1000.0
+
+        val precioKgFilamento =
+            settings.filamentCost[data.filament] ?: 0.0
 
         val costoMaterial =
             kgUsados *
                     precioKgFilamento *
                     data.quantity
 
-        /*************** 2. Costo energético ***************/
-        val printerParams = settings.printers[data.printer]
+        /*************** Resolver impresora ***************/
+        /*
+            Primero intenta usar la impresora dinámica por printerId.
+            Si no existe, cae al mapa heredado por PrinterType.
+        */
+        val printerParams =
+            settings.printerProfiles
+                .firstOrNull { profile ->
+                    profile.id == data.printerId
+                }
+                ?.let { profile ->
+                    PrinterSettings(
+                        price = profile.price,
+                        lifespanHours = profile.lifespanHours,
+                        powerKw = profile.powerKw
+                    )
+                }
+                ?: settings.printers[data.printer]
 
+        /*************** 2. Costo energético ***************/
         val costoEnergia = if (printerParams != null) {
-            val kWhEstimados = horasTotales * printerParams.powerKw
+            val kWhEstimados =
+                horasTotales * printerParams.powerKw
 
             kWhEstimados *
                     settings.energyRate *
@@ -97,7 +119,8 @@ object Calculator {
             El diseño se cobra una sola vez por pedido.
             No se multiplica por cantidad.
         */
-        val costoDiseno = settings.designCosts[data.designType] ?: 0.0
+        val costoDiseno =
+            settings.designCosts[data.designType] ?: 0.0
 
         /*************** 5. Subtotal ***************/
         val subtotal =

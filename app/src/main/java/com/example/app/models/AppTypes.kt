@@ -23,14 +23,26 @@ enum class FilamentType(val label: String) {
     FLEX("FLEX")
 }
 
-/*************** Tipos de impresora ***************/
+/*************** Tipos de impresora heredados ***************/
 /*
-    Se mantienen las impresoras definidas en la app web.
+    Estos valores se mantienen para compatibilidad con las pantallas actuales.
+
+    A partir de la Etapa 3.1, la flota real se maneja con PrinterProfile.
+    En la Etapa 3.2 la UI dejará de depender de PrinterType.entries.
 */
 enum class PrinterType(val label: String) {
     A1_COMBO("A1 Combo"),
     A1_MINI("A1 Mini")
 }
+
+/*************** ID heredado de impresora ***************/
+val PrinterType.defaultProfileId: String
+    get() {
+        return when (this) {
+            PrinterType.A1_COMBO -> "printer_a1_combo"
+            PrinterType.A1_MINI -> "printer_a1_mini"
+        }
+    }
 
 /*************** Tipos de diseño ***************/
 /*
@@ -67,16 +79,14 @@ enum class FinishType(val label: String) {
     PAINTED("Pintado")
 }
 
-/*************** Parámetros de impresora ***************/
+/*************** Parámetros heredados de impresora ***************/
 /*
-    price:
-        precio de compra de la impresora.
+    Se mantiene para compatibilidad con el código actual.
 
-    lifespanHours:
-        vida útil estimada en horas.
-
-    powerKw:
-        consumo eléctrico aproximado en kW.
+    En la flota nueva usamos PrinterProfile, que además tiene:
+    - id
+    - name
+    - isActive
 */
 data class PrinterSettings(
     var price: Double,
@@ -84,20 +94,42 @@ data class PrinterSettings(
     var powerKw: Double
 )
 
-/*************** Configuración de presupuesto ***************/
+/*************** Perfil dinámico de impresora ***************/
 /*
-    Esta configuración contiene todos los valores base que usa la calculadora.
+    Este es el nuevo modelo para poder agregar, editar y desactivar impresoras.
+
+    id:
+        identificador estable. No debería cambiar aunque se renombre la impresora.
+
+    name:
+        nombre visible.
+
+    isActive:
+        si está activa aparece en nuevos presupuestos.
+        Si está inactiva, no aparece para nuevos pedidos, pero los pedidos viejos
+        siguen mostrando printerNameSnapshot.
 */
-data class QuoteSettings(
-    val filamentCost: MutableMap<FilamentType, Double> = mutableMapOf(
-        FilamentType.PLA to 22000.0,
-        FilamentType.PETG to 26000.0,
-        FilamentType.FLEX to 38000.0
-    ),
+data class PrinterProfile(
+    val id: String,
+    val name: String,
+    val price: Double,
+    val lifespanHours: Int,
+    val powerKw: Double,
+    val isActive: Boolean = true
+)
 
-    var energyRate: Double = 120.0,
+/*************** Convertir perfil dinámico a parámetros de cálculo ***************/
+fun PrinterProfile.toPrinterSettings(): PrinterSettings {
+    return PrinterSettings(
+        price = price,
+        lifespanHours = lifespanHours,
+        powerKw = powerKw
+    )
+}
 
-    val printers: MutableMap<PrinterType, PrinterSettings> = mutableMapOf(
+/*************** Mapa heredado por defecto ***************/
+fun defaultLegacyPrinterSettings(): MutableMap<PrinterType, PrinterSettings> {
+    return mutableMapOf(
         PrinterType.A1_COMBO to PrinterSettings(
             price = 1200000.0,
             lifespanHours = 5000,
@@ -108,7 +140,73 @@ data class QuoteSettings(
             lifespanHours = 4000,
             powerKw = 0.25
         )
+    )
+}
+
+/*************** Perfiles dinámicos por defecto ***************/
+fun defaultPrinterProfiles(
+    legacyPrinters: Map<PrinterType, PrinterSettings> = defaultLegacyPrinterSettings()
+): MutableList<PrinterProfile> {
+    val a1ComboSettings =
+        legacyPrinters[PrinterType.A1_COMBO]
+            ?: PrinterSettings(
+                price = 1200000.0,
+                lifespanHours = 5000,
+                powerKw = 0.35
+            )
+
+    val a1MiniSettings =
+        legacyPrinters[PrinterType.A1_MINI]
+            ?: PrinterSettings(
+                price = 800000.0,
+                lifespanHours = 4000,
+                powerKw = 0.25
+            )
+
+    return mutableListOf(
+        PrinterProfile(
+            id = PrinterType.A1_COMBO.defaultProfileId,
+            name = PrinterType.A1_COMBO.label,
+            price = a1ComboSettings.price,
+            lifespanHours = a1ComboSettings.lifespanHours,
+            powerKw = a1ComboSettings.powerKw,
+            isActive = true
+        ),
+        PrinterProfile(
+            id = PrinterType.A1_MINI.defaultProfileId,
+            name = PrinterType.A1_MINI.label,
+            price = a1MiniSettings.price,
+            lifespanHours = a1MiniSettings.lifespanHours,
+            powerKw = a1MiniSettings.powerKw,
+            isActive = true
+        )
+    )
+}
+
+/*************** Configuración de presupuesto ***************/
+/*
+    Esta configuración contiene todos los valores base que usa la calculadora.
+
+    printers:
+        mapa heredado para compatibilidad con pantallas existentes.
+
+    printerProfiles:
+        nueva flota dinámica. En la etapa 3.2 la UI va a trabajar sobre esto.
+*/
+data class QuoteSettings(
+    val filamentCost: MutableMap<FilamentType, Double> = mutableMapOf(
+        FilamentType.PLA to 22000.0,
+        FilamentType.PETG to 26000.0,
+        FilamentType.FLEX to 38000.0
     ),
+
+    var energyRate: Double = 120.0,
+
+    val printers: MutableMap<PrinterType, PrinterSettings> =
+        defaultLegacyPrinterSettings(),
+
+    val printerProfiles: MutableList<PrinterProfile> =
+        defaultPrinterProfiles(printers),
 
     var marginPercentage: Double = 50.0,
 
@@ -131,12 +229,16 @@ data class QuoteSettings(
 
 /*************** Pedido / Presupuesto guardado ***************/
 /*
-    Este modelo queda alineado con la app web.
+    printer:
+        campo heredado para compatibilidad.
 
-    En la web hay una diferencia conceptual entre QuoteData y Order.
-    Para esta etapa en Android usamos Order como modelo principal,
-    pero ya contiene todos los campos necesarios para comportarse como
-    presupuesto editable y como pedido guardado.
+    printerId:
+        nuevo identificador dinámico.
+
+    printerNameSnapshot:
+        nombre congelado al momento de crear el pedido.
+        Sirve para que pedidos viejos sigan mostrando la impresora correcta,
+        aunque luego se desactive o se renombre.
 */
 data class Order(
     val id: String,
@@ -176,18 +278,15 @@ data class Order(
     val notes: String = "",
 
     /*************** Desglose histórico del presupuesto ***************/
-    /*
-        Estos valores se guardan al momento de calcular el presupuesto.
-
-        Motivo:
-        si más adelante se modifican precios, margen o descuentos en Ajustes,
-        el presupuesto compartido debe seguir mostrando los valores originales.
-    */
     val subtotal: Double = 0.0,
     val margenMonto: Double = 0.0,
     val descuentoCantidad: Double = 0.0,
     val descuentoAmigo: Double = 0.0,
-    val totalFinal: Double = 0.0
+    val totalFinal: Double = 0.0,
+
+    /*************** Impresora dinámica ***************/
+    val printerId: String = printer.defaultProfileId,
+    val printerNameSnapshot: String = printer.label
 )
 
 /*************** Gastos ***************/
@@ -212,9 +311,6 @@ data class Expense(
 )
 
 /*************** Estado global de la app ***************/
-/*
-    Por ahora este estado vive en memoria dentro del AppViewModel.
-*/
 data class AppState(
     val orders: List<Order> = emptyList(),
     val expenses: List<Expense> = emptyList(),

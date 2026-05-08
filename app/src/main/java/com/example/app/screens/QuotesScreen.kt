@@ -1,6 +1,5 @@
 package com.example.app.screens
 
-import android.os.Build
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -8,6 +7,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
@@ -19,7 +19,9 @@ import com.example.app.models.FinishType
 import com.example.app.models.Order
 import com.example.app.models.OrderStatus
 import com.example.app.models.PaymentType
+import com.example.app.models.PrinterProfile
 import com.example.app.models.PrinterType
+import com.example.app.models.defaultProfileId
 import com.example.app.utils.Calculator
 import com.example.app.utils.QuoteBreakdown
 import com.example.app.viewmodels.AppViewModel
@@ -85,9 +87,82 @@ fun QuotesScreen(
         mutableStateOf(editingOrder?.filament ?: FilamentType.PLA)
     }
 
-    var selectedPrinter by remember(editingOrder) {
-        mutableStateOf(editingOrder?.printer ?: PrinterType.A1_COMBO)
+    /*************** Impresoras dinámicas ***************/
+    /*
+        La pantalla ya no usa PrinterType.entries para elegir impresora.
+
+        - Para presupuestos nuevos: muestra solo impresoras activas.
+        - Para edición: si el pedido usaba una impresora ahora inactiva,
+          se la agrega temporalmente al selector para no perder el dato histórico.
+    */
+    val allPrinterProfiles =
+        state.quoteSettings.printerProfiles
+
+    val selectablePrinterProfiles =
+        remember(
+            allPrinterProfiles,
+            editingOrder?.id,
+            editingOrder?.printerId,
+            editingOrder?.printerNameSnapshot
+        ) {
+            val activeProfiles =
+                allPrinterProfiles.filter { profile ->
+                    profile.isActive
+                }
+
+            val editingProfile =
+                editingOrder?.let { order ->
+                    allPrinterProfiles.firstOrNull { profile ->
+                        profile.id == order.printerId
+                    } ?: PrinterProfile(
+                        id = order.printerId,
+                        name = order.printerNameSnapshot.ifBlank {
+                            order.printer.label
+                        },
+                        price = 0.0,
+                        lifespanHours = 0,
+                        powerKw = 0.0,
+                        isActive = false
+                    )
+                }
+
+            val result =
+                activeProfiles.toMutableList()
+
+            if (
+                editingProfile != null &&
+                result.none { profile -> profile.id == editingProfile.id }
+            ) {
+                result.add(0, editingProfile)
+            }
+
+            result
+        }
+
+    var selectedPrinterId by remember(editingOrder?.id) {
+        mutableStateOf(
+            editingOrder?.printerId.orEmpty()
+        )
     }
+
+    LaunchedEffect(
+        selectablePrinterProfiles,
+        editingOrder?.id
+    ) {
+        if (
+            selectedPrinterId.isBlank() ||
+            selectablePrinterProfiles.none { profile -> profile.id == selectedPrinterId }
+        ) {
+            selectedPrinterId =
+                selectablePrinterProfiles.firstOrNull()?.id
+                    ?: PrinterType.A1_COMBO.defaultProfileId
+        }
+    }
+
+    val selectedPrinterProfile =
+        selectablePrinterProfiles.firstOrNull { profile ->
+            profile.id == selectedPrinterId
+        } ?: selectablePrinterProfiles.firstOrNull()
 
     var selectedDesign by remember(editingOrder) {
         mutableStateOf(editingOrder?.designType ?: DesignType.EXTERNAL)
@@ -187,6 +262,16 @@ fun QuotesScreen(
         val depositPercentage =
             depositPercentageText.toIntOrNull() ?: 0
 
+        val resolvedPrinterProfile =
+            selectedPrinterProfile
+
+        val legacyPrinter =
+            legacyPrinterFromProfileId(
+                resolvedPrinterProfile?.id
+                    ?: selectedPrinterId
+                    ?: PrinterType.A1_COMBO.defaultProfileId
+            )
+
         val order = Order(
             id = editingOrder?.id ?: UUID.randomUUID().toString(),
 
@@ -194,7 +279,18 @@ fun QuotesScreen(
             clientName = clientName,
 
             filament = selectedFilament,
-            printer = selectedPrinter,
+
+            /*************** Compatibilidad heredada ***************/
+            printer = legacyPrinter,
+
+            /*************** Impresora dinámica ***************/
+            printerId =
+                resolvedPrinterProfile?.id
+                    ?: legacyPrinter.defaultProfileId,
+
+            printerNameSnapshot =
+                resolvedPrinterProfile?.name
+                    ?: legacyPrinter.label,
 
             printTimeHours = printHours.toIntOrNull() ?: 0,
             printTimeMinutes = printMinutes.toIntOrNull() ?: 0,
@@ -371,6 +467,10 @@ fun QuotesScreen(
                         }
 
                         item {
+                            Text("Impresora: ${order.printerNameSnapshot.ifBlank { order.printer.label }}")
+                        }
+
+                        item {
                             Text("Fecha presupuesto: ${formatearFechaArgentina(order.quoteDate)}")
                         }
 
@@ -519,11 +619,13 @@ fun QuotesScreen(
             }
 
             item {
-                DropdownEnum(
+                PrinterProfileDropdown(
                     label = "Impresora",
-                    selected = selectedPrinter,
-                    textForValue = { it.label },
-                    onSelect = { selectedPrinter = it }
+                    profiles = selectablePrinterProfiles,
+                    selectedProfile = selectedPrinterProfile,
+                    onSelect = { profile ->
+                        selectedPrinterId = profile.id
+                    }
                 )
             }
 
@@ -678,7 +780,7 @@ fun QuotesScreen(
 
             item {
                 Row(
-                    verticalAlignment = androidx.compose.ui.Alignment.CenterVertically
+                    verticalAlignment = Alignment.CenterVertically
                 ) {
                     Checkbox(
                         checked = isFriend,
@@ -879,7 +981,7 @@ private fun utcMillisToLocalDate(millis: Long): LocalDate {
 
 /*************** Dropdown genérico para enums ***************/
 /*
-    Sirve para Material, Impresora, Diseño, Forma de pago y Acabado.
+    Sirve para Material, Diseño, Forma de pago y Acabado.
 */
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -930,5 +1032,95 @@ private inline fun <reified T : Enum<T>> DropdownEnum(
                 )
             }
         }
+    }
+}
+
+/*************** Dropdown de impresoras dinámicas ***************/
+/*
+    Muestra solo impresoras activas para pedidos nuevos.
+
+    Si se está editando un pedido con una impresora inactiva, esa impresora
+    se agrega temporalmente a la lista para que el dato histórico no se pierda.
+*/
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+private fun PrinterProfileDropdown(
+    label: String,
+    profiles: List<PrinterProfile>,
+    selectedProfile: PrinterProfile?,
+    onSelect: (PrinterProfile) -> Unit
+) {
+    var expanded by remember {
+        mutableStateOf(false)
+    }
+
+    ExposedDropdownMenuBox(
+        expanded = expanded,
+        onExpandedChange = {
+            if (profiles.isNotEmpty()) {
+                expanded = !expanded
+            }
+        }
+    ) {
+        OutlinedTextField(
+            value = selectedProfile?.let { profile ->
+                if (profile.isActive) {
+                    profile.name
+                } else {
+                    "${profile.name} (inactiva)"
+                }
+            } ?: "Sin impresoras activas",
+            onValueChange = {},
+            readOnly = true,
+            enabled = profiles.isNotEmpty(),
+            label = {
+                Text(label)
+            },
+            modifier = Modifier
+                .menuAnchor()
+                .fillMaxWidth(),
+            shape = RoundedCornerShape(20.dp)
+        )
+
+        ExposedDropdownMenu(
+            expanded = expanded,
+            onDismissRequest = {
+                expanded = false
+            }
+        ) {
+            profiles.forEach { profile ->
+                DropdownMenuItem(
+                    text = {
+                        Text(
+                            text = if (profile.isActive) {
+                                profile.name
+                            } else {
+                                "${profile.name} (inactiva)"
+                            }
+                        )
+                    },
+                    onClick = {
+                        onSelect(profile)
+                        expanded = false
+                    }
+                )
+            }
+        }
+    }
+}
+
+/*************** Compatibilidad con PrinterType heredado ***************/
+/*
+    El modelo Order todavía conserva printer: PrinterType para compatibilidad.
+    Las impresoras nuevas se guardan con printerId + printerNameSnapshot,
+    y usan A1_COMBO como valor heredado neutro.
+*/
+private fun legacyPrinterFromProfileId(
+    printerId: String
+): PrinterType {
+    return when (printerId) {
+        PrinterType.A1_COMBO.defaultProfileId -> PrinterType.A1_COMBO
+        PrinterType.A1_MINI.defaultProfileId -> PrinterType.A1_MINI
+        else -> PrinterType.A1_COMBO
     }
 }

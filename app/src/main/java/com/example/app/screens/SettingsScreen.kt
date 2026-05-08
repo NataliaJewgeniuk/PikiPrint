@@ -9,10 +9,12 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.outlined.Add
 import androidx.compose.material.icons.outlined.AttachMoney
 import androidx.compose.material.icons.outlined.Bolt
 import androidx.compose.material.icons.outlined.CheckCircle
 import androidx.compose.material.icons.outlined.Close
+import androidx.compose.material.icons.outlined.Delete
 import androidx.compose.material.icons.outlined.Edit
 import androidx.compose.material.icons.outlined.Inventory2
 import androidx.compose.material.icons.outlined.LocalPrintshop
@@ -53,8 +55,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.app.models.DesignType
 import com.example.app.models.FilamentType
-import com.example.app.models.PrinterSettings
-import com.example.app.models.PrinterType
+import com.example.app.models.PrinterProfile
 import com.example.app.models.QuoteSettings
 import com.example.app.ui.components.kawaiiShadow
 import com.example.app.ui.theme.PikiClay
@@ -75,6 +76,8 @@ private val PikiSettingsText = Color(0xFF3D6472)
 private val PikiAccentPurple = Color(0xFFD6B7F0)
 private val PikiAccentPink = Color(0xFFFFB1C1)
 private val PikiButtonShadowBrown = Color(0xFF5D4037)
+private val PikiDangerBg = Color(0xFFFFD8D2)
+private val PikiDangerText = Color(0xFF9C3F32)
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -106,31 +109,6 @@ fun SettingsScreen(
         }
     }
 
-    /*************** Estados de impresoras ***************/
-    val printerPriceInputs = remember(settings) {
-        PrinterType.entries.associateWith { printer ->
-            mutableStateOf(
-                (settings.printers[printer]?.price ?: 0.0).toString()
-            )
-        }
-    }
-
-    val printerLifespanInputs = remember(settings) {
-        PrinterType.entries.associateWith { printer ->
-            mutableStateOf(
-                (settings.printers[printer]?.lifespanHours ?: 0).toString()
-            )
-        }
-    }
-
-    val printerPowerInputs = remember(settings) {
-        PrinterType.entries.associateWith { printer ->
-            mutableStateOf(
-                (settings.printers[printer]?.powerKw ?: 0.0).toString()
-            )
-        }
-    }
-
     /*************** Estados de descuentos por cantidad ***************/
     val quantityDiscountInputs = remember(settings) {
         listOf(25, 50, 75, 100).associateWith { quantity ->
@@ -154,9 +132,13 @@ fun SettingsScreen(
         mutableStateOf(false)
     }
 
-    /*************** Estado de edición de impresora ***************/
+    /*************** Estados de impresoras dinámicas ***************/
     var selectedPrinterForEdit by remember {
-        mutableStateOf<PrinterType?>(null)
+        mutableStateOf<PrinterProfile?>(null)
+    }
+
+    var showAddPrinterSheet by remember {
+        mutableStateOf(false)
     }
 
     val printerSheetState = rememberModalBottomSheetState(
@@ -171,7 +153,13 @@ fun SettingsScreen(
         }
     }
 
-    /*************** Guardar cambios ***************/
+    /*************** Guardar cambios generales ***************/
+    /*
+        Importante:
+        Las impresoras dinámicas NO se reconstruyen acá.
+        Se preserva settings.printerProfiles tal como esté.
+        Las impresoras se agregan/editan/desactivan mediante funciones del ViewModel.
+    */
     fun guardarCambios() {
         val updatedFilamentCost = mutableMapOf<FilamentType, Double>()
 
@@ -180,27 +168,6 @@ fun SettingsScreen(
                 filamentInputs[type]?.value?.toDoubleOrNull()
                     ?: settings.filamentCost[type]
                             ?: 0.0
-        }
-
-        val updatedPrinters = mutableMapOf<PrinterType, PrinterSettings>()
-
-        PrinterType.entries.forEach { printer ->
-            updatedPrinters[printer] = PrinterSettings(
-                price =
-                    printerPriceInputs[printer]?.value?.toDoubleOrNull()
-                        ?: settings.printers[printer]?.price
-                        ?: 0.0,
-
-                lifespanHours =
-                    printerLifespanInputs[printer]?.value?.toIntOrNull()
-                        ?: settings.printers[printer]?.lifespanHours
-                        ?: 0,
-
-                powerKw =
-                    printerPowerInputs[printer]?.value?.toDoubleOrNull()
-                        ?: settings.printers[printer]?.powerKw
-                        ?: 0.0
-            )
         }
 
         val updatedQuantityDiscounts = mutableMapOf<Int, Double>()
@@ -221,16 +188,16 @@ fun SettingsScreen(
                             ?: 0.0
         }
 
-        val updatedSettings = QuoteSettings(
+        val updatedSettings: QuoteSettings = settings.copy(
             filamentCost = updatedFilamentCost,
             energyRate = energyRate.toDoubleOrNull() ?: settings.energyRate,
-            printers = updatedPrinters,
             marginPercentage = margin.toDoubleOrNull() ?: settings.marginPercentage,
             quantityDiscounts = updatedQuantityDiscounts,
             friendDiscountPercentage =
                 friendDiscount.toDoubleOrNull()
                     ?: settings.friendDiscountPercentage,
-            designCosts = updatedDesignCosts
+            designCosts = updatedDesignCosts,
+            printerProfiles = settings.printerProfiles.toMutableList()
         )
 
         viewModel.updateSettings(updatedSettings)
@@ -282,12 +249,20 @@ fun SettingsScreen(
 
             item {
                 PrinterFleetCard(
-                    settings = settings,
-                    printerPriceInputs = printerPriceInputs,
-                    printerLifespanInputs = printerLifespanInputs,
-                    printerPowerInputs = printerPowerInputs,
-                    onEditPrinter = { printer ->
-                        selectedPrinterForEdit = printer
+                    profiles = settings.printerProfiles,
+                    onAddPrinter = {
+                        showAddPrinterSheet = true
+                    },
+                    onEditPrinter = { profile ->
+                        selectedPrinterForEdit = profile
+                    },
+                    onDeactivatePrinter = { profile ->
+                        viewModel.deactivatePrinterProfile(profile.id)
+                        savedFeedbackVisible = true
+                    },
+                    onReactivatePrinter = { profile ->
+                        viewModel.reactivatePrinterProfile(profile.id)
+                        savedFeedbackVisible = true
                     }
                 )
             }
@@ -316,8 +291,44 @@ fun SettingsScreen(
             }
         )
 
-        /*************** BottomSheet de edición de impresora ***************/
-        selectedPrinterForEdit?.let { printer ->
+        /*************** BottomSheet para agregar impresora ***************/
+        if (showAddPrinterSheet) {
+            ModalBottomSheet(
+                onDismissRequest = {
+                    showAddPrinterSheet = false
+                },
+                sheetState = printerSheetState,
+                containerColor = PikiPaper,
+                tonalElevation = 0.dp,
+                shape = RoundedCornerShape(topStart = 36.dp, topEnd = 36.dp),
+                dragHandle = {
+                    SheetDragHandle()
+                }
+            ) {
+                PrinterEditSheet(
+                    title = "Agregar impresora",
+                    profile = null,
+                    onClose = {
+                        showAddPrinterSheet = false
+                    },
+                    onSave = { name, price, lifespanHours, powerKw ->
+                        viewModel.addPrinterProfile(
+                            name = name,
+                            price = price,
+                            lifespanHours = lifespanHours,
+                            powerKw = powerKw
+                        )
+
+                        showAddPrinterSheet = false
+                        savedFeedbackVisible = true
+                    },
+                    onDeactivate = null
+                )
+            }
+        }
+
+        /*************** BottomSheet para editar impresora ***************/
+        selectedPrinterForEdit?.let { profile ->
             ModalBottomSheet(
                 onDismissRequest = {
                     selectedPrinterForEdit = null
@@ -327,32 +338,32 @@ fun SettingsScreen(
                 tonalElevation = 0.dp,
                 shape = RoundedCornerShape(topStart = 36.dp, topEnd = 36.dp),
                 dragHandle = {
-                    Box(
-                        modifier = Modifier
-                            .padding(top = 10.dp, bottom = 4.dp)
-                            .width(56.dp)
-                            .height(6.dp)
-                            .clip(RoundedCornerShape(999.dp))
-                            .background(PikiCreamLine)
-                    )
+                    SheetDragHandle()
                 }
             ) {
                 PrinterEditSheet(
-                    printer = printer,
-                    price = printerPriceInputs[printer]?.value ?: "",
-                    onPriceChange = {
-                        printerPriceInputs[printer]?.value = it
-                    },
-                    lifespan = printerLifespanInputs[printer]?.value ?: "",
-                    onLifespanChange = {
-                        printerLifespanInputs[printer]?.value = it
-                    },
-                    power = printerPowerInputs[printer]?.value ?: "",
-                    onPowerChange = {
-                        printerPowerInputs[printer]?.value = it
-                    },
+                    title = "Editar impresora",
+                    profile = profile,
                     onClose = {
                         selectedPrinterForEdit = null
+                    },
+                    onSave = { name, price, lifespanHours, powerKw ->
+                        viewModel.updatePrinterProfile(
+                            profile.copy(
+                                name = name,
+                                price = price,
+                                lifespanHours = lifespanHours,
+                                powerKw = powerKw
+                            )
+                        )
+
+                        selectedPrinterForEdit = null
+                        savedFeedbackVisible = true
+                    },
+                    onDeactivate = {
+                        viewModel.deactivatePrinterProfile(profile.id)
+                        selectedPrinterForEdit = null
+                        savedFeedbackVisible = true
                     }
                 )
             }
@@ -444,14 +455,14 @@ private fun FilamentsCard(
     }
 }
 
-/*************** Flota de impresoras ***************/
+/*************** Flota de impresoras dinámica ***************/
 @Composable
 private fun PrinterFleetCard(
-    settings: QuoteSettings,
-    printerPriceInputs: Map<PrinterType, MutableState<String>>,
-    printerLifespanInputs: Map<PrinterType, MutableState<String>>,
-    printerPowerInputs: Map<PrinterType, MutableState<String>>,
-    onEditPrinter: (PrinterType) -> Unit
+    profiles: List<PrinterProfile>,
+    onAddPrinter: () -> Unit,
+    onEditPrinter: (PrinterProfile) -> Unit,
+    onDeactivatePrinter: (PrinterProfile) -> Unit,
+    onReactivatePrinter: (PrinterProfile) -> Unit
 ) {
     BentoCard(
         title = "Flota de impresoras",
@@ -459,18 +470,223 @@ private fun PrinterFleetCard(
         background = PikiAccentPurple,
         titleColor = PikiSettingsText
     ) {
-        PrinterType.entries.forEach { printer ->
-            PrinterInnerCard(
-                printer = printer,
-                isActive = settings.printers.containsKey(printer),
-                price = printerPriceInputs[printer]?.value ?: "",
-                lifespan = printerLifespanInputs[printer]?.value ?: "",
-                power = printerPowerInputs[printer]?.value ?: "",
-                onEdit = {
-                    onEditPrinter(printer)
-                }
+        Button(
+            onClick = onAddPrinter,
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(50.dp),
+            shape = RoundedCornerShape(999.dp),
+            colors = ButtonDefaults.buttonColors(
+                containerColor = PikiWhite,
+                contentColor = PikiSettingsText
+            ),
+            elevation = ButtonDefaults.buttonElevation(defaultElevation = 0.dp)
+        ) {
+            Icon(
+                imageVector = Icons.Outlined.Add,
+                contentDescription = null,
+                modifier = Modifier.size(20.dp)
+            )
+
+            Spacer(modifier = Modifier.width(8.dp))
+
+            Text(
+                text = "Agregar impresora",
+                style = MaterialTheme.typography.labelLarge,
+                fontWeight = FontWeight.ExtraBold
             )
         }
+
+        profiles
+            .sortedWith(
+                compareByDescending<PrinterProfile> { it.isActive }
+                    .thenBy { it.name.lowercase() }
+            )
+            .forEach { profile ->
+                PrinterInnerCard(
+                    profile = profile,
+                    onEdit = {
+                        onEditPrinter(profile)
+                    },
+                    onDeactivate = {
+                        onDeactivatePrinter(profile)
+                    },
+                    onReactivate = {
+                        onReactivatePrinter(profile)
+                    }
+                )
+            }
+    }
+}
+
+/*************** Card interna de impresora dinámica ***************/
+@Composable
+private fun PrinterInnerCard(
+    profile: PrinterProfile,
+    onEdit: () -> Unit,
+    onDeactivate: () -> Unit,
+    onReactivate: () -> Unit
+) {
+    val activeAlpha =
+        if (profile.isActive) 1f else 0.52f
+
+    Card(
+        modifier = Modifier.fillMaxWidth(),
+        shape = RoundedCornerShape(26.dp),
+        colors = CardDefaults.cardColors(
+            containerColor = PikiWhite.copy(
+                alpha = if (profile.isActive) 0.78f else 0.45f
+            )
+        ),
+        border = BorderStroke(
+            width = 3.dp,
+            color = PikiWhite
+        )
+    ) {
+        Column(
+            modifier = Modifier.padding(16.dp),
+            verticalArrangement = Arrangement.spacedBy(12.dp)
+        ) {
+            Row(
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Text(
+                    text = profile.name,
+                    modifier = Modifier.weight(1f),
+                    style = MaterialTheme.typography.titleMedium,
+                    fontWeight = FontWeight.ExtraBold,
+                    color = PikiSettingsText.copy(alpha = activeAlpha)
+                )
+
+                Surface(
+                    shape = RoundedCornerShape(999.dp),
+                    color = if (profile.isActive) {
+                        PikiAccentPurple.copy(alpha = 0.55f)
+                    } else {
+                        PikiWhite.copy(alpha = 0.48f)
+                    }
+                ) {
+                    Text(
+                        text = if (profile.isActive) {
+                            "ACTIVA"
+                        } else {
+                            "INACTIVA"
+                        },
+                        modifier = Modifier.padding(horizontal = 10.dp, vertical = 4.dp),
+                        style = MaterialTheme.typography.labelSmall,
+                        fontWeight = FontWeight.ExtraBold,
+                        color = PikiSettingsText.copy(
+                            alpha = if (profile.isActive) 1f else 0.55f
+                        )
+                    )
+                }
+
+                Spacer(modifier = Modifier.width(8.dp))
+
+                IconButton(
+                    onClick = onEdit,
+                    modifier = Modifier
+                        .size(38.dp)
+                        .clip(RoundedCornerShape(999.dp))
+                        .background(PikiWhite)
+                ) {
+                    Icon(
+                        imageVector = Icons.Outlined.Edit,
+                        contentDescription = "Editar impresora",
+                        tint = PikiSettingsText,
+                        modifier = Modifier.size(20.dp)
+                    )
+                }
+
+                IconButton(
+                    onClick = {
+                        if (profile.isActive) {
+                            onDeactivate()
+                        } else {
+                            onReactivate()
+                        }
+                    },
+                    modifier = Modifier
+                        .size(38.dp)
+                        .clip(RoundedCornerShape(999.dp))
+                        .background(PikiWhite)
+                ) {
+                    Icon(
+                        imageVector = if (profile.isActive) {
+                            Icons.Outlined.Delete
+                        } else {
+                            Icons.Outlined.CheckCircle
+                        },
+                        contentDescription = if (profile.isActive) {
+                            "Desactivar impresora"
+                        } else {
+                            "Reactivar impresora"
+                        },
+                        tint = if (profile.isActive) {
+                            PikiDangerText
+                        } else {
+                            PikiSettingsText
+                        },
+                        modifier = Modifier.size(20.dp)
+                    )
+                }
+            }
+
+            PrinterSummaryLine(
+                icon = Icons.Outlined.Payments,
+                label = "Precio",
+                value = "$ ${"%.2f".format(profile.price)}"
+            )
+
+            PrinterSummaryLine(
+                icon = Icons.Outlined.Timer,
+                label = "Vida útil",
+                value = "${profile.lifespanHours} h"
+            )
+
+            PrinterSummaryLine(
+                icon = Icons.Outlined.Bolt,
+                label = "Consumo",
+                value = "${profile.powerKw} kW"
+            )
+        }
+    }
+}
+
+/*************** Línea resumen de impresora ***************/
+@Composable
+private fun PrinterSummaryLine(
+    icon: ImageVector,
+    label: String,
+    value: String
+) {
+    Row(
+        modifier = Modifier.fillMaxWidth(),
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        Icon(
+            imageVector = icon,
+            contentDescription = null,
+            tint = PikiSettingsText.copy(alpha = 0.62f),
+            modifier = Modifier.size(18.dp)
+        )
+
+        Spacer(modifier = Modifier.width(8.dp))
+
+        Text(
+            text = label,
+            modifier = Modifier.weight(1f),
+            style = MaterialTheme.typography.bodySmall,
+            fontWeight = FontWeight.Bold,
+            color = PikiSettingsText.copy(alpha = 0.62f)
+        )
+
+        Text(
+            text = value,
+            style = MaterialTheme.typography.bodySmall,
+            fontWeight = FontWeight.ExtraBold,
+            color = PikiSettingsText
+        )
     }
 }
 
@@ -619,6 +835,223 @@ private fun BentoCard(
     }
 }
 
+/*************** BottomSheet para agregar/editar impresora ***************/
+@Composable
+private fun PrinterEditSheet(
+    title: String,
+    profile: PrinterProfile?,
+    onClose: () -> Unit,
+    onSave: (
+        name: String,
+        price: Double,
+        lifespanHours: Int,
+        powerKw: Double
+    ) -> Unit,
+    onDeactivate: (() -> Unit)?
+) {
+    var name by remember(profile?.id) {
+        mutableStateOf(profile?.name ?: "")
+    }
+
+    var price by remember(profile?.id) {
+        mutableStateOf(profile?.price?.toString() ?: "")
+    }
+
+    var lifespan by remember(profile?.id) {
+        mutableStateOf(profile?.lifespanHours?.toString() ?: "")
+    }
+
+    var power by remember(profile?.id) {
+        mutableStateOf(profile?.powerKw?.toString() ?: "")
+    }
+
+    val canSave =
+        name.isNotBlank() &&
+                price.toDoubleOrNull() != null &&
+                lifespan.toIntOrNull() != null &&
+                power.toDoubleOrNull() != null
+
+    Column(
+        modifier = Modifier
+            .fillMaxWidth()
+            .navigationBarsPadding()
+            .padding(horizontal = 24.dp, vertical = 18.dp),
+        verticalArrangement = Arrangement.spacedBy(16.dp)
+    ) {
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Box(
+                modifier = Modifier
+                    .size(48.dp)
+                    .clip(RoundedCornerShape(18.dp))
+                    .background(PikiAccentPurple),
+                contentAlignment = Alignment.Center
+            ) {
+                Icon(
+                    imageVector = Icons.Outlined.LocalPrintshop,
+                    contentDescription = null,
+                    tint = PikiSettingsText,
+                    modifier = Modifier.size(26.dp)
+                )
+            }
+
+            Spacer(modifier = Modifier.width(12.dp))
+
+            Column(
+                modifier = Modifier.weight(1f)
+            ) {
+                Text(
+                    text = title,
+                    style = MaterialTheme.typography.titleLarge,
+                    fontWeight = FontWeight.ExtraBold,
+                    color = PikiSettingsText
+                )
+
+                Text(
+                    text = if (profile == null) {
+                        "Nueva máquina del taller"
+                    } else if (profile.isActive) {
+                        "Impresora activa"
+                    } else {
+                        "Impresora inactiva"
+                    },
+                    style = MaterialTheme.typography.bodyMedium,
+                    fontWeight = FontWeight.Bold,
+                    color = PikiSettingsText.copy(alpha = 0.66f)
+                )
+            }
+
+            IconButton(
+                onClick = onClose,
+                modifier = Modifier
+                    .size(42.dp)
+                    .clip(RoundedCornerShape(999.dp))
+                    .background(PikiWhite)
+            ) {
+                Icon(
+                    imageVector = Icons.Outlined.Close,
+                    contentDescription = "Cerrar",
+                    tint = PikiSettingsText,
+                    modifier = Modifier.size(22.dp)
+                )
+            }
+        }
+
+        Card(
+            modifier = Modifier
+                .fillMaxWidth()
+                .kawaiiShadow(),
+            shape = RoundedCornerShape(30.dp),
+            colors = CardDefaults.cardColors(
+                containerColor = PikiWhite
+            ),
+            border = BorderStroke(
+                width = 2.dp,
+                color = PikiWhite
+            )
+        ) {
+            Column(
+                modifier = Modifier.padding(20.dp),
+                verticalArrangement = Arrangement.spacedBy(16.dp)
+            ) {
+                SimpleTextInput(
+                    label = "Nombre de la impresora",
+                    value = name,
+                    onValueChange = {
+                        name = it
+                    }
+                )
+
+                BubbleNumberField(
+                    label = "Precio de la impresora ($)",
+                    value = price,
+                    onValueChange = {
+                        price = it
+                    }
+                )
+
+                BubbleNumberField(
+                    label = "Vida útil estimada (horas)",
+                    value = lifespan,
+                    onValueChange = {
+                        lifespan = it
+                    }
+                )
+
+                BubbleNumberField(
+                    label = "Consumo eléctrico (kW)",
+                    value = power,
+                    onValueChange = {
+                        power = it
+                    }
+                )
+            }
+        }
+
+        Button(
+            onClick = {
+                onSave(
+                    name.trim(),
+                    price.toDoubleOrNull() ?: 0.0,
+                    lifespan.toIntOrNull() ?: 0,
+                    power.toDoubleOrNull() ?: 0.0
+                )
+            },
+            enabled = canSave,
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(54.dp),
+            shape = RoundedCornerShape(999.dp),
+            colors = ButtonDefaults.buttonColors(
+                containerColor = PikiSky,
+                contentColor = PikiSettingsText,
+                disabledContainerColor = PikiWhite.copy(alpha = 0.50f),
+                disabledContentColor = PikiSettingsText.copy(alpha = 0.40f)
+            ),
+            elevation = ButtonDefaults.buttonElevation(defaultElevation = 0.dp)
+        ) {
+            Text(
+                text = "Guardar impresora",
+                style = MaterialTheme.typography.labelLarge,
+                fontWeight = FontWeight.ExtraBold
+            )
+        }
+
+        if (onDeactivate != null && profile?.isActive == true) {
+            Button(
+                onClick = onDeactivate,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(50.dp),
+                shape = RoundedCornerShape(999.dp),
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = PikiDangerBg,
+                    contentColor = PikiDangerText
+                ),
+                elevation = ButtonDefaults.buttonElevation(defaultElevation = 0.dp)
+            ) {
+                Icon(
+                    imageVector = Icons.Outlined.Delete,
+                    contentDescription = null,
+                    modifier = Modifier.size(20.dp)
+                )
+
+                Spacer(modifier = Modifier.width(8.dp))
+
+                Text(
+                    text = "Desactivar impresora",
+                    style = MaterialTheme.typography.labelLarge,
+                    fontWeight = FontWeight.ExtraBold
+                )
+            }
+        }
+
+        Spacer(modifier = Modifier.height(6.dp))
+    }
+}
+
 /*************** Campo tipo burbuja ***************/
 @Composable
 private fun BubbleNumberField(
@@ -683,267 +1116,6 @@ private fun FilamentPriceRow(
                 textAlign = TextAlign.End
             )
         }
-    }
-}
-
-/*************** Card interna de impresora ***************/
-@Composable
-private fun PrinterInnerCard(
-    printer: PrinterType,
-    isActive: Boolean,
-    price: String,
-    lifespan: String,
-    power: String,
-    onEdit: () -> Unit
-) {
-    Card(
-        modifier = Modifier.fillMaxWidth(),
-        shape = RoundedCornerShape(26.dp),
-        colors = CardDefaults.cardColors(
-            containerColor = PikiWhite.copy(alpha = 0.78f)
-        ),
-        border = BorderStroke(
-            width = 3.dp,
-            color = PikiWhite
-        )
-    ) {
-        Column(
-            modifier = Modifier.padding(16.dp),
-            verticalArrangement = Arrangement.spacedBy(12.dp)
-        ) {
-            Row(
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-                Text(
-                    text = printer.label,
-                    modifier = Modifier.weight(1f),
-                    style = MaterialTheme.typography.titleMedium,
-                    fontWeight = FontWeight.ExtraBold,
-                    color = PikiSettingsText
-                )
-
-                if (isActive) {
-                    Surface(
-                        shape = RoundedCornerShape(999.dp),
-                        color = PikiAccentPurple.copy(alpha = 0.55f)
-                    ) {
-                        Text(
-                            text = "ACTIVA",
-                            modifier = Modifier.padding(horizontal = 10.dp, vertical = 4.dp),
-                            style = MaterialTheme.typography.labelSmall,
-                            fontWeight = FontWeight.ExtraBold,
-                            color = PikiSettingsText
-                        )
-                    }
-
-                    Spacer(modifier = Modifier.width(8.dp))
-                }
-
-                IconButton(
-                    onClick = onEdit,
-                    modifier = Modifier
-                        .size(38.dp)
-                        .clip(RoundedCornerShape(999.dp))
-                        .background(PikiWhite)
-                ) {
-                    Icon(
-                        imageVector = Icons.Outlined.Edit,
-                        contentDescription = "Editar impresora",
-                        tint = PikiSettingsText,
-                        modifier = Modifier.size(20.dp)
-                    )
-                }
-            }
-
-            PrinterSummaryLine(
-                icon = Icons.Outlined.Payments,
-                label = "Precio",
-                value = "$ ${price.ifBlank { "0" }}"
-            )
-
-            PrinterSummaryLine(
-                icon = Icons.Outlined.Timer,
-                label = "Vida útil",
-                value = "${lifespan.ifBlank { "0" }} h"
-            )
-
-            PrinterSummaryLine(
-                icon = Icons.Outlined.Bolt,
-                label = "Consumo",
-                value = "${power.ifBlank { "0" }} kW"
-            )
-        }
-    }
-}
-
-/*************** Línea resumen de impresora ***************/
-@Composable
-private fun PrinterSummaryLine(
-    icon: ImageVector,
-    label: String,
-    value: String
-) {
-    Row(
-        modifier = Modifier.fillMaxWidth(),
-        verticalAlignment = Alignment.CenterVertically
-    ) {
-        Icon(
-            imageVector = icon,
-            contentDescription = null,
-            tint = PikiSettingsText.copy(alpha = 0.62f),
-            modifier = Modifier.size(18.dp)
-        )
-
-        Spacer(modifier = Modifier.width(8.dp))
-
-        Text(
-            text = label,
-            modifier = Modifier.weight(1f),
-            style = MaterialTheme.typography.bodySmall,
-            fontWeight = FontWeight.Bold,
-            color = PikiSettingsText.copy(alpha = 0.62f)
-        )
-
-        Text(
-            text = value,
-            style = MaterialTheme.typography.bodySmall,
-            fontWeight = FontWeight.ExtraBold,
-            color = PikiSettingsText
-        )
-    }
-}
-
-/*************** BottomSheet para editar impresora ***************/
-@Composable
-private fun PrinterEditSheet(
-    printer: PrinterType,
-    price: String,
-    onPriceChange: (String) -> Unit,
-    lifespan: String,
-    onLifespanChange: (String) -> Unit,
-    power: String,
-    onPowerChange: (String) -> Unit,
-    onClose: () -> Unit
-) {
-    Column(
-        modifier = Modifier
-            .fillMaxWidth()
-            .navigationBarsPadding()
-            .padding(horizontal = 24.dp, vertical = 18.dp),
-        verticalArrangement = Arrangement.spacedBy(16.dp)
-    ) {
-        Row(
-            modifier = Modifier.fillMaxWidth(),
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-            Box(
-                modifier = Modifier
-                    .size(48.dp)
-                    .clip(RoundedCornerShape(18.dp))
-                    .background(PikiAccentPurple),
-                contentAlignment = Alignment.Center
-            ) {
-                Icon(
-                    imageVector = Icons.Outlined.LocalPrintshop,
-                    contentDescription = null,
-                    tint = PikiSettingsText,
-                    modifier = Modifier.size(26.dp)
-                )
-            }
-
-            Spacer(modifier = Modifier.width(12.dp))
-
-            Column(
-                modifier = Modifier.weight(1f)
-            ) {
-                Text(
-                    text = "Editar impresora",
-                    style = MaterialTheme.typography.titleLarge,
-                    fontWeight = FontWeight.ExtraBold,
-                    color = PikiSettingsText
-                )
-
-                Text(
-                    text = printer.label,
-                    style = MaterialTheme.typography.bodyMedium,
-                    fontWeight = FontWeight.Bold,
-                    color = PikiSettingsText.copy(alpha = 0.66f)
-                )
-            }
-
-            IconButton(
-                onClick = onClose,
-                modifier = Modifier
-                    .size(42.dp)
-                    .clip(RoundedCornerShape(999.dp))
-                    .background(PikiWhite)
-            ) {
-                Icon(
-                    imageVector = Icons.Outlined.Close,
-                    contentDescription = "Cerrar",
-                    tint = PikiSettingsText,
-                    modifier = Modifier.size(22.dp)
-                )
-            }
-        }
-
-        Card(
-            modifier = Modifier
-                .fillMaxWidth()
-                .kawaiiShadow(),
-            shape = RoundedCornerShape(30.dp),
-            colors = CardDefaults.cardColors(
-                containerColor = PikiWhite
-            ),
-            border = BorderStroke(
-                width = 2.dp,
-                color = PikiWhite
-            )
-        ) {
-            Column(
-                modifier = Modifier.padding(20.dp),
-                verticalArrangement = Arrangement.spacedBy(16.dp)
-            ) {
-                BubbleNumberField(
-                    label = "Precio de la impresora ($)",
-                    value = price,
-                    onValueChange = onPriceChange
-                )
-
-                BubbleNumberField(
-                    label = "Vida útil estimada (horas)",
-                    value = lifespan,
-                    onValueChange = onLifespanChange
-                )
-
-                BubbleNumberField(
-                    label = "Consumo eléctrico (kW)",
-                    value = power,
-                    onValueChange = onPowerChange
-                )
-            }
-        }
-
-        Button(
-            onClick = onClose,
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(54.dp),
-            shape = RoundedCornerShape(999.dp),
-            colors = ButtonDefaults.buttonColors(
-                containerColor = PikiSky,
-                contentColor = PikiSettingsText
-            ),
-            elevation = ButtonDefaults.buttonElevation(defaultElevation = 0.dp)
-        ) {
-            Text(
-                text = "Listo",
-                style = MaterialTheme.typography.labelLarge,
-                fontWeight = FontWeight.ExtraBold
-            )
-        }
-
-        Spacer(modifier = Modifier.height(6.dp))
     }
 }
 
@@ -1200,4 +1372,59 @@ private fun CompactNumberInput(
             }
         }
     )
+}
+
+/*************** Drag handle del BottomSheet ***************/
+@Composable
+private fun SheetDragHandle() {
+    Box(
+        modifier = Modifier
+            .padding(top = 10.dp, bottom = 4.dp)
+            .width(56.dp)
+            .height(6.dp)
+            .clip(RoundedCornerShape(999.dp))
+            .background(PikiCreamLine)
+    )
+}
+
+/*************** Input simple para texto ***************/
+@Composable
+private fun SimpleTextInput(
+    label: String,
+    value: String,
+    onValueChange: (String) -> Unit
+) {
+    Column {
+        Text(
+            text = label,
+            modifier = Modifier.padding(start = 10.dp, bottom = 6.dp),
+            style = MaterialTheme.typography.labelMedium,
+            fontWeight = FontWeight.ExtraBold,
+            color = PikiSettingsText.copy(alpha = 0.82f)
+        )
+
+        BasicTextField(
+            value = value,
+            onValueChange = onValueChange,
+            singleLine = true,
+            textStyle = MaterialTheme.typography.bodyMedium.copy(
+                color = PikiSettingsText,
+                fontWeight = FontWeight.ExtraBold
+            ),
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(48.dp)
+                .clip(RoundedCornerShape(999.dp))
+                .background(PikiWhite.copy(alpha = 0.90f))
+                .padding(horizontal = 16.dp),
+            decorationBox = { innerTextField ->
+                Box(
+                    modifier = Modifier.fillMaxSize(),
+                    contentAlignment = Alignment.CenterStart
+                ) {
+                    innerTextField()
+                }
+            }
+        )
+    }
 }

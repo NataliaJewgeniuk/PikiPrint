@@ -15,8 +15,12 @@ import com.example.app.data.local.entities.QuoteSettingsEntity
 
 /*************** Base de datos Room ***************/
 /*
-    version = 2 porque se agregaron columnas de desglose histórico
-    a la tabla orders.
+    version = 3 porque se agregaron:
+    - orders.printerId
+    - orders.printerNameSnapshot
+    - quote_settings.printerProfilesSerialized
+
+    Esto permite soportar impresoras dinámicas.
 */
 @Database(
     entities = [
@@ -24,7 +28,7 @@ import com.example.app.data.local.entities.QuoteSettingsEntity
         ExpenseEntity::class,
         QuoteSettingsEntity::class
     ],
-    version = 2,
+    version = 3,
     exportSchema = false
 )
 abstract class PikiPrintDatabase : RoomDatabase() {
@@ -40,14 +44,6 @@ abstract class PikiPrintDatabase : RoomDatabase() {
         /*************** Migración 1 -> 2 ***************/
         /*
             Agrega los valores históricos del presupuesto.
-
-            Para pedidos ya existentes:
-            - subtotal = 0
-            - margenMonto = 0
-            - descuentos = 0
-            - totalFinal = 0
-
-            Los pedidos nuevos ya van a guardar estos valores correctamente.
         */
         private val MIGRATION_1_2 = object : Migration(1, 2) {
             override fun migrate(database: SupportSQLiteDatabase) {
@@ -73,6 +69,50 @@ abstract class PikiPrintDatabase : RoomDatabase() {
             }
         }
 
+        /*************** Migración 2 -> 3 ***************/
+        /*
+            Agrega soporte para impresoras dinámicas sin eliminar el campo heredado printer.
+        */
+        private val MIGRATION_2_3 = object : Migration(2, 3) {
+            override fun migrate(database: SupportSQLiteDatabase) {
+                database.execSQL(
+                    "ALTER TABLE orders ADD COLUMN printerId TEXT NOT NULL DEFAULT ''"
+                )
+
+                database.execSQL(
+                    "ALTER TABLE orders ADD COLUMN printerNameSnapshot TEXT NOT NULL DEFAULT ''"
+                )
+
+                database.execSQL(
+                    """
+                    UPDATE orders
+                    SET printerId =
+                        CASE printer
+                            WHEN 'A1_COMBO' THEN 'printer_a1_combo'
+                            WHEN 'A1_MINI' THEN 'printer_a1_mini'
+                            ELSE 'printer_a1_combo'
+                        END
+                    """.trimIndent()
+                )
+
+                database.execSQL(
+                    """
+                    UPDATE orders
+                    SET printerNameSnapshot =
+                        CASE printer
+                            WHEN 'A1_COMBO' THEN 'A1 Combo'
+                            WHEN 'A1_MINI' THEN 'A1 Mini'
+                            ELSE 'A1 Combo'
+                        END
+                    """.trimIndent()
+                )
+
+                database.execSQL(
+                    "ALTER TABLE quote_settings ADD COLUMN printerProfilesSerialized TEXT NOT NULL DEFAULT ''"
+                )
+            }
+        }
+
         fun getDatabase(context: Context): PikiPrintDatabase {
             return INSTANCE ?: synchronized(this) {
                 val instance = Room.databaseBuilder(
@@ -80,7 +120,10 @@ abstract class PikiPrintDatabase : RoomDatabase() {
                     PikiPrintDatabase::class.java,
                     "pikiprint_database"
                 )
-                    .addMigrations(MIGRATION_1_2)
+                    .addMigrations(
+                        MIGRATION_1_2,
+                        MIGRATION_2_3
+                    )
                     .build()
 
                 INSTANCE = instance

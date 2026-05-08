@@ -7,7 +7,13 @@ import androidx.room.PrimaryKey
 /*
     Guarda el pedido completo y su desglose histórico.
 
-    Los enum se guardan como String usando .name.
+    Los enum heredados se guardan como String usando .name.
+
+    Nuevos campos:
+    - printerId
+    - printerNameSnapshot
+
+    Esto permite que la app use impresoras dinámicas sin perder el historial.
 */
 @Entity(tableName = "orders")
 data class OrderEntity(
@@ -18,7 +24,13 @@ data class OrderEntity(
     val clientName: String,
 
     val filament: String,
+
+    /*************** Campo heredado ***************/
     val printer: String,
+
+    /*************** Campos dinámicos ***************/
+    val printerId: String,
+    val printerNameSnapshot: String,
 
     val printTimeHours: Int,
     val printTimeMinutes: Int,

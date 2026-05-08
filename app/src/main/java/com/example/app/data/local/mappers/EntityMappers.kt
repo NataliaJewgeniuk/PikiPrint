@@ -11,9 +11,15 @@ import com.example.app.models.FinishType
 import com.example.app.models.Order
 import com.example.app.models.OrderStatus
 import com.example.app.models.PaymentType
+import com.example.app.models.PrinterProfile
 import com.example.app.models.PrinterSettings
 import com.example.app.models.PrinterType
 import com.example.app.models.QuoteSettings
+import com.example.app.models.defaultPrinterProfiles
+import com.example.app.models.defaultProfileId
+import com.example.app.models.toPrinterSettings
+import java.net.URLDecoder
+import java.net.URLEncoder
 
 /*************** Helpers para leer enums de forma segura ***************/
 private inline fun <reified T : Enum<T>> enumValueOrDefault(
@@ -27,6 +33,66 @@ private inline fun <reified T : Enum<T>> enumValueOrDefault(
     }
 }
 
+/*************** Serialización simple de PrinterProfile ***************/
+/*
+    Evitamos agregar dependencias JSON en esta etapa.
+
+    Formato por impresora:
+    id|nameCodificado|price|lifespan|power|active
+
+    Separador de impresoras:
+    ;;
+*/
+private fun serializePrinterProfiles(
+    profiles: List<PrinterProfile>
+): String {
+    return profiles.joinToString(";;") { profile ->
+        val encodedName =
+            URLEncoder.encode(profile.name, "UTF-8")
+
+        listOf(
+            profile.id,
+            encodedName,
+            profile.price.toString(),
+            profile.lifespanHours.toString(),
+            profile.powerKw.toString(),
+            profile.isActive.toString()
+        ).joinToString("|")
+    }
+}
+
+private fun deserializePrinterProfiles(
+    value: String
+): MutableList<PrinterProfile> {
+    if (value.isBlank()) {
+        return mutableListOf()
+    }
+
+    return value
+        .split(";;")
+        .mapNotNull { rawProfile ->
+            val parts = rawProfile.split("|")
+
+            if (parts.size < 6) {
+                null
+            } else {
+                try {
+                    PrinterProfile(
+                        id = parts[0],
+                        name = URLDecoder.decode(parts[1], "UTF-8"),
+                        price = parts[2].toDoubleOrNull() ?: 0.0,
+                        lifespanHours = parts[3].toIntOrNull() ?: 0,
+                        powerKw = parts[4].toDoubleOrNull() ?: 0.0,
+                        isActive = parts[5].toBooleanStrictOrNull() ?: true
+                    )
+                } catch (e: Exception) {
+                    null
+                }
+            }
+        }
+        .toMutableList()
+}
+
 /*************** Order -> Entity ***************/
 fun Order.toEntity(): OrderEntity {
     return OrderEntity(
@@ -36,7 +102,15 @@ fun Order.toEntity(): OrderEntity {
         clientName = clientName,
 
         filament = filament.name,
+
+        /*************** Campo heredado ***************/
         printer = printer.name,
+
+        /*************** Campos dinámicos ***************/
+        printerId = printerId,
+        printerNameSnapshot = printerNameSnapshot.ifBlank {
+            printer.label
+        },
 
         printTimeHours = printTimeHours,
         printTimeMinutes = printTimeMinutes,
@@ -74,6 +148,22 @@ fun Order.toEntity(): OrderEntity {
 
 /*************** Entity -> Order ***************/
 fun OrderEntity.toDomain(): Order {
+    val legacyPrinter =
+        enumValueOrDefault(
+            value = printer,
+            default = PrinterType.A1_COMBO
+        )
+
+    val resolvedPrinterId =
+        printerId.ifBlank {
+            legacyPrinter.defaultProfileId
+        }
+
+    val resolvedPrinterNameSnapshot =
+        printerNameSnapshot.ifBlank {
+            legacyPrinter.label
+        }
+
     return Order(
         id = id,
 
@@ -85,10 +175,7 @@ fun OrderEntity.toDomain(): Order {
             default = FilamentType.PLA
         ),
 
-        printer = enumValueOrDefault(
-            value = printer,
-            default = PrinterType.A1_COMBO
-        ),
+        printer = legacyPrinter,
 
         printTimeHours = printTimeHours,
         printTimeMinutes = printTimeMinutes,
@@ -136,7 +223,10 @@ fun OrderEntity.toDomain(): Order {
         margenMonto = margenMonto,
         descuentoCantidad = descuentoCantidad,
         descuentoAmigo = descuentoAmigo,
-        totalFinal = totalFinal
+        totalFinal = totalFinal,
+
+        printerId = resolvedPrinterId,
+        printerNameSnapshot = resolvedPrinterNameSnapshot
     )
 }
 
@@ -167,6 +257,35 @@ fun ExpenseEntity.toDomain(): Expense {
 
 /*************** QuoteSettings -> Entity ***************/
 fun QuoteSettings.toEntity(): QuoteSettingsEntity {
+    val profilesToSave =
+        if (printerProfiles.isEmpty()) {
+            defaultPrinterProfiles(printers)
+        } else {
+            printerProfiles
+        }
+
+    val a1ComboSettings =
+        profilesToSave
+            .firstOrNull { it.id == PrinterType.A1_COMBO.defaultProfileId }
+            ?.toPrinterSettings()
+            ?: printers[PrinterType.A1_COMBO]
+            ?: PrinterSettings(
+                price = 0.0,
+                lifespanHours = 0,
+                powerKw = 0.0
+            )
+
+    val a1MiniSettings =
+        profilesToSave
+            .firstOrNull { it.id == PrinterType.A1_MINI.defaultProfileId }
+            ?.toPrinterSettings()
+            ?: printers[PrinterType.A1_MINI]
+            ?: PrinterSettings(
+                price = 0.0,
+                lifespanHours = 0,
+                powerKw = 0.0
+            )
+
     return QuoteSettingsEntity(
         id = 1,
 
@@ -178,13 +297,15 @@ fun QuoteSettings.toEntity(): QuoteSettingsEntity {
         marginPercentage = marginPercentage,
         friendDiscountPercentage = friendDiscountPercentage,
 
-        a1ComboPrice = printers[PrinterType.A1_COMBO]?.price ?: 0.0,
-        a1ComboLifespanHours = printers[PrinterType.A1_COMBO]?.lifespanHours ?: 0,
-        a1ComboPowerKw = printers[PrinterType.A1_COMBO]?.powerKw ?: 0.0,
+        a1ComboPrice = a1ComboSettings.price,
+        a1ComboLifespanHours = a1ComboSettings.lifespanHours,
+        a1ComboPowerKw = a1ComboSettings.powerKw,
 
-        a1MiniPrice = printers[PrinterType.A1_MINI]?.price ?: 0.0,
-        a1MiniLifespanHours = printers[PrinterType.A1_MINI]?.lifespanHours ?: 0,
-        a1MiniPowerKw = printers[PrinterType.A1_MINI]?.powerKw ?: 0.0,
+        a1MiniPrice = a1MiniSettings.price,
+        a1MiniLifespanHours = a1MiniSettings.lifespanHours,
+        a1MiniPowerKw = a1MiniSettings.powerKw,
+
+        printerProfilesSerialized = serializePrinterProfiles(profilesToSave),
 
         discount25 = quantityDiscounts[25] ?: 0.0,
         discount50 = quantityDiscounts[50] ?: 0.0,
@@ -200,16 +321,8 @@ fun QuoteSettings.toEntity(): QuoteSettingsEntity {
 
 /*************** Entity -> QuoteSettings ***************/
 fun QuoteSettingsEntity.toDomain(): QuoteSettings {
-    return QuoteSettings(
-        filamentCost = mutableMapOf(
-            FilamentType.PLA to filamentPlaCost,
-            FilamentType.PETG to filamentPetgCost,
-            FilamentType.FLEX to filamentFlexCost
-        ),
-
-        energyRate = energyRate,
-
-        printers = mutableMapOf(
+    val legacyPrinters =
+        mutableMapOf(
             PrinterType.A1_COMBO to PrinterSettings(
                 price = a1ComboPrice,
                 lifespanHours = a1ComboLifespanHours,
@@ -220,7 +333,30 @@ fun QuoteSettingsEntity.toDomain(): QuoteSettings {
                 lifespanHours = a1MiniLifespanHours,
                 powerKw = a1MiniPowerKw
             )
+        )
+
+    val parsedProfiles =
+        deserializePrinterProfiles(printerProfilesSerialized)
+
+    val resolvedProfiles =
+        if (parsedProfiles.isNotEmpty()) {
+            parsedProfiles
+        } else {
+            defaultPrinterProfiles(legacyPrinters)
+        }
+
+    return QuoteSettings(
+        filamentCost = mutableMapOf(
+            FilamentType.PLA to filamentPlaCost,
+            FilamentType.PETG to filamentPetgCost,
+            FilamentType.FLEX to filamentFlexCost
         ),
+
+        energyRate = energyRate,
+
+        printers = legacyPrinters,
+
+        printerProfiles = resolvedProfiles,
 
         marginPercentage = marginPercentage,
 
