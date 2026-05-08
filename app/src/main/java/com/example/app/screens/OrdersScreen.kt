@@ -38,11 +38,7 @@ import com.example.app.models.Order
 import com.example.app.models.OrderStatus
 import com.example.app.models.PaymentType
 import com.example.app.models.QuoteSettings
-import com.example.app.ui.components.PikiOutlinedButton
-import com.example.app.ui.components.PikiPill
-import com.example.app.ui.components.PikiPrimaryButton
-import com.example.app.ui.components.PikiSecondaryButton
-import com.example.app.ui.components.PikiStatusPill
+import com.example.app.ui.components.*
 import com.example.app.ui.theme.PikiCanceledBg
 import com.example.app.ui.theme.PikiCanceledText
 import com.example.app.ui.theme.PikiClay
@@ -139,6 +135,7 @@ fun OrdersScreen(
     Column(
         modifier = Modifier
             .fillMaxSize()
+            .background(PikiPaper) // Estética Web: Fondo general crema liso
             .padding(16.dp)
             .padding(bottom = 12.dp)
     ) {
@@ -364,13 +361,15 @@ private fun OrdersHeader(
     Card(
         shape = RoundedCornerShape(32.dp),
         colors = CardDefaults.cardColors(
-            containerColor = PikiPaperLight
+            containerColor = PikiWhite // Estética Web: Blanca pura
         ),
         border = BorderStroke(
             width = 2.dp,
-            color = PikiCreamLine
+            color = PikiWhite
         ),
-        modifier = Modifier.fillMaxWidth()
+        modifier = Modifier
+            .fillMaxWidth()
+            .kawaiiShadow() // Estética Web: Sombra cálida
     ) {
         Row(
             modifier = Modifier
@@ -474,7 +473,7 @@ private fun StatusFilterRow(
             colors = FilterChipDefaults.filterChipColors(
                 selectedContainerColor = PikiWood,
                 selectedLabelColor = PikiWhite,
-                containerColor = PikiPaperLight,
+                containerColor = PikiWhite, // Estética Web
                 labelColor = PikiMutedText
             ),
             border = FilterChipDefaults.filterChipBorder(
@@ -503,7 +502,7 @@ private fun StatusFilterRow(
                 colors = FilterChipDefaults.filterChipColors(
                     selectedContainerColor = statusBackgroundColor(status),
                     selectedLabelColor = statusTextColor(status),
-                    containerColor = PikiPaperLight,
+                    containerColor = PikiWhite, // Estética Web
                     labelColor = PikiMutedText
                 ),
                 border = FilterChipDefaults.filterChipBorder(
@@ -528,22 +527,17 @@ private fun WorkshopOrderCard(
     Card(
         modifier = Modifier
             .fillMaxWidth()
-            .shadow(
-                elevation = 8.dp,
-                shape = RoundedCornerShape(32.dp),
-                ambientColor = PikiWood.copy(alpha = 0.1f),
-                spotColor = PikiLeafDark.copy(alpha = 0.2f)
-            )
+            .kawaiiShadow() // Estética Web: Sombra cálida
             .clickable {
                 onClick()
             },
         shape = RoundedCornerShape(32.dp),
         colors = CardDefaults.cardColors(
-            containerColor = PikiPaperLight
+            containerColor = PikiWhite // Estética Web: Blanca pura
         ),
         border = BorderStroke(
             width = 2.dp,
-            color = PikiCreamLine
+            color = PikiWhite
         )
     ) {
         Column(
@@ -613,19 +607,19 @@ private fun WorkshopOrderCard(
                 PikiPill(
                     text = "${order.quantity} un.",
                     background = PikiPaperDark,
-                    foreground = PikiWood
+                    borderColor = PikiCreamLine
                 )
 
                 PikiPill(
                     text = order.filament.label,
                     background = PikiSky.copy(alpha = 0.55f),
-                    foreground = PikiSkyDark
+                    borderColor = PikiSkyDark
                 )
 
                 PikiPill(
                     text = order.printer.label,
                     background = PikiLeaf.copy(alpha = 0.45f),
-                    foreground = PikiLeafDark
+                    borderColor = PikiLeafDark
                 )
 
                 PikiPill(
@@ -634,7 +628,7 @@ private fun WorkshopOrderCard(
                         minutes = order.printTimeMinutes
                     ),
                     background = PikiPaperDark,
-                    foreground = PikiWood
+                    borderColor = PikiCreamLine
                 )
             }
 
@@ -1000,7 +994,7 @@ private fun DetailMockupTopBar(
             modifier = Modifier
                 .size(44.dp)
                 .clip(RoundedCornerShape(999.dp))
-                .background(PikiPaperLight)
+                .background(PikiWhite) // Estética Web
                 .border(
                     width = 2.dp,
                     color = PikiClay,
@@ -1056,7 +1050,7 @@ private fun ProductHeroPlaceholder(
                 Brush.radialGradient(
                     colors = listOf(
                         PikiSky.copy(alpha = 0.42f),
-                        PikiPaperLight,
+                        PikiWhite, // Estética Web
                         PikiPaperDark
                     )
                 )
@@ -1113,17 +1107,16 @@ private fun ProductMainCard(
     onStatusSelected: (OrderStatus) -> Unit
 ) {
     Card(
-        modifier = Modifier.fillMaxWidth(),
+        modifier = Modifier
+            .fillMaxWidth()
+            .kawaiiShadow(), // Estética Web
         shape = RoundedCornerShape(30.dp),
         colors = CardDefaults.cardColors(
-            containerColor = PikiWhite
+            containerColor = PikiWhite // Estética Web
         ),
         border = BorderStroke(
             width = 2.dp,
-            color = PikiCreamLine
-        ),
-        elevation = CardDefaults.cardElevation(
-            defaultElevation = 2.dp
+            color = PikiWhite
         )
     ) {
         Column(
@@ -1268,14 +1261,16 @@ private fun MiniSpecCard(
     value: String
 ) {
     Card(
-        modifier = Modifier.fillMaxWidth(),
+        modifier = Modifier
+            .fillMaxWidth()
+            .kawaiiShadow(), // Estética Web
         shape = RoundedCornerShape(24.dp),
         colors = CardDefaults.cardColors(
-            containerColor = PikiWhite
+            containerColor = PikiWhite // Estética Web
         ),
         border = BorderStroke(
-            width = 1.dp,
-            color = PikiCreamLine
+            width = 2.dp,
+            color = PikiWhite
         )
     ) {
         Column(
@@ -1311,17 +1306,16 @@ private fun VisualSectionCard(
     content: @Composable ColumnScope.() -> Unit
 ) {
     Card(
-        modifier = Modifier.fillMaxWidth(),
+        modifier = Modifier
+            .fillMaxWidth()
+            .kawaiiShadow(), // Estética Web
         shape = RoundedCornerShape(30.dp),
         colors = CardDefaults.cardColors(
-            containerColor = PikiWhite
+            containerColor = PikiWhite // Estética Web
         ),
         border = BorderStroke(
             width = 2.dp,
-            color = PikiCreamLine
-        ),
-        elevation = CardDefaults.cardElevation(
-            defaultElevation = 1.dp
+            color = PikiWhite
         )
     ) {
         Column(
@@ -1363,13 +1357,16 @@ private fun GrandTotalCard(
     total: Double
 ) {
     Card(
-        modifier = Modifier.fillMaxWidth(),
+        modifier = Modifier
+            .fillMaxWidth()
+            .kawaiiShadow(), // Estética Web
         shape = RoundedCornerShape(30.dp),
         colors = CardDefaults.cardColors(
             containerColor = PikiSky
         ),
-        elevation = CardDefaults.cardElevation(
-            defaultElevation = 2.dp
+        border = BorderStroke(
+            width = 2.dp,
+            color = PikiWhite
         )
     ) {
         Column(
@@ -1404,10 +1401,16 @@ private fun SpecialNotesCard(
     notes: String
 ) {
     Card(
-        modifier = Modifier.fillMaxWidth(),
+        modifier = Modifier
+            .fillMaxWidth()
+            .kawaiiShadow(), // Estética Web
         shape = RoundedCornerShape(28.dp),
         colors = CardDefaults.cardColors(
             containerColor = PikiPendingBg.copy(alpha = 0.65f)
+        ),
+        border = BorderStroke(
+            width = 2.dp,
+            color = PikiWhite
         )
     ) {
         Column(
@@ -1471,7 +1474,7 @@ private fun VisualActionButtons(
             color = PikiCanceledBg
         ),
         colors = ButtonDefaults.outlinedButtonColors(
-            containerColor = PikiPaperLight,
+            containerColor = PikiWhite, // Estética web
             contentColor = PikiCanceledText
         )
     ) {
@@ -1515,8 +1518,8 @@ private fun StatusDropdown(
                 unfocusedBorderColor = PikiCreamLine,
                 focusedLabelColor = PikiLeafDark,
                 unfocusedLabelColor = PikiMutedText,
-                focusedContainerColor = PikiPaperLight,
-                unfocusedContainerColor = PikiPaperLight,
+                focusedContainerColor = PikiWhite, // Estética Web
+                unfocusedContainerColor = PikiWhite, // Estética Web
                 cursorColor = PikiLeafDark
             )
         )
@@ -1526,7 +1529,7 @@ private fun StatusDropdown(
             onDismissRequest = {
                 expanded = false
             },
-            containerColor = PikiPaperLight
+            containerColor = PikiWhite // Estética Web
         ) {
             OrderStatus.values().forEach { status ->
                 DropdownMenuItem(
@@ -1748,7 +1751,7 @@ private fun PikiSearchField(
         onValueChange = onValueChange,
         modifier = Modifier
             .fillMaxWidth()
-            .shadow(4.dp, RoundedCornerShape(22.dp)),
+            .kawaiiShadow(), // Estética Web
         placeholder = {
             Text(
                 text = "Buscar por REF, cliente, proyecto...",
@@ -1781,8 +1784,8 @@ private fun PikiSearchField(
         colors = OutlinedTextFieldDefaults.colors(
             focusedBorderColor = PikiLeafDark,
             unfocusedBorderColor = Color.Transparent,
-            focusedContainerColor = PikiWhite,
-            unfocusedContainerColor = PikiWhite,
+            focusedContainerColor = PikiWhite, // Estética Web
+            unfocusedContainerColor = PikiWhite, // Estética Web
             cursorColor = PikiLeafDark
         )
     )
