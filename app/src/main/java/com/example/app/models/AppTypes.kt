@@ -276,7 +276,13 @@ data class Order(
     val finishType: FinishType = FinishType.VISIBLE_LINES,
 
     val notes: String = "",
+    /*************** Imagen local del pedido ***************/
+    /*
+        Ruta local estable de la imagen copiada al almacenamiento interno.
 
+        Puede estar vacía si el pedido no tiene imagen.
+    */
+    val imageUri: String = "",
     /*************** Desglose histórico del presupuesto ***************/
     val subtotal: Double = 0.0,
     val margenMonto: Double = 0.0,

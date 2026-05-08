@@ -137,7 +137,7 @@ fun Order.toEntity(): OrderEntity {
 
         finishType = finishType.name,
         notes = notes,
-
+        imageUri = imageUri,
         subtotal = subtotal,
         margenMonto = margenMonto,
         descuentoCantidad = descuentoCantidad,
@@ -218,6 +218,8 @@ fun OrderEntity.toDomain(): Order {
         ),
 
         notes = notes,
+
+        imageUri = imageUri,
 
         subtotal = subtotal,
         margenMonto = margenMonto,

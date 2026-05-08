@@ -28,7 +28,7 @@ import com.example.app.data.local.entities.QuoteSettingsEntity
         ExpenseEntity::class,
         QuoteSettingsEntity::class
     ],
-    version = 3,
+    version = 4,
     exportSchema = false
 )
 abstract class PikiPrintDatabase : RoomDatabase() {
@@ -112,6 +112,20 @@ abstract class PikiPrintDatabase : RoomDatabase() {
                 )
             }
         }
+        /*************** Migración 3 -> 4 ***************/
+        /*
+            Agrega imagen local del pedido.
+
+            Para pedidos existentes:
+            - imageUri queda vacío.
+        */
+        private val MIGRATION_3_4 = object : Migration(3, 4) {
+            override fun migrate(database: SupportSQLiteDatabase) {
+                database.execSQL(
+                    "ALTER TABLE orders ADD COLUMN imageUri TEXT NOT NULL DEFAULT ''"
+                )
+            }
+        }
 
         fun getDatabase(context: Context): PikiPrintDatabase {
             return INSTANCE ?: synchronized(this) {
@@ -122,7 +136,8 @@ abstract class PikiPrintDatabase : RoomDatabase() {
                 )
                     .addMigrations(
                         MIGRATION_1_2,
-                        MIGRATION_2_3
+                        MIGRATION_2_3,
+                        MIGRATION_3_4
                     )
                     .build()
 

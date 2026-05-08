@@ -57,6 +57,7 @@ data class OrderEntity(
 
     val finishType: String,
     val notes: String,
+    val imageUri: String,
 
     /*************** Desglose histórico ***************/
     val subtotal: Double,
