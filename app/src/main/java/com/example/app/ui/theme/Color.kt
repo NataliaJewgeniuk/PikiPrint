@@ -2,35 +2,37 @@ package com.example.app.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
-/*************** Paleta PikiPrint 3D - Cozy Village ***************/
+/*************** Paleta PikiPrint 3D - Kawaii Web ***************/
 /*
-    Nueva estética:
-    - papel artesanal
-    - taller cálido
-    - naturaleza suave
-    - elementos puffy / infladitos
+    Sincronizado al 100% con los colores de Tailwind.
 */
 
-val PikiPaper = Color(0xFFFFF7E6)
+// Background & Surface
+val PikiPaper = Color(0xFFFDF5E4) // background / surface en web
 val PikiPaperLight = Color(0xFFFFFDF8)
-val PikiPaperDark = Color(0xFFF4EEDC)
+val PikiPaperDark = Color(0xFFFBF3E2) // surface-container en web
 
-val PikiLeaf = Color(0xFFA8D5A2)
+// Primary (Sky Blue)
+val PikiSky = Color(0xFFB7DFF0) // primary en web
+val PikiSkyDark = Color(0xFF2A4D5C) // on-primary-container
+val PikiSkyLight = Color(0xFFDDF2FB) // primary-container
+
+// Secondary (Leaf Green)
+val PikiLeaf = Color(0xFFA8D5A2) // secondary en web (¡Corregido!)
 val PikiLeafDark = Color(0xFF6E9A6A)
 val PikiLeafLight = Color(0xFFD8EFCF)
 
-val PikiSky = Color(0xFFB7DFF0)
-val PikiSkyDark = Color(0xFF4B7285)
-val PikiSkyLight = Color(0xFFDCEFF8)
-
-val PikiWood = Color(0xFF4A3B2A)
-val PikiWoodSoft = Color(0xFF8B6B4A)
-val PikiClay = Color(0xFFB98B5F)
+// Tertiary / Outline (Wood Brown / Craft)
+val PikiClay = Color(0xFFB98B5F) // tertiary / outline en web
 val PikiClayLight = Color(0xFFE8C69F)
 
+// Text & Accents
+val PikiWood = Color(0xFF4B3D33) // on-surface en web
+val PikiWoodSoft = Color(0xFF3D342B) // on-surface de detalle.html
+val PikiMutedText = Color(0xFF6D5F52) // on-surface-variant en web
+
 val PikiCreamLine = Color(0xFFE9E1D2)
-val PikiMutedText = Color(0xFF7D7468)
-val PikiWhite = Color(0xFFFFFEFB)
+val PikiWhite = Color(0xFFFFFFFF) // Blanco puro para las cards como en web
 
 /*************** Estados ***************/
 val PikiPendingBg = Color(0xFFFFEBC4)

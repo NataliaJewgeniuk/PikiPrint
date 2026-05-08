@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.app-mergeDebugResources-49:/values-en-rAU/values-en-rAU.xml",
+            "outputFile": "com.example.app-mergeDebugResources-50:/values-en-rAU/values-en-rAU.xml",
             "map": [
                 {
                     "source": "C:\\Users\\jewgeniuk.natalia\\.gradle\\caches\\transforms-3\\4b7e971b114de866ca71f57775e58be4\\transformed\\jetified-foundation-release\\res\\values-en-rAU\\values-en-rAU.xml",

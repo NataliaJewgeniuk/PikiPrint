@@ -28,37 +28,27 @@ import androidx.compose.ui.unit.dp
 import com.example.app.models.OrderStatus
 import com.example.app.ui.theme.*
 
-/*************** Modificadores estilo Tailwind ***************/
-/*
-    Equivalente a tu .kawaii-shadow de CSS:
-    box-shadow: 0 10px 30px rgba(185, 139, 95, 0.15);
-*/
+// Equivalente a .kawaii-shadow de Tailwind
 fun Modifier.kawaiiShadow() = this.shadow(
-    elevation = 12.dp,
+    elevation = 7.dp,
     shape = RoundedCornerShape(32.dp),
-    ambientColor = PikiClay.copy(alpha = 0.3f),
-    spotColor = PikiClay.copy(alpha = 0.3f)
+    ambientColor = PikiClay.copy(alpha = 0.14f),
+    spotColor = PikiClay.copy(alpha = 0.18f)
 )
 
-/*
-    Equivalente a tu .sticker-border de CSS:
-    border: 2.5px solid #B98B5F;
-    Ideal para Boxes, Rows y Columns. Para botones usamos BorderStroke nativo.
-*/
+// Equivalente a .sticker-border de Tailwind
 fun Modifier.stickerBorder(
     shape: RoundedCornerShape = RoundedCornerShape(999.dp),
     opacity: Float = 1f,
-    width: Float = 2f
+    width: Float = 2.5f,
+    color: Color = PikiClay // En tu HTML, el sticker-border siempre es #B98B5F
 ) = this.border(
     width = width.dp,
-    color = PikiClay.copy(alpha = opacity),
+    color = color.copy(alpha = opacity),
     shape = shape
 )
 
-/*************** Pantalla base PikiPrint ***************/
-/*
-    Contenedor general. Fondo liso crema como el body de la web.
-*/
+// Pantalla base
 @Composable
 fun PikiScreen(
     modifier: Modifier = Modifier,
@@ -67,14 +57,13 @@ fun PikiScreen(
     Box(
         modifier = modifier
             .fillMaxSize()
-            .background(PikiPaper)
+            .background(PikiPaper) // bg-background (#FFF7E6)
     ) {
-        // Se removió el patrón orgánico para respetar la limpieza del diseño web original.
         content()
     }
 }
 
-/*************** Card base (Equivalente a .soft-card) ***************/
+// Card base
 @Composable
 fun PikiCard(
     modifier: Modifier = Modifier,
@@ -85,13 +74,8 @@ fun PikiCard(
             .fillMaxWidth()
             .kawaiiShadow(),
         shape = RoundedCornerShape(32.dp),
-        colors = CardDefaults.cardColors(
-            containerColor = PikiWhite
-        ),
-        border = BorderStroke(
-            width = 2.dp,
-            color = PikiWhite // Borde blanco grueso
-        )
+        colors = CardDefaults.cardColors(containerColor = PikiWhite), // bg-white
+        border = BorderStroke(2.dp, PikiWhite) // border-2 border-white
     ) {
         Column(
             modifier = Modifier.padding(24.dp),
@@ -102,7 +86,7 @@ fun PikiCard(
     }
 }
 
-/*************** Card de sección ***************/
+// Card de sección
 @Composable
 fun PikiSectionCard(
     title: String,
@@ -135,7 +119,7 @@ fun PikiSectionCard(
     }
 }
 
-/*************** Título de sección ***************/
+// Título de sección
 @Composable
 fun PikiSectionTitle(
     text: String,
@@ -150,7 +134,7 @@ fun PikiSectionTitle(
     )
 }
 
-/*************** Botón principal (bg-primary) ***************/
+// Botón primario (bg-primary, borde marrón)
 @Composable
 fun PikiPrimaryButton(
     text: String,
@@ -163,26 +147,22 @@ fun PikiPrimaryButton(
         enabled = enabled,
         modifier = modifier
             .fillMaxWidth()
-            .heightIn(min = 52.dp),
+            .heightIn(min = 52.dp)
+            .stickerBorder(), // Borde PikiClay por defecto
         shape = RoundedCornerShape(999.dp),
-        border = BorderStroke(2.dp, PikiClay), // sticker-border
         colors = ButtonDefaults.buttonColors(
-            containerColor = PikiSky,
-            contentColor = PikiWood, // text-on-surface
+            containerColor = PikiSky, // bg-primary
+            contentColor = PikiWood,  // text-on-surface
             disabledContainerColor = PikiPaperDark,
             disabledContentColor = PikiMutedText
         ),
         elevation = ButtonDefaults.buttonElevation(defaultElevation = 0.dp)
     ) {
-        Text(
-            text = text,
-            fontWeight = FontWeight.ExtraBold,
-            style = MaterialTheme.typography.labelLarge
-        )
+        Text(text = text, fontWeight = FontWeight.ExtraBold, style = MaterialTheme.typography.labelLarge)
     }
 }
 
-/*************** Botón secundario (bg-secondary o bg-white) ***************/
+// Botón secundario (blanco con borde)
 @Composable
 fun PikiSecondaryButton(
     text: String,
@@ -195,11 +175,11 @@ fun PikiSecondaryButton(
         enabled = enabled,
         modifier = modifier
             .fillMaxWidth()
-            .heightIn(min = 52.dp),
+            .heightIn(min = 52.dp)
+            .stickerBorder(),
         shape = RoundedCornerShape(999.dp),
-        border = BorderStroke(2.dp, PikiClay),
         colors = ButtonDefaults.buttonColors(
-            containerColor = PikiLeaf,
+            containerColor = PikiWhite,
             contentColor = PikiWood,
             disabledContainerColor = PikiPaperDark,
             disabledContentColor = PikiMutedText
@@ -214,7 +194,7 @@ fun PikiSecondaryButton(
     }
 }
 
-/*************** Botón con borde (Equivalente al botón blanco web) ***************/
+// Botón con borde translúcido
 @Composable
 fun PikiOutlinedButton(
     text: String,
@@ -229,7 +209,7 @@ fun PikiOutlinedButton(
         shape = RoundedCornerShape(999.dp),
         border = BorderStroke(2.dp, PikiClay.copy(alpha = 0.5f)),
         colors = ButtonDefaults.outlinedButtonColors(
-            contentColor = PikiWood, // text-tertiary
+            contentColor = PikiWood,
             containerColor = PikiWhite
         )
     ) {
@@ -241,7 +221,7 @@ fun PikiOutlinedButton(
     }
 }
 
-/*************** Botón de texto cálido ***************/
+// Botón de texto simple
 @Composable
 fun PikiTextButton(
     text: String,
@@ -262,7 +242,7 @@ fun PikiTextButton(
     }
 }
 
-/*************** Campo de texto Piki ***************/
+// Campo de texto (focus:border-outline)
 @Composable
 fun PikiTextField(
     value: String,
@@ -283,29 +263,21 @@ fun PikiTextField(
         label = { Text(label) },
         modifier = modifier.fillMaxWidth(),
         shape = RoundedCornerShape(22.dp),
-        textStyle = LocalTextStyle.current.copy(
-            color = PikiWood,
-            fontWeight = FontWeight.SemiBold
-        ),
-        keyboardOptions = KeyboardOptions(
-            keyboardType = keyboardType
-        ),
+        textStyle = LocalTextStyle.current.copy(color = PikiWood, fontWeight = FontWeight.SemiBold),
+        keyboardOptions = KeyboardOptions(keyboardType = keyboardType),
         colors = OutlinedTextFieldDefaults.colors(
             focusedBorderColor = PikiClay, // focus:border-outline
             unfocusedBorderColor = PikiClay.copy(alpha = 0.2f), // border-outline/20
             focusedLabelColor = PikiClay,
             unfocusedLabelColor = PikiMutedText,
-            focusedContainerColor = PikiWhite, // bg-white
+            focusedContainerColor = PikiWhite,
             unfocusedContainerColor = PikiWhite,
-            cursorColor = PikiWood,
-            disabledBorderColor = PikiCreamLine,
-            disabledContainerColor = PikiPaperDark,
-            disabledTextColor = PikiMutedText
+            cursorColor = PikiClay
         )
     )
 }
 
-/*************** Campo numérico Piki ***************/
+// Campo numérico
 @Composable
 fun PikiNumberField(
     value: String,
@@ -322,69 +294,83 @@ fun PikiNumberField(
     )
 }
 
-/*************** Pastilla genérica (Translúcida estilo web) ***************/
+// Pastilla genérica
 @Composable
 fun PikiPill(
     text: String,
     modifier: Modifier = Modifier,
     background: Color,
-    borderColor: Color,
-    borderOpacity: Float = 0.3f
+    foreground: Color = PikiWood,
+    borderColor: Color = Color.Transparent,
+    borderOpacity: Float = 1f
 ) {
     Box(
         modifier = modifier
-            .stickerBorder(opacity = borderOpacity)
+            .border(1.dp, borderColor.copy(alpha = borderOpacity), RoundedCornerShape(999.dp))
             .clip(RoundedCornerShape(999.dp))
             .background(background)
             .padding(horizontal = 16.dp, vertical = 6.dp)
     ) {
         Text(
             text = text,
-            color = PikiWood,
+            color = foreground,
             style = MaterialTheme.typography.labelSmall,
             fontWeight = FontWeight.ExtraBold
         )
     }
 }
 
-/*************** Pastilla de estado ***************/
+// Pastilla de estado estilo HTML
 @Composable
 fun PikiStatusPill(
     status: OrderStatus,
     modifier: Modifier = Modifier
 ) {
     val background: Color
+    val borderAlpha: Float
     val label: String
 
+    // Replicamos la lógica EXACTA de tu principal.html
     when (status) {
         OrderStatus.PENDING -> {
-            background = PikiPaperDark.copy(alpha = 0.8f) // bg-surface
+            background = PikiPaperDark // bg-surface
+            borderAlpha = 0.2f
             label = "Pendiente"
         }
         OrderStatus.PRINTING -> {
-            background = PikiSky.copy(alpha = 0.3f) // bg-primary/20
+            background = PikiSky.copy(alpha = 0.2f) // bg-primary/20
+            borderAlpha = 0.5f
             label = "En progreso"
         }
         OrderStatus.DONE -> {
-            background = PikiLeaf.copy(alpha = 0.3f) // bg-secondary/20
+            background = PikiLeaf.copy(alpha = 0.2f) // bg-secondary/20
+            borderAlpha = 0.5f
             label = "Terminado"
         }
         OrderStatus.CANCELED -> {
-            background = PikiCanceledBg.copy(alpha = 0.3f)
+            background = PikiCanceledBg
+            borderAlpha = 0.5f
             label = "Cancelado"
         }
     }
 
-    PikiPill(
-        text = label,
-        modifier = modifier,
-        background = background,
-        borderColor = PikiClay,
-        borderOpacity = 0.5f // sticker-border border-opacity-50
-    )
+    Box(
+        modifier = modifier
+            .stickerBorder(opacity = borderAlpha, color = PikiClay)
+            .clip(RoundedCornerShape(999.dp))
+            .background(background)
+            .padding(horizontal = 16.dp, vertical = 6.dp)
+    ) {
+        Text(
+            text = label,
+            color = PikiClay, // text-tertiary
+            style = MaterialTheme.typography.labelSmall,
+            fontWeight = FontWeight.ExtraBold
+        )
+    }
 }
 
-/*************** Banner informativo ***************/
+// Banner informativo
 @Composable
 fun PikiInfoBanner(
     text: String,
@@ -394,11 +380,11 @@ fun PikiInfoBanner(
         modifier = modifier.fillMaxWidth(),
         shape = RoundedCornerShape(24.dp),
         colors = CardDefaults.cardColors(
-            containerColor = PikiSky.copy(alpha = 0.2f) // Fondo más suave
+            containerColor = PikiSky.copy(alpha = 0.2f)
         ),
         border = BorderStroke(
             width = 2.dp,
-            color = PikiClay.copy(alpha = 0.4f) // Borde craft
+            color = PikiClay.copy(alpha = 0.4f)
         )
     ) {
         Text(

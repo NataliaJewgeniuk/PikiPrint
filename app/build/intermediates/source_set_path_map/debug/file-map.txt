@@ -45,9 +45,10 @@ com.example.app-jetified-foundation-layout-release-43 C:\Users\jewgeniuk.natalia
 com.example.app-jetified-lifecycle-runtime-compose-release-44 C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\ed09dcd2f94df8653805cea909cd9121\transformed\jetified-lifecycle-runtime-compose-release\res
 com.example.app-jetified-savedstate-1.2.1-45 C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\f330908fbf26f7ff41e8acbdc973012e\transformed\jetified-savedstate-1.2.1\res
 com.example.app-jetified-animation-release-46 C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\f5c8c772d5b89092ff40924cc6d4c502\transformed\jetified-animation-release\res
-com.example.app-resValues-47 C:\Users\jewgeniuk.natalia\Documents\GitHub\PikiPrint\app\build\generated\res\resValues\debug
-com.example.app-packageDebugResources-48 C:\Users\jewgeniuk.natalia\Documents\GitHub\PikiPrint\app\build\intermediates\incremental\debug\packageDebugResources\merged.dir
-com.example.app-packageDebugResources-49 C:\Users\jewgeniuk.natalia\Documents\GitHub\PikiPrint\app\build\intermediates\incremental\debug\packageDebugResources\stripped.dir
-com.example.app-merged_res-50 C:\Users\jewgeniuk.natalia\Documents\GitHub\PikiPrint\app\build\intermediates\merged_res\debug
-com.example.app-debug-51 C:\Users\jewgeniuk.natalia\Documents\GitHub\PikiPrint\app\src\debug\res
-com.example.app-main-52 C:\Users\jewgeniuk.natalia\Documents\GitHub\PikiPrint\app\src\main\res
+com.example.app-jetified-material-icons-extended-release-47 C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\fe9ae22f5fa8619691d244f1b3376d9a\transformed\jetified-material-icons-extended-release\res
+com.example.app-resValues-48 C:\Users\jewgeniuk.natalia\Documents\GitHub\PikiPrint\app\build\generated\res\resValues\debug
+com.example.app-packageDebugResources-49 C:\Users\jewgeniuk.natalia\Documents\GitHub\PikiPrint\app\build\intermediates\incremental\debug\packageDebugResources\merged.dir
+com.example.app-packageDebugResources-50 C:\Users\jewgeniuk.natalia\Documents\GitHub\PikiPrint\app\build\intermediates\incremental\debug\packageDebugResources\stripped.dir
+com.example.app-merged_res-51 C:\Users\jewgeniuk.natalia\Documents\GitHub\PikiPrint\app\build\intermediates\merged_res\debug
+com.example.app-debug-52 C:\Users\jewgeniuk.natalia\Documents\GitHub\PikiPrint\app\src\debug\res
+com.example.app-main-53 C:\Users\jewgeniuk.natalia\Documents\GitHub\PikiPrint\app\src\main\res

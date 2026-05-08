@@ -103,22 +103,22 @@ private val PikiTypography = Typography(
 
 /*************** Esquema de color PikiPrint ***************/
 /*
-    MaterialTheme ahora usa la nueva estética:
-    - fondo crema papel
-    - texto marrón madera
-    - acción principal verde hoja
-    - acción secundaria celeste cielo
+    MaterialTheme ahora usa la misma jerarquía cromática que la web:
+    - primary = celeste cielo
+    - secondary = verde hoja
+    - tertiary/outline = marrón craft
+    - fondo = crema papel
 */
 private val PikiLightColorScheme = lightColorScheme(
-    primary = PikiLeafDark,
-    onPrimary = PikiWhite,
-    primaryContainer = PikiLeaf,
-    onPrimaryContainer = PikiWood,
+    primary = PikiSky,
+    onPrimary = PikiWood,
+    primaryContainer = PikiSkyLight,
+    onPrimaryContainer = PikiSkyDark,
 
-    secondary = PikiSkyDark,
-    onSecondary = PikiWhite,
-    secondaryContainer = PikiSky,
-    onSecondaryContainer = PikiWood,
+    secondary = PikiLeaf,
+    onSecondary = PikiWood,
+    secondaryContainer = PikiLeafLight,
+    onSecondaryContainer = PikiLeafDark,
 
     tertiary = PikiClay,
     onTertiary = PikiWhite,
@@ -134,7 +134,7 @@ private val PikiLightColorScheme = lightColorScheme(
     surfaceVariant = PikiPaperDark,
     onSurfaceVariant = PikiMutedText,
 
-    outline = PikiCreamLine,
+    outline = PikiClay,
 
     error = PikiCanceledText,
     onError = PikiWhite,
