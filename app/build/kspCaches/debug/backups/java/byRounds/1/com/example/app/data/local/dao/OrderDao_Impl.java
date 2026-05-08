@@ -41,7 +41,7 @@ public final class OrderDao_Impl implements OrderDao {
       @Override
       @NonNull
       protected String createQuery() {
-        return "INSERT OR REPLACE INTO `orders` (`id`,`title`,`clientName`,`filament`,`printer`,`printTimeHours`,`printTimeMinutes`,`weightGramsPerUnit`,`quantity`,`designType`,`color`,`isFriend`,`status`,`createdAt`,`totalComputed`,`quoteDate`,`validityDays`,`deliveryBusinessDays`,`deliveryDate`,`paymentType`,`depositPercentage`,`finishType`,`notes`,`subtotal`,`margenMonto`,`descuentoCantidad`,`descuentoAmigo`,`totalFinal`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+        return "INSERT OR REPLACE INTO `orders` (`id`,`title`,`clientName`,`filament`,`printer`,`printerId`,`printerNameSnapshot`,`printTimeHours`,`printTimeMinutes`,`weightGramsPerUnit`,`quantity`,`designType`,`color`,`isFriend`,`status`,`createdAt`,`totalComputed`,`quoteDate`,`validityDays`,`deliveryBusinessDays`,`deliveryDate`,`paymentType`,`depositPercentage`,`finishType`,`notes`,`subtotal`,`margenMonto`,`descuentoCantidad`,`descuentoAmigo`,`totalFinal`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
       }
 
       @Override
@@ -52,30 +52,32 @@ public final class OrderDao_Impl implements OrderDao {
         statement.bindString(3, entity.getClientName());
         statement.bindString(4, entity.getFilament());
         statement.bindString(5, entity.getPrinter());
-        statement.bindLong(6, entity.getPrintTimeHours());
-        statement.bindLong(7, entity.getPrintTimeMinutes());
-        statement.bindLong(8, entity.getWeightGramsPerUnit());
-        statement.bindLong(9, entity.getQuantity());
-        statement.bindString(10, entity.getDesignType());
-        statement.bindString(11, entity.getColor());
+        statement.bindString(6, entity.getPrinterId());
+        statement.bindString(7, entity.getPrinterNameSnapshot());
+        statement.bindLong(8, entity.getPrintTimeHours());
+        statement.bindLong(9, entity.getPrintTimeMinutes());
+        statement.bindLong(10, entity.getWeightGramsPerUnit());
+        statement.bindLong(11, entity.getQuantity());
+        statement.bindString(12, entity.getDesignType());
+        statement.bindString(13, entity.getColor());
         final int _tmp = entity.isFriend() ? 1 : 0;
-        statement.bindLong(12, _tmp);
-        statement.bindString(13, entity.getStatus());
-        statement.bindString(14, entity.getCreatedAt());
-        statement.bindDouble(15, entity.getTotalComputed());
-        statement.bindString(16, entity.getQuoteDate());
-        statement.bindLong(17, entity.getValidityDays());
-        statement.bindLong(18, entity.getDeliveryBusinessDays());
-        statement.bindString(19, entity.getDeliveryDate());
-        statement.bindString(20, entity.getPaymentType());
-        statement.bindLong(21, entity.getDepositPercentage());
-        statement.bindString(22, entity.getFinishType());
-        statement.bindString(23, entity.getNotes());
-        statement.bindDouble(24, entity.getSubtotal());
-        statement.bindDouble(25, entity.getMargenMonto());
-        statement.bindDouble(26, entity.getDescuentoCantidad());
-        statement.bindDouble(27, entity.getDescuentoAmigo());
-        statement.bindDouble(28, entity.getTotalFinal());
+        statement.bindLong(14, _tmp);
+        statement.bindString(15, entity.getStatus());
+        statement.bindString(16, entity.getCreatedAt());
+        statement.bindDouble(17, entity.getTotalComputed());
+        statement.bindString(18, entity.getQuoteDate());
+        statement.bindLong(19, entity.getValidityDays());
+        statement.bindLong(20, entity.getDeliveryBusinessDays());
+        statement.bindString(21, entity.getDeliveryDate());
+        statement.bindString(22, entity.getPaymentType());
+        statement.bindLong(23, entity.getDepositPercentage());
+        statement.bindString(24, entity.getFinishType());
+        statement.bindString(25, entity.getNotes());
+        statement.bindDouble(26, entity.getSubtotal());
+        statement.bindDouble(27, entity.getMargenMonto());
+        statement.bindDouble(28, entity.getDescuentoCantidad());
+        statement.bindDouble(29, entity.getDescuentoAmigo());
+        statement.bindDouble(30, entity.getTotalFinal());
       }
     };
     this.__preparedStmtOfDeleteOrderById = new SharedSQLiteStatement(__db) {
@@ -146,6 +148,8 @@ public final class OrderDao_Impl implements OrderDao {
           final int _cursorIndexOfClientName = CursorUtil.getColumnIndexOrThrow(_cursor, "clientName");
           final int _cursorIndexOfFilament = CursorUtil.getColumnIndexOrThrow(_cursor, "filament");
           final int _cursorIndexOfPrinter = CursorUtil.getColumnIndexOrThrow(_cursor, "printer");
+          final int _cursorIndexOfPrinterId = CursorUtil.getColumnIndexOrThrow(_cursor, "printerId");
+          final int _cursorIndexOfPrinterNameSnapshot = CursorUtil.getColumnIndexOrThrow(_cursor, "printerNameSnapshot");
           final int _cursorIndexOfPrintTimeHours = CursorUtil.getColumnIndexOrThrow(_cursor, "printTimeHours");
           final int _cursorIndexOfPrintTimeMinutes = CursorUtil.getColumnIndexOrThrow(_cursor, "printTimeMinutes");
           final int _cursorIndexOfWeightGramsPerUnit = CursorUtil.getColumnIndexOrThrow(_cursor, "weightGramsPerUnit");
@@ -182,6 +186,10 @@ public final class OrderDao_Impl implements OrderDao {
             _tmpFilament = _cursor.getString(_cursorIndexOfFilament);
             final String _tmpPrinter;
             _tmpPrinter = _cursor.getString(_cursorIndexOfPrinter);
+            final String _tmpPrinterId;
+            _tmpPrinterId = _cursor.getString(_cursorIndexOfPrinterId);
+            final String _tmpPrinterNameSnapshot;
+            _tmpPrinterNameSnapshot = _cursor.getString(_cursorIndexOfPrinterNameSnapshot);
             final int _tmpPrintTimeHours;
             _tmpPrintTimeHours = _cursor.getInt(_cursorIndexOfPrintTimeHours);
             final int _tmpPrintTimeMinutes;
@@ -230,7 +238,7 @@ public final class OrderDao_Impl implements OrderDao {
             _tmpDescuentoAmigo = _cursor.getDouble(_cursorIndexOfDescuentoAmigo);
             final double _tmpTotalFinal;
             _tmpTotalFinal = _cursor.getDouble(_cursorIndexOfTotalFinal);
-            _item = new OrderEntity(_tmpId,_tmpTitle,_tmpClientName,_tmpFilament,_tmpPrinter,_tmpPrintTimeHours,_tmpPrintTimeMinutes,_tmpWeightGramsPerUnit,_tmpQuantity,_tmpDesignType,_tmpColor,_tmpIsFriend,_tmpStatus,_tmpCreatedAt,_tmpTotalComputed,_tmpQuoteDate,_tmpValidityDays,_tmpDeliveryBusinessDays,_tmpDeliveryDate,_tmpPaymentType,_tmpDepositPercentage,_tmpFinishType,_tmpNotes,_tmpSubtotal,_tmpMargenMonto,_tmpDescuentoCantidad,_tmpDescuentoAmigo,_tmpTotalFinal);
+            _item = new OrderEntity(_tmpId,_tmpTitle,_tmpClientName,_tmpFilament,_tmpPrinter,_tmpPrinterId,_tmpPrinterNameSnapshot,_tmpPrintTimeHours,_tmpPrintTimeMinutes,_tmpWeightGramsPerUnit,_tmpQuantity,_tmpDesignType,_tmpColor,_tmpIsFriend,_tmpStatus,_tmpCreatedAt,_tmpTotalComputed,_tmpQuoteDate,_tmpValidityDays,_tmpDeliveryBusinessDays,_tmpDeliveryDate,_tmpPaymentType,_tmpDepositPercentage,_tmpFinishType,_tmpNotes,_tmpSubtotal,_tmpMargenMonto,_tmpDescuentoCantidad,_tmpDescuentoAmigo,_tmpTotalFinal);
             _result.add(_item);
           }
           return _result;

@@ -1,22 +1,28 @@
 package com.example.app
 
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.navigationBars
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.outlined.Calculate
+import androidx.compose.material.icons.outlined.ReceiptLong
+import androidx.compose.material.icons.outlined.Settings
+import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -25,8 +31,8 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -34,14 +40,12 @@ import com.example.app.screens.OrdersScreen
 import com.example.app.screens.QuotesScreen
 import com.example.app.screens.SettingsScreen
 import com.example.app.ui.components.PikiScreen
+import com.example.app.ui.components.kawaiiShadow
+import com.example.app.ui.theme.PikiClay
 import com.example.app.ui.theme.PikiCreamLine
-import com.example.app.ui.theme.PikiLeaf
-import com.example.app.ui.theme.PikiLeafDark
 import com.example.app.ui.theme.PikiMutedText
 import com.example.app.ui.theme.PikiPaperDark
-import com.example.app.ui.theme.PikiPaperLight
 import com.example.app.ui.theme.PikiSky
-import com.example.app.ui.theme.PikiSkyDark
 import com.example.app.ui.theme.PikiWhite
 import com.example.app.ui.theme.PikiWood
 import com.example.app.viewmodels.AppViewModel
@@ -54,24 +58,27 @@ import com.example.app.viewmodels.AppViewModel
     - Ajustes
 
     Gastos queda fuera de la navegación principal por ahora.
+
+    Ya no usamos emojis.
+    Cada pantalla tiene un ícono real de Material Icons Extended.
 */
 enum class Screen(
     val label: String,
-    val icon: String
+    val icon: ImageVector
 ) {
     Orders(
         label = "Pedidos",
-        icon = "📋"
+        icon = Icons.Outlined.ReceiptLong
     ),
 
     Quotes(
-        label = "N. Pedido",
-        icon = "✨"
+        label = "Calcular",
+        icon = Icons.Outlined.Calculate
     ),
 
     Settings(
         label = "Ajustes",
-        icon = "⚙️"
+        icon = Icons.Outlined.Settings
     )
 }
 
@@ -138,13 +145,14 @@ fun Navigation(
     }
 }
 
-/*************** Barra inferior Piki ***************/
+/*************** Barra inferior Piki Premium ***************/
 /*
-    Barra tipo muelle de papel:
-    - crema claro;
-    - borde suave;
-    - radios grandes;
-    - ítem activo tipo burbuja.
+    Barra tipo dock flotante:
+    - fondo blanco limpio;
+    - borde craft suave;
+    - sombra cálida;
+    - ítem activo tipo pill celeste;
+    - íconos reales, sin emojis.
 */
 @Composable
 private fun PikiBottomNavigation(
@@ -155,31 +163,38 @@ private fun PikiBottomNavigation(
         modifier = Modifier
             .fillMaxWidth()
             .windowInsetsPadding(WindowInsets.navigationBars)
-            .padding(horizontal = 14.dp, vertical = 10.dp)
+            .padding(horizontal = 18.dp, vertical = 12.dp)
     ) {
-        Row(
+        Surface(
             modifier = Modifier
                 .fillMaxWidth()
-                .clip(RoundedCornerShape(34.dp))
-                .background(PikiPaperLight.copy(alpha = 0.96f))
-                .border(
-                    width = 2.dp,
-                    color = PikiCreamLine,
-                    shape = RoundedCornerShape(34.dp)
-                )
-                .padding(horizontal = 8.dp, vertical = 8.dp),
-            horizontalArrangement = Arrangement.spacedBy(8.dp),
-            verticalAlignment = Alignment.CenterVertically
+                .kawaiiShadow(),
+            shape = RoundedCornerShape(32.dp),
+            color = PikiWhite.copy(alpha = 0.96f),
+            border = BorderStroke(
+                width = 2.dp,
+                color = PikiCreamLine.copy(alpha = 0.82f)
+            ),
+            tonalElevation = 0.dp,
+            shadowElevation = 0.dp
         ) {
-            Screen.values().forEach { screen ->
-                PikiBottomNavigationItem(
-                    screen = screen,
-                    selected = currentScreen == screen,
-                    onClick = {
-                        onScreenSelected(screen)
-                    },
-                    modifier = Modifier.weight(1f)
-                )
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 8.dp, vertical = 8.dp),
+                horizontalArrangement = Arrangement.spacedBy(8.dp),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Screen.entries.forEach { screen ->
+                    PikiBottomNavigationItem(
+                        screen = screen,
+                        selected = currentScreen == screen,
+                        onClick = {
+                            onScreenSelected(screen)
+                        },
+                        modifier = Modifier.weight(1f)
+                    )
+                }
             }
         }
     }
@@ -187,8 +202,15 @@ private fun PikiBottomNavigation(
 
 /*************** Ítem de navegación ***************/
 /*
-    El ítem activo usa una burbuja verde hoja.
-    El ítem inactivo queda más liviano, como texto sobre papel.
+    Estado seleccionado:
+    - pill celeste;
+    - borde marrón craft;
+    - texto fuerte.
+
+    Estado inactivo:
+    - fondo transparente;
+    - ícono en círculo crema;
+    - texto muted.
 */
 @Composable
 private fun PikiBottomNavigationItem(
@@ -197,11 +219,35 @@ private fun PikiBottomNavigationItem(
     onClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
-    val backgroundColor =
+    val itemBackground =
         if (selected) {
-            PikiLeaf
+            PikiSky
         } else {
             Color.Transparent
+        }
+
+    val itemBorder =
+        if (selected) {
+            BorderStroke(
+                width = 2.dp,
+                color = PikiClay
+            )
+        } else {
+            null
+        }
+
+    val iconBackground =
+        if (selected) {
+            PikiWhite.copy(alpha = 0.90f)
+        } else {
+            PikiPaperDark.copy(alpha = 0.80f)
+        }
+
+    val iconTint =
+        if (selected) {
+            PikiClay
+        } else {
+            PikiMutedText
         }
 
     val textColor =
@@ -211,54 +257,58 @@ private fun PikiBottomNavigationItem(
             PikiMutedText
         }
 
-    val iconBackground =
-        if (selected) {
-            PikiLeafDark
-        } else {
-            PikiPaperDark
-        }
-
-    val iconColor =
-        if (selected) {
-            PikiWhite
-        } else {
-            PikiSkyDark
-        }
-
-    Column(
+    Surface(
         modifier = modifier
-            .clip(RoundedCornerShape(26.dp))
-            .background(backgroundColor)
+            .height(64.dp)
             .clickable {
                 onClick()
-            }
-            .padding(vertical = 8.dp, horizontal = 4.dp),
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        Box(
-            modifier = Modifier
-                .clip(RoundedCornerShape(999.dp))
-                .background(iconBackground)
-                .padding(horizontal = 10.dp, vertical = 6.dp),
-            contentAlignment = Alignment.Center
-        ) {
-            Text(
-                text = screen.icon,
-                color = iconColor,
-                fontWeight = FontWeight.ExtraBold
-            )
+            },
+        shape = RoundedCornerShape(26.dp),
+        color = itemBackground,
+        border = itemBorder,
+        shadowElevation = if (selected) {
+            2.dp
+        } else {
+            0.dp
         }
-
-        Spacer(modifier = Modifier.height(4.dp))
-
-        Text(
-            text = screen.label,
-            color = textColor,
-            fontWeight = if (selected) {
-                FontWeight.ExtraBold
-            } else {
-                FontWeight.Bold
+    ) {
+        Row(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(horizontal = 8.dp),
+            horizontalArrangement = Arrangement.Center,
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Surface(
+                modifier = Modifier.size(34.dp),
+                shape = RoundedCornerShape(999.dp),
+                color = iconBackground,
+                tonalElevation = 0.dp,
+                shadowElevation = 0.dp
+            ) {
+                Box(
+                    modifier = Modifier.fillMaxSize(),
+                    contentAlignment = Alignment.Center
+                ) {
+                    Icon(
+                        imageVector = screen.icon,
+                        contentDescription = screen.label,
+                        tint = iconTint,
+                        modifier = Modifier.size(20.dp)
+                    )
+                }
             }
-        )
+
+            if (selected) {
+                Text(
+                    text = screen.label,
+                    modifier = Modifier.padding(start = 8.dp),
+                    style = MaterialTheme.typography.labelMedium,
+                    color = textColor,
+                    fontWeight = FontWeight.ExtraBold,
+                    maxLines = 1
+                )
+            }
+        }
     }
 }

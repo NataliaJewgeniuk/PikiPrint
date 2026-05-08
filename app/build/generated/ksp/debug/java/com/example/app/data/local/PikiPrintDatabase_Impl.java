@@ -41,14 +41,14 @@ public final class PikiPrintDatabase_Impl extends PikiPrintDatabase {
   @Override
   @NonNull
   protected SupportSQLiteOpenHelper createOpenHelper(@NonNull final DatabaseConfiguration config) {
-    final SupportSQLiteOpenHelper.Callback _openCallback = new RoomOpenHelper(config, new RoomOpenHelper.Delegate(2) {
+    final SupportSQLiteOpenHelper.Callback _openCallback = new RoomOpenHelper(config, new RoomOpenHelper.Delegate(3) {
       @Override
       public void createAllTables(@NonNull final SupportSQLiteDatabase db) {
-        db.execSQL("CREATE TABLE IF NOT EXISTS `orders` (`id` TEXT NOT NULL, `title` TEXT NOT NULL, `clientName` TEXT NOT NULL, `filament` TEXT NOT NULL, `printer` TEXT NOT NULL, `printTimeHours` INTEGER NOT NULL, `printTimeMinutes` INTEGER NOT NULL, `weightGramsPerUnit` INTEGER NOT NULL, `quantity` INTEGER NOT NULL, `designType` TEXT NOT NULL, `color` TEXT NOT NULL, `isFriend` INTEGER NOT NULL, `status` TEXT NOT NULL, `createdAt` TEXT NOT NULL, `totalComputed` REAL NOT NULL, `quoteDate` TEXT NOT NULL, `validityDays` INTEGER NOT NULL, `deliveryBusinessDays` INTEGER NOT NULL, `deliveryDate` TEXT NOT NULL, `paymentType` TEXT NOT NULL, `depositPercentage` INTEGER NOT NULL, `finishType` TEXT NOT NULL, `notes` TEXT NOT NULL, `subtotal` REAL NOT NULL, `margenMonto` REAL NOT NULL, `descuentoCantidad` REAL NOT NULL, `descuentoAmigo` REAL NOT NULL, `totalFinal` REAL NOT NULL, PRIMARY KEY(`id`))");
+        db.execSQL("CREATE TABLE IF NOT EXISTS `orders` (`id` TEXT NOT NULL, `title` TEXT NOT NULL, `clientName` TEXT NOT NULL, `filament` TEXT NOT NULL, `printer` TEXT NOT NULL, `printerId` TEXT NOT NULL, `printerNameSnapshot` TEXT NOT NULL, `printTimeHours` INTEGER NOT NULL, `printTimeMinutes` INTEGER NOT NULL, `weightGramsPerUnit` INTEGER NOT NULL, `quantity` INTEGER NOT NULL, `designType` TEXT NOT NULL, `color` TEXT NOT NULL, `isFriend` INTEGER NOT NULL, `status` TEXT NOT NULL, `createdAt` TEXT NOT NULL, `totalComputed` REAL NOT NULL, `quoteDate` TEXT NOT NULL, `validityDays` INTEGER NOT NULL, `deliveryBusinessDays` INTEGER NOT NULL, `deliveryDate` TEXT NOT NULL, `paymentType` TEXT NOT NULL, `depositPercentage` INTEGER NOT NULL, `finishType` TEXT NOT NULL, `notes` TEXT NOT NULL, `subtotal` REAL NOT NULL, `margenMonto` REAL NOT NULL, `descuentoCantidad` REAL NOT NULL, `descuentoAmigo` REAL NOT NULL, `totalFinal` REAL NOT NULL, PRIMARY KEY(`id`))");
         db.execSQL("CREATE TABLE IF NOT EXISTS `expenses` (`id` TEXT NOT NULL, `title` TEXT NOT NULL, `amount` REAL NOT NULL, `date` TEXT NOT NULL, `category` TEXT NOT NULL, PRIMARY KEY(`id`))");
-        db.execSQL("CREATE TABLE IF NOT EXISTS `quote_settings` (`id` INTEGER NOT NULL, `filamentPlaCost` REAL NOT NULL, `filamentPetgCost` REAL NOT NULL, `filamentFlexCost` REAL NOT NULL, `energyRate` REAL NOT NULL, `marginPercentage` REAL NOT NULL, `friendDiscountPercentage` REAL NOT NULL, `a1ComboPrice` REAL NOT NULL, `a1ComboLifespanHours` INTEGER NOT NULL, `a1ComboPowerKw` REAL NOT NULL, `a1MiniPrice` REAL NOT NULL, `a1MiniLifespanHours` INTEGER NOT NULL, `a1MiniPowerKw` REAL NOT NULL, `discount25` REAL NOT NULL, `discount50` REAL NOT NULL, `discount75` REAL NOT NULL, `discount100` REAL NOT NULL, `designExternalCost` REAL NOT NULL, `designOwnCost` REAL NOT NULL, `designDetailsCost` REAL NOT NULL, `designModificationsCost` REAL NOT NULL, PRIMARY KEY(`id`))");
+        db.execSQL("CREATE TABLE IF NOT EXISTS `quote_settings` (`id` INTEGER NOT NULL, `filamentPlaCost` REAL NOT NULL, `filamentPetgCost` REAL NOT NULL, `filamentFlexCost` REAL NOT NULL, `energyRate` REAL NOT NULL, `marginPercentage` REAL NOT NULL, `friendDiscountPercentage` REAL NOT NULL, `a1ComboPrice` REAL NOT NULL, `a1ComboLifespanHours` INTEGER NOT NULL, `a1ComboPowerKw` REAL NOT NULL, `a1MiniPrice` REAL NOT NULL, `a1MiniLifespanHours` INTEGER NOT NULL, `a1MiniPowerKw` REAL NOT NULL, `printerProfilesSerialized` TEXT NOT NULL, `discount25` REAL NOT NULL, `discount50` REAL NOT NULL, `discount75` REAL NOT NULL, `discount100` REAL NOT NULL, `designExternalCost` REAL NOT NULL, `designOwnCost` REAL NOT NULL, `designDetailsCost` REAL NOT NULL, `designModificationsCost` REAL NOT NULL, PRIMARY KEY(`id`))");
         db.execSQL("CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)");
-        db.execSQL("INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '8a7efca2844b0a23b78c5802828a125a')");
+        db.execSQL("INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '9dc3f6e97c0e3f869e8794814ef17eb9')");
       }
 
       @Override
@@ -99,12 +99,14 @@ public final class PikiPrintDatabase_Impl extends PikiPrintDatabase {
       @NonNull
       public RoomOpenHelper.ValidationResult onValidateSchema(
           @NonNull final SupportSQLiteDatabase db) {
-        final HashMap<String, TableInfo.Column> _columnsOrders = new HashMap<String, TableInfo.Column>(28);
+        final HashMap<String, TableInfo.Column> _columnsOrders = new HashMap<String, TableInfo.Column>(30);
         _columnsOrders.put("id", new TableInfo.Column("id", "TEXT", true, 1, null, TableInfo.CREATED_FROM_ENTITY));
         _columnsOrders.put("title", new TableInfo.Column("title", "TEXT", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
         _columnsOrders.put("clientName", new TableInfo.Column("clientName", "TEXT", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
         _columnsOrders.put("filament", new TableInfo.Column("filament", "TEXT", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
         _columnsOrders.put("printer", new TableInfo.Column("printer", "TEXT", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
+        _columnsOrders.put("printerId", new TableInfo.Column("printerId", "TEXT", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
+        _columnsOrders.put("printerNameSnapshot", new TableInfo.Column("printerNameSnapshot", "TEXT", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
         _columnsOrders.put("printTimeHours", new TableInfo.Column("printTimeHours", "INTEGER", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
         _columnsOrders.put("printTimeMinutes", new TableInfo.Column("printTimeMinutes", "INTEGER", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
         _columnsOrders.put("weightGramsPerUnit", new TableInfo.Column("weightGramsPerUnit", "INTEGER", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
@@ -152,7 +154,7 @@ public final class PikiPrintDatabase_Impl extends PikiPrintDatabase {
                   + " Expected:\n" + _infoExpenses + "\n"
                   + " Found:\n" + _existingExpenses);
         }
-        final HashMap<String, TableInfo.Column> _columnsQuoteSettings = new HashMap<String, TableInfo.Column>(21);
+        final HashMap<String, TableInfo.Column> _columnsQuoteSettings = new HashMap<String, TableInfo.Column>(22);
         _columnsQuoteSettings.put("id", new TableInfo.Column("id", "INTEGER", true, 1, null, TableInfo.CREATED_FROM_ENTITY));
         _columnsQuoteSettings.put("filamentPlaCost", new TableInfo.Column("filamentPlaCost", "REAL", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
         _columnsQuoteSettings.put("filamentPetgCost", new TableInfo.Column("filamentPetgCost", "REAL", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
@@ -166,6 +168,7 @@ public final class PikiPrintDatabase_Impl extends PikiPrintDatabase {
         _columnsQuoteSettings.put("a1MiniPrice", new TableInfo.Column("a1MiniPrice", "REAL", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
         _columnsQuoteSettings.put("a1MiniLifespanHours", new TableInfo.Column("a1MiniLifespanHours", "INTEGER", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
         _columnsQuoteSettings.put("a1MiniPowerKw", new TableInfo.Column("a1MiniPowerKw", "REAL", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
+        _columnsQuoteSettings.put("printerProfilesSerialized", new TableInfo.Column("printerProfilesSerialized", "TEXT", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
         _columnsQuoteSettings.put("discount25", new TableInfo.Column("discount25", "REAL", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
         _columnsQuoteSettings.put("discount50", new TableInfo.Column("discount50", "REAL", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
         _columnsQuoteSettings.put("discount75", new TableInfo.Column("discount75", "REAL", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
@@ -185,7 +188,7 @@ public final class PikiPrintDatabase_Impl extends PikiPrintDatabase {
         }
         return new RoomOpenHelper.ValidationResult(true, null);
       }
-    }, "8a7efca2844b0a23b78c5802828a125a", "5c54996e5f97a5309254a7f513f0aaa5");
+    }, "9dc3f6e97c0e3f869e8794814ef17eb9", "dc24d78eb5c29e3426008181931550a6");
     final SupportSQLiteOpenHelper.Configuration _sqliteConfig = SupportSQLiteOpenHelper.Configuration.builder(config.context).name(config.name).callback(_openCallback).build();
     final SupportSQLiteOpenHelper _helper = config.sqliteOpenHelperFactory.create(_sqliteConfig);
     return _helper;

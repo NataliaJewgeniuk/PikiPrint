@@ -39,7 +39,7 @@ public final class SettingsDao_Impl implements SettingsDao {
       @Override
       @NonNull
       protected String createQuery() {
-        return "INSERT OR REPLACE INTO `quote_settings` (`id`,`filamentPlaCost`,`filamentPetgCost`,`filamentFlexCost`,`energyRate`,`marginPercentage`,`friendDiscountPercentage`,`a1ComboPrice`,`a1ComboLifespanHours`,`a1ComboPowerKw`,`a1MiniPrice`,`a1MiniLifespanHours`,`a1MiniPowerKw`,`discount25`,`discount50`,`discount75`,`discount100`,`designExternalCost`,`designOwnCost`,`designDetailsCost`,`designModificationsCost`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+        return "INSERT OR REPLACE INTO `quote_settings` (`id`,`filamentPlaCost`,`filamentPetgCost`,`filamentFlexCost`,`energyRate`,`marginPercentage`,`friendDiscountPercentage`,`a1ComboPrice`,`a1ComboLifespanHours`,`a1ComboPowerKw`,`a1MiniPrice`,`a1MiniLifespanHours`,`a1MiniPowerKw`,`printerProfilesSerialized`,`discount25`,`discount50`,`discount75`,`discount100`,`designExternalCost`,`designOwnCost`,`designDetailsCost`,`designModificationsCost`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
       }
 
       @Override
@@ -58,14 +58,15 @@ public final class SettingsDao_Impl implements SettingsDao {
         statement.bindDouble(11, entity.getA1MiniPrice());
         statement.bindLong(12, entity.getA1MiniLifespanHours());
         statement.bindDouble(13, entity.getA1MiniPowerKw());
-        statement.bindDouble(14, entity.getDiscount25());
-        statement.bindDouble(15, entity.getDiscount50());
-        statement.bindDouble(16, entity.getDiscount75());
-        statement.bindDouble(17, entity.getDiscount100());
-        statement.bindDouble(18, entity.getDesignExternalCost());
-        statement.bindDouble(19, entity.getDesignOwnCost());
-        statement.bindDouble(20, entity.getDesignDetailsCost());
-        statement.bindDouble(21, entity.getDesignModificationsCost());
+        statement.bindString(14, entity.getPrinterProfilesSerialized());
+        statement.bindDouble(15, entity.getDiscount25());
+        statement.bindDouble(16, entity.getDiscount50());
+        statement.bindDouble(17, entity.getDiscount75());
+        statement.bindDouble(18, entity.getDiscount100());
+        statement.bindDouble(19, entity.getDesignExternalCost());
+        statement.bindDouble(20, entity.getDesignOwnCost());
+        statement.bindDouble(21, entity.getDesignDetailsCost());
+        statement.bindDouble(22, entity.getDesignModificationsCost());
       }
     };
   }
@@ -112,6 +113,7 @@ public final class SettingsDao_Impl implements SettingsDao {
           final int _cursorIndexOfA1MiniPrice = CursorUtil.getColumnIndexOrThrow(_cursor, "a1MiniPrice");
           final int _cursorIndexOfA1MiniLifespanHours = CursorUtil.getColumnIndexOrThrow(_cursor, "a1MiniLifespanHours");
           final int _cursorIndexOfA1MiniPowerKw = CursorUtil.getColumnIndexOrThrow(_cursor, "a1MiniPowerKw");
+          final int _cursorIndexOfPrinterProfilesSerialized = CursorUtil.getColumnIndexOrThrow(_cursor, "printerProfilesSerialized");
           final int _cursorIndexOfDiscount25 = CursorUtil.getColumnIndexOrThrow(_cursor, "discount25");
           final int _cursorIndexOfDiscount50 = CursorUtil.getColumnIndexOrThrow(_cursor, "discount50");
           final int _cursorIndexOfDiscount75 = CursorUtil.getColumnIndexOrThrow(_cursor, "discount75");
@@ -148,6 +150,8 @@ public final class SettingsDao_Impl implements SettingsDao {
             _tmpA1MiniLifespanHours = _cursor.getInt(_cursorIndexOfA1MiniLifespanHours);
             final double _tmpA1MiniPowerKw;
             _tmpA1MiniPowerKw = _cursor.getDouble(_cursorIndexOfA1MiniPowerKw);
+            final String _tmpPrinterProfilesSerialized;
+            _tmpPrinterProfilesSerialized = _cursor.getString(_cursorIndexOfPrinterProfilesSerialized);
             final double _tmpDiscount25;
             _tmpDiscount25 = _cursor.getDouble(_cursorIndexOfDiscount25);
             final double _tmpDiscount50;
@@ -164,7 +168,7 @@ public final class SettingsDao_Impl implements SettingsDao {
             _tmpDesignDetailsCost = _cursor.getDouble(_cursorIndexOfDesignDetailsCost);
             final double _tmpDesignModificationsCost;
             _tmpDesignModificationsCost = _cursor.getDouble(_cursorIndexOfDesignModificationsCost);
-            _result = new QuoteSettingsEntity(_tmpId,_tmpFilamentPlaCost,_tmpFilamentPetgCost,_tmpFilamentFlexCost,_tmpEnergyRate,_tmpMarginPercentage,_tmpFriendDiscountPercentage,_tmpA1ComboPrice,_tmpA1ComboLifespanHours,_tmpA1ComboPowerKw,_tmpA1MiniPrice,_tmpA1MiniLifespanHours,_tmpA1MiniPowerKw,_tmpDiscount25,_tmpDiscount50,_tmpDiscount75,_tmpDiscount100,_tmpDesignExternalCost,_tmpDesignOwnCost,_tmpDesignDetailsCost,_tmpDesignModificationsCost);
+            _result = new QuoteSettingsEntity(_tmpId,_tmpFilamentPlaCost,_tmpFilamentPetgCost,_tmpFilamentFlexCost,_tmpEnergyRate,_tmpMarginPercentage,_tmpFriendDiscountPercentage,_tmpA1ComboPrice,_tmpA1ComboLifespanHours,_tmpA1ComboPowerKw,_tmpA1MiniPrice,_tmpA1MiniLifespanHours,_tmpA1MiniPowerKw,_tmpPrinterProfilesSerialized,_tmpDiscount25,_tmpDiscount50,_tmpDiscount75,_tmpDiscount100,_tmpDesignExternalCost,_tmpDesignOwnCost,_tmpDesignDetailsCost,_tmpDesignModificationsCost);
           } else {
             _result = null;
           }
@@ -205,6 +209,7 @@ public final class SettingsDao_Impl implements SettingsDao {
           final int _cursorIndexOfA1MiniPrice = CursorUtil.getColumnIndexOrThrow(_cursor, "a1MiniPrice");
           final int _cursorIndexOfA1MiniLifespanHours = CursorUtil.getColumnIndexOrThrow(_cursor, "a1MiniLifespanHours");
           final int _cursorIndexOfA1MiniPowerKw = CursorUtil.getColumnIndexOrThrow(_cursor, "a1MiniPowerKw");
+          final int _cursorIndexOfPrinterProfilesSerialized = CursorUtil.getColumnIndexOrThrow(_cursor, "printerProfilesSerialized");
           final int _cursorIndexOfDiscount25 = CursorUtil.getColumnIndexOrThrow(_cursor, "discount25");
           final int _cursorIndexOfDiscount50 = CursorUtil.getColumnIndexOrThrow(_cursor, "discount50");
           final int _cursorIndexOfDiscount75 = CursorUtil.getColumnIndexOrThrow(_cursor, "discount75");
@@ -241,6 +246,8 @@ public final class SettingsDao_Impl implements SettingsDao {
             _tmpA1MiniLifespanHours = _cursor.getInt(_cursorIndexOfA1MiniLifespanHours);
             final double _tmpA1MiniPowerKw;
             _tmpA1MiniPowerKw = _cursor.getDouble(_cursorIndexOfA1MiniPowerKw);
+            final String _tmpPrinterProfilesSerialized;
+            _tmpPrinterProfilesSerialized = _cursor.getString(_cursorIndexOfPrinterProfilesSerialized);
             final double _tmpDiscount25;
             _tmpDiscount25 = _cursor.getDouble(_cursorIndexOfDiscount25);
             final double _tmpDiscount50;
@@ -257,7 +264,7 @@ public final class SettingsDao_Impl implements SettingsDao {
             _tmpDesignDetailsCost = _cursor.getDouble(_cursorIndexOfDesignDetailsCost);
             final double _tmpDesignModificationsCost;
             _tmpDesignModificationsCost = _cursor.getDouble(_cursorIndexOfDesignModificationsCost);
-            _result = new QuoteSettingsEntity(_tmpId,_tmpFilamentPlaCost,_tmpFilamentPetgCost,_tmpFilamentFlexCost,_tmpEnergyRate,_tmpMarginPercentage,_tmpFriendDiscountPercentage,_tmpA1ComboPrice,_tmpA1ComboLifespanHours,_tmpA1ComboPowerKw,_tmpA1MiniPrice,_tmpA1MiniLifespanHours,_tmpA1MiniPowerKw,_tmpDiscount25,_tmpDiscount50,_tmpDiscount75,_tmpDiscount100,_tmpDesignExternalCost,_tmpDesignOwnCost,_tmpDesignDetailsCost,_tmpDesignModificationsCost);
+            _result = new QuoteSettingsEntity(_tmpId,_tmpFilamentPlaCost,_tmpFilamentPetgCost,_tmpFilamentFlexCost,_tmpEnergyRate,_tmpMarginPercentage,_tmpFriendDiscountPercentage,_tmpA1ComboPrice,_tmpA1ComboLifespanHours,_tmpA1ComboPowerKw,_tmpA1MiniPrice,_tmpA1MiniLifespanHours,_tmpA1MiniPowerKw,_tmpPrinterProfilesSerialized,_tmpDiscount25,_tmpDiscount50,_tmpDiscount75,_tmpDiscount100,_tmpDesignExternalCost,_tmpDesignOwnCost,_tmpDesignDetailsCost,_tmpDesignModificationsCost);
           } else {
             _result = null;
           }
