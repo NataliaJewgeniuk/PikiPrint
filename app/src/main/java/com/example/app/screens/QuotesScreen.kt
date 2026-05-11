@@ -101,6 +101,16 @@ import java.time.LocalDate
 import java.time.ZoneOffset
 import java.time.format.DateTimeFormatter
 import java.util.UUID
+import android.content.Context
+import android.net.Uri
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.compose.material.icons.outlined.AddPhotoAlternate
+import androidx.compose.material.icons.outlined.Delete
+import androidx.compose.material.icons.outlined.Image
+import androidx.compose.ui.layout.ContentScale
+import coil3.compose.AsyncImage
+import java.io.File
 
 /*************** Formato argentino visible ***************/
 /*
@@ -138,6 +148,52 @@ fun QuotesScreen(
 ) {
     val state by viewModel.state.collectAsState()
     val editingOrder by viewModel.editingOrder.collectAsState()
+
+    /*************** Contexto y ID estable del pedido ***************/
+    /*
+        El ID se define antes de calcular para poder usarlo también
+        como parte del nombre del archivo de imagen.
+
+        Si se está editando un pedido, conserva el mismo ID.
+    */
+    val context = androidx.compose.ui.platform.LocalContext.current
+
+    val draftOrderId = remember(editingOrder?.id) {
+        editingOrder?.id ?: UUID.randomUUID().toString()
+    }
+
+    /*************** Imagen local del pedido ***************/
+    /*
+        selectedImageUri guarda la ruta local interna de la imagen copiada.
+        Si se edita un pedido existente, arranca con la imagen ya guardada.
+    */
+    var selectedImageUri by remember(editingOrder?.id) {
+        mutableStateOf(editingOrder?.imageUri ?: "")
+    }
+
+    /*************** Selector de imagen ***************/
+    /*
+        Usa GetContent para elegir una imagen.
+        No guarda la URI externa directamente:
+        copia la imagen al almacenamiento interno de la app.
+    */
+    val imagePickerLauncher =
+        rememberLauncherForActivityResult(
+            contract = ActivityResultContracts.GetContent()
+        ) { sourceUri ->
+            if (sourceUri != null) {
+                val copiedUri =
+                    copiarImagenPedidoAInterno(
+                        context = context,
+                        sourceUri = sourceUri,
+                        orderId = draftOrderId
+                    )
+
+                if (copiedUri != null) {
+                    selectedImageUri = copiedUri
+                }
+            }
+        }
 
     /*************** Estados del formulario técnico ***************/
     var title by remember(editingOrder) {
@@ -222,6 +278,7 @@ fun QuotesScreen(
             editingOrder?.printerId.orEmpty()
         )
     }
+
 
     LaunchedEffect(
         selectablePrinterProfiles,
@@ -334,7 +391,7 @@ fun QuotesScreen(
             )
 
         val order = Order(
-            id = editingOrder?.id ?: UUID.randomUUID().toString(),
+            id = draftOrderId,
 
             title = title,
             clientName = clientName,
@@ -376,7 +433,10 @@ fun QuotesScreen(
             depositPercentage = depositPercentage,
 
             finishType = finishType,
-            notes = notes
+            notes = notes,
+
+            /*************** Imagen local del pedido ***************/
+            imageUri = selectedImageUri
         )
 
         val result =
@@ -493,6 +553,13 @@ fun QuotesScreen(
                         finishType = finishType,
                         onFinishTypeSelected = {
                             finishType = it
+                        },
+                        imageUri = selectedImageUri,
+                        onSelectImage = {
+                            imagePickerLauncher.launch("image/*")
+                        },
+                        onRemoveImage = {
+                            selectedImageUri = ""
                         }
                     )
                 }
@@ -613,6 +680,7 @@ private fun QuoteHeader(
 }
 
 /*************** Card: detalles del proyecto ***************/
+/*************** Card: detalles del proyecto ***************/
 @Composable
 private fun ProjectDetailsCard(
     title: String,
@@ -627,7 +695,10 @@ private fun ProjectDetailsCard(
     color: String,
     onColorChange: (String) -> Unit,
     finishType: FinishType,
-    onFinishTypeSelected: (FinishType) -> Unit
+    onFinishTypeSelected: (FinishType) -> Unit,
+    imageUri: String,
+    onSelectImage: () -> Unit,
+    onRemoveImage: () -> Unit
 ) {
     QuoteFormCard(
         title = "Detalles del Proyecto",
@@ -673,6 +744,12 @@ private fun ProjectDetailsCard(
             selected = finishType,
             textForValue = { it.label },
             onSelect = onFinishTypeSelected
+        )
+
+        OrderImagePickerBlock(
+            imageUri = imageUri,
+            onSelectImage = onSelectImage,
+            onRemoveImage = onRemoveImage
         )
     }
 }
@@ -1099,6 +1176,155 @@ private fun ColorInputRow(
                 placeholder = "Lila Pastel",
                 icon = Icons.Outlined.ColorLens
             )
+        }
+    }
+}
+
+/*************** Selector de imagen del pedido ***************/
+/*
+    Permite:
+    - agregar imagen;
+    - ver preview;
+    - cambiar imagen;
+    - quitar imagen del pedido.
+
+    Quitar imagen solo borra la referencia del pedido.
+    No elimina físicamente el archivo interno viejo.
+*/
+@Composable
+private fun OrderImagePickerBlock(
+    imageUri: String,
+    onSelectImage: () -> Unit,
+    onRemoveImage: () -> Unit
+) {
+    Column {
+        Text(
+            text = "Imagen del pedido",
+            modifier = Modifier.padding(start = 8.dp, bottom = 8.dp),
+            style = MaterialTheme.typography.labelMedium,
+            fontWeight = FontWeight.ExtraBold,
+            color = PikiClay.copy(alpha = 0.82f)
+        )
+
+        Surface(
+            modifier = Modifier.fillMaxWidth(),
+            shape = RoundedCornerShape(30.dp),
+            color = QuoteSurfaceLow,
+            border = BorderStroke(
+                width = 2.dp,
+                color = PikiClay.copy(alpha = 0.18f)
+            )
+        ) {
+            Column(
+                modifier = Modifier.padding(14.dp)
+            ) {
+                Box(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(178.dp)
+                        .clip(RoundedCornerShape(24.dp))
+                        .background(PikiWhite),
+                    contentAlignment = Alignment.Center
+                ) {
+                    if (imageUri.isNotBlank()) {
+                        AsyncImage(
+                            model = imageUri,
+                            contentDescription = "Imagen del pedido",
+                            modifier = Modifier.fillMaxSize(),
+                            contentScale = ContentScale.Crop
+                        )
+                    } else {
+                        Column(
+                            horizontalAlignment = Alignment.CenterHorizontally
+                        ) {
+                            Icon(
+                                imageVector = Icons.Outlined.Image,
+                                contentDescription = null,
+                                tint = PikiClay.copy(alpha = 0.55f),
+                                modifier = Modifier.size(42.dp)
+                            )
+
+                            Spacer(modifier = Modifier.height(8.dp))
+
+                            Text(
+                                text = "Sin imagen seleccionada",
+                                style = MaterialTheme.typography.bodyMedium,
+                                fontWeight = FontWeight.Bold,
+                                color = PikiMutedText
+                            )
+                        }
+                    }
+                }
+
+                Spacer(modifier = Modifier.height(12.dp))
+
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.spacedBy(10.dp),
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Button(
+                        onClick = onSelectImage,
+                        modifier = Modifier
+                            .weight(1f)
+                            .height(50.dp),
+                        shape = RoundedCornerShape(999.dp),
+                        colors = ButtonDefaults.buttonColors(
+                            containerColor = PikiSky,
+                            contentColor = PikiClay
+                        ),
+                        elevation = ButtonDefaults.buttonElevation(
+                            defaultElevation = 0.dp
+                        )
+                    ) {
+                        Icon(
+                            imageVector = Icons.Outlined.AddPhotoAlternate,
+                            contentDescription = null,
+                            modifier = Modifier.size(20.dp)
+                        )
+
+                        Spacer(modifier = Modifier.width(8.dp))
+
+                        Text(
+                            text = if (imageUri.isBlank()) {
+                                "Agregar imagen"
+                            } else {
+                                "Cambiar imagen"
+                            },
+                            fontWeight = FontWeight.ExtraBold
+                        )
+                    }
+
+                    if (imageUri.isNotBlank()) {
+                        Surface(
+                            modifier = Modifier
+                                .size(50.dp)
+                                .clip(RoundedCornerShape(999.dp))
+                                .clickable {
+                                    onRemoveImage()
+                                },
+                            shape = RoundedCornerShape(999.dp),
+                            color = PikiWhite,
+                            border = BorderStroke(
+                                width = 2.dp,
+                                color = PikiClay.copy(alpha = 0.30f)
+                            )
+                        ) {
+                            Box(
+                                modifier = Modifier.fillMaxSize(),
+                                contentAlignment = Alignment.Center
+                            ) {
+                                Icon(
+                                    imageVector = Icons.Outlined.Delete,
+                                    contentDescription = "Quitar imagen",
+                                    tint = PikiClay,
+                                    modifier = Modifier.size(22.dp)
+                                )
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 }
@@ -2467,5 +2693,46 @@ private fun legacyPrinterFromProfileId(
         PrinterType.A1_COMBO.defaultProfileId -> PrinterType.A1_COMBO
         PrinterType.A1_MINI.defaultProfileId -> PrinterType.A1_MINI
         else -> PrinterType.A1_COMBO
+    }
+}
+
+/*************** Copiar imagen del pedido al almacenamiento interno ***************/
+/*
+    No guardamos la URI externa original porque puede dejar de ser válida.
+
+    Copiamos el archivo a:
+    files/order_images/
+
+    Devuelve una URI local tipo file://...
+*/
+private fun copiarImagenPedidoAInterno(
+    context: Context,
+    sourceUri: Uri,
+    orderId: String
+): String? {
+    return try {
+        val imagesDir = File(
+            context.filesDir,
+            "order_images"
+        )
+
+        if (!imagesDir.exists()) {
+            imagesDir.mkdirs()
+        }
+
+        val outputFile = File(
+            imagesDir,
+            "${orderId}_${System.currentTimeMillis()}.jpg"
+        )
+
+        context.contentResolver.openInputStream(sourceUri)?.use { input ->
+            outputFile.outputStream().use { output ->
+                input.copyTo(output)
+            }
+        } ?: return null
+
+        Uri.fromFile(outputFile).toString()
+    } catch (e: Exception) {
+        null
     }
 }

@@ -1,84 +1,81 @@
 -- Merging decision tree log ---
 provider#androidx.core.content.FileProvider
-INJECTED from C:\Users\jewgeniuk.natalia\Documents\GitHub\PikiPrint\app\src\main\AndroidManifest.xml:23:9-31:20
+INJECTED from C:\Users\jewgeniuk.natalia\Documents\GitHub\PikiPrint\app\src\main\AndroidManifest.xml:25:9-33:20
 	android:grantUriPermissions
-		ADDED from C:\Users\jewgeniuk.natalia\Documents\GitHub\PikiPrint\app\src\main\AndroidManifest.xml:27:13-47
+		ADDED from C:\Users\jewgeniuk.natalia\Documents\GitHub\PikiPrint\app\src\main\AndroidManifest.xml:29:13-47
 	android:authorities
 		INJECTED from C:\Users\jewgeniuk.natalia\Documents\GitHub\PikiPrint\app\src\main\AndroidManifest.xml
-		ADDED from C:\Users\jewgeniuk.natalia\Documents\GitHub\PikiPrint\app\src\main\AndroidManifest.xml:25:13-64
+		ADDED from C:\Users\jewgeniuk.natalia\Documents\GitHub\PikiPrint\app\src\main\AndroidManifest.xml:27:13-64
 	android:exported
-		ADDED from C:\Users\jewgeniuk.natalia\Documents\GitHub\PikiPrint\app\src\main\AndroidManifest.xml:26:13-37
+		ADDED from C:\Users\jewgeniuk.natalia\Documents\GitHub\PikiPrint\app\src\main\AndroidManifest.xml:28:13-37
 	android:name
-		ADDED from C:\Users\jewgeniuk.natalia\Documents\GitHub\PikiPrint\app\src\main\AndroidManifest.xml:24:13-62
+		ADDED from C:\Users\jewgeniuk.natalia\Documents\GitHub\PikiPrint\app\src\main\AndroidManifest.xml:26:13-62
 manifest
-ADDED from C:\Users\jewgeniuk.natalia\Documents\GitHub\PikiPrint\app\src\main\AndroidManifest.xml:2:1-35:12
-INJECTED from C:\Users\jewgeniuk.natalia\Documents\GitHub\PikiPrint\app\src\main\AndroidManifest.xml:2:1-35:12
-INJECTED from C:\Users\jewgeniuk.natalia\Documents\GitHub\PikiPrint\app\src\main\AndroidManifest.xml:2:1-35:12
-INJECTED from C:\Users\jewgeniuk.natalia\Documents\GitHub\PikiPrint\app\src\main\AndroidManifest.xml:2:1-35:12
-MERGED from [androidx.compose.material3:material3-android:1.3.1] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\a274800db87243823b47c6b18a22a1b4\transformed\jetified-material3-release\AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.compose.material:material-icons-extended-android:1.7.6] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\fe9ae22f5fa8619691d244f1b3376d9a\transformed\jetified-material-icons-extended-release\AndroidManifest.xml:2:1-7:12
-MERGED from [androidx.compose.material:material-icons-core-android:1.7.6] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\a1a6b20e39215ce9aa3023a298d88677\transformed\jetified-material-icons-core-release\AndroidManifest.xml:2:1-7:12
-MERGED from [io.coil-kt.coil3:coil-compose-android:3.4.0] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\d9f14e8723d39d837acffb47248f5258\transformed\jetified-coil-compose\AndroidManifest.xml:2:1-7:12
-MERGED from [io.coil-kt.coil3:coil-compose-core-android:3.4.0] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\b80316a563c6cfe71449594b40540658\transformed\jetified-coil-compose-core\AndroidManifest.xml:2:1-7:12
-MERGED from [com.google.accompanist:accompanist-drawablepainter:0.37.3] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\c63ec12085ad4bc47458b2bd23eaacc9\transformed\jetified-accompanist-drawablepainter-0.37.3\AndroidManifest.xml:17:1-23:12
-MERGED from [androidx.compose.foundation:foundation-layout-android:1.9.4] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\51e922f76f374725b9b455e1b9bd8fd6\transformed\jetified-foundation-layout\AndroidManifest.xml:2:1-7:12
-MERGED from [androidx.compose.animation:animation-core-android:1.9.4] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\f65d4bf5eb83f5116eef767318721027\transformed\jetified-animation-core\AndroidManifest.xml:2:1-7:12
-MERGED from [androidx.compose.animation:animation-android:1.9.4] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\474c5ae5a789d52cbf69ef7bb9a33836\transformed\jetified-animation\AndroidManifest.xml:2:1-7:12
-MERGED from [androidx.compose.ui:ui-tooling-data-android:1.9.4] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\7c4c087ec419c9b1044567bb3e461415\transformed\jetified-ui-tooling-data\AndroidManifest.xml:2:1-7:12
-MERGED from [androidx.compose.ui:ui-tooling-preview-android:1.9.4] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\2d1461866794b6c79f0f308f5fc71fa5\transformed\jetified-ui-tooling-preview\AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.compose.ui:ui-unit-android:1.9.4] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\d8e687eac254067fcb3da6c7ab3e74c0\transformed\jetified-ui-unit\AndroidManifest.xml:2:1-7:12
-MERGED from [androidx.compose.ui:ui-graphics-android:1.9.4] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\56aec690eef8b2aae1f6809bdb356455\transformed\jetified-ui-graphics-release\AndroidManifest.xml:2:1-7:12
-MERGED from [androidx.compose.ui:ui-geometry-android:1.9.4] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\f57ccdb8ef7c068f73e1cfd632b63f45\transformed\jetified-ui-geometry\AndroidManifest.xml:2:1-7:12
-MERGED from [androidx.compose.ui:ui-util-android:1.9.4] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\60eebdaa127d936682f9c6d37f7259e4\transformed\jetified-ui-util\AndroidManifest.xml:2:1-7:12
-MERGED from [androidx.compose.ui:ui-text-android:1.9.4] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\c0d631ccafeddd0b34fa23cc1517fea7\transformed\jetified-ui-text\AndroidManifest.xml:2:1-7:12
-MERGED from [androidx.compose.ui:ui-tooling-android:1.9.4] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\07eab2356fdd8b30e1f897d937361483\transformed\jetified-ui-tooling\AndroidManifest.xml:17:1-28:12
-MERGED from [androidx.compose.material:material-android:1.7.6] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\93438eed336bd79531beb6362933df20\transformed\jetified-material-release\AndroidManifest.xml:2:1-7:12
-MERGED from [androidx.compose.material:material-ripple-android:1.7.6] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\99492f41637985b971c1c0a41c9ce1dc\transformed\jetified-material-ripple-release\AndroidManifest.xml:2:1-7:12
-MERGED from [androidx.compose.foundation:foundation-android:1.9.4] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\662df2854b941e70ea5fa3c5ade8b76a\transformed\jetified-foundation-release\AndroidManifest.xml:2:1-7:12
-MERGED from [io.coil-kt.coil3:coil-android:3.4.0] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\1ac0f8367247e16043cb6cab75f20606\transformed\jetified-coil\AndroidManifest.xml:2:1-7:12
-MERGED from [io.coil-kt.coil3:coil-core-android:3.4.0] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\2c5caf0954d33327f1e34007a1db92fe\transformed\jetified-coil-core\AndroidManifest.xml:2:1-7:12
-MERGED from [androidx.customview:customview-poolingcontainer:1.0.0] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\e3aab1400cdd74052eac1abb2ed88be0\transformed\jetified-customview-poolingcontainer-1.0.0\AndroidManifest.xml:17:1-23:12
-MERGED from [androidx.emoji2:emoji2:1.4.0] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\6e1c25ed914ca47fbf38b33962791db4\transformed\jetified-emoji2-1.4.0\AndroidManifest.xml:17:1-35:12
-MERGED from [androidx.lifecycle:lifecycle-process:2.9.4] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\07ab6d63eaeba314b55e278e64b94eaf\transformed\jetified-lifecycle-process-2.9.4\AndroidManifest.xml:17:1-35:12
-MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.9.4] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\7bf39c1bb27805467bba50e90b61a4de\transformed\lifecycle-livedata-core-2.9.4\AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.lifecycle:lifecycle-runtime-ktx-android:2.9.4] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\8f067bf6a39432175cc4469ce58ae516\transformed\jetified-lifecycle-runtime-ktx\AndroidManifest.xml:2:1-7:12
-MERGED from [androidx.lifecycle:lifecycle-viewmodel-android:2.9.4] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\0d211fdde19892e4386dc3ca924d1c11\transformed\jetified-lifecycle-viewmodel-release\AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.compose.runtime:runtime-annotation-android:1.9.4] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\b8f1e4580ea63efc393ba8bc5a648536\transformed\jetified-runtime-annotation\AndroidManifest.xml:2:1-7:12
-MERGED from [androidx.savedstate:savedstate-ktx:1.3.3] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\5044a552a2471bed9cb563bd8c1e5d6a\transformed\jetified-savedstate-ktx-1.3.3\AndroidManifest.xml:2:1-7:12
-MERGED from [androidx.savedstate:savedstate-android:1.3.3] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\71cc265c7918c7888fac13eeef9a9684\transformed\jetified-savedstate-release\AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.savedstate:savedstate-compose-android:1.3.3] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\bdf6f7914fa33bf47cbd3cbcce1a7e9a\transformed\jetified-savedstate-compose\AndroidManifest.xml:2:1-7:12
-MERGED from [androidx.compose.runtime:runtime-android:1.9.4] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\222a3fbc320fc6f900ba63bfdfa961e9\transformed\jetified-runtime\AndroidManifest.xml:2:1-7:12
-MERGED from [androidx.compose.runtime:runtime-saveable-android:1.9.4] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\1496d33bf54e18b0e9e78b720453f2bc\transformed\jetified-runtime-saveable\AndroidManifest.xml:2:1-7:12
-MERGED from [androidx.lifecycle:lifecycle-runtime-compose-android:2.9.4] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\7d35305a922ab4c14409458f688d229d\transformed\jetified-lifecycle-runtime-compose-release\AndroidManifest.xml:2:1-7:12
-MERGED from [androidx.lifecycle:lifecycle-viewmodel-ktx:2.9.4] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\119c4b5d73c683e67132f29ff5152bd4\transformed\jetified-lifecycle-viewmodel-ktx-2.9.4\AndroidManifest.xml:2:1-7:12
-MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate-android:2.9.4] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\a8db4076d7e092e596acba810d3950ca\transformed\jetified-lifecycle-viewmodel-savedstate-release\AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.core:core-ktx:1.16.0] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\a05d3208737947abf5d4a2631a178283\transformed\jetified-core-ktx-1.16.0\AndroidManifest.xml:2:1-7:12
-MERGED from [androidx.appcompat:appcompat-resources:1.7.1] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\f444c5145ced67097c9ce622f04b8b27\transformed\jetified-appcompat-resources-1.7.1\AndroidManifest.xml:2:1-7:12
-MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\19ff70226563b794d07cb66a39ab1657\transformed\vectordrawable-animated-1.1.0\AndroidManifest.xml:17:1-24:12
-MERGED from [androidx.vectordrawable:vectordrawable:1.1.0] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\8ee09b8428a762d90cf8315c80dcc9c7\transformed\vectordrawable-1.1.0\AndroidManifest.xml:17:1-24:12
-MERGED from [androidx.autofill:autofill:1.0.0] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\96d91dd5697211e94327181236d17f61\transformed\jetified-autofill-1.0.0\AndroidManifest.xml:17:1-24:12
-MERGED from [androidx.graphics:graphics-path:1.0.1] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\b5dbe623ca92f8c887e7c794528e46a3\transformed\jetified-graphics-path-1.0.1\AndroidManifest.xml:2:1-7:12
-MERGED from [androidx.core:core:1.16.0] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\825f9ea6f7fbcd8b5bf1919f8c51e022\transformed\core-1.16.0\AndroidManifest.xml:17:1-30:12
-MERGED from [androidx.lifecycle:lifecycle-runtime-android:2.9.4] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\f4c6db953388778f751fccdb35126897\transformed\jetified-lifecycle-runtime-release\AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.lifecycle:lifecycle-viewmodel-compose-android:2.9.4] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\cdd1e05d6c81cce842e40645f6b1c9bb\transformed\jetified-lifecycle-viewmodel-compose-release\AndroidManifest.xml:2:1-7:12
-MERGED from [androidx.compose.ui:ui-android:1.9.4] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\94ecdfeb1f7a3a99fca8346498e25fd1\transformed\jetified-ui-release\AndroidManifest.xml:2:1-7:12
-MERGED from [androidx.compose.ui:ui-test-manifest:1.9.4] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\ca4e5100368c3d6ba897ea193aec0344\transformed\jetified-ui-test-manifest-1.9.4\AndroidManifest.xml:17:1-29:12
-MERGED from [androidx.activity:activity:1.8.2] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\a5899d2b0f4a90804ffd3e5273af0d22\transformed\jetified-activity-1.8.2\AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.activity:activity-ktx:1.8.2] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\c3d254a61e9fc06438ced5b9f098f96b\transformed\jetified-activity-ktx-1.8.2\AndroidManifest.xml:2:1-7:12
-MERGED from [androidx.activity:activity-compose:1.8.2] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\c2a1f1519988eedda56c684d8e4fca4c\transformed\jetified-activity-compose-1.8.2\AndroidManifest.xml:2:1-7:12
-MERGED from [androidx.room:room-runtime:2.6.1] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\22d015ddbcb704082af82d887b9e6a9c\transformed\room-runtime-2.6.1\AndroidManifest.xml:17:1-31:12
-MERGED from [androidx.room:room-ktx:2.6.1] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\b0dd746fab92d0b1dc0787450e57f0e3\transformed\jetified-room-ktx-2.6.1\AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.sqlite:sqlite-framework:2.4.0] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\3d22b4e5a706337f01dbb38e156b736e\transformed\sqlite-framework-2.4.0\AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.sqlite:sqlite:2.4.0] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\44cb813e97f4e699d7e0218c7a8ea22f\transformed\sqlite-2.4.0\AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.annotation:annotation-experimental:1.4.1] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\337d7b3eb5b4ded2e3789e9463edbc9d\transformed\jetified-annotation-experimental-1.4.1\AndroidManifest.xml:2:1-7:12
-MERGED from [androidx.arch.core:core-runtime:2.2.0] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\be62be3bbcef20ef756f78070c47ff7c\transformed\core-runtime-2.2.0\AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.profileinstaller:profileinstaller:1.4.1] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\b79cf7b6a41bca0d08d811f23d44b91b\transformed\jetified-profileinstaller-1.4.1\AndroidManifest.xml:17:1-55:12
-MERGED from [androidx.exifinterface:exifinterface:1.4.2] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\97f90a0f651b30c1d13ab45d4eaef87f\transformed\exifinterface-1.4.2\AndroidManifest.xml:2:1-7:12
-MERGED from [androidx.startup:startup-runtime:1.1.1] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\5fba1c733d7ad6074c799fdccff187ec\transformed\jetified-startup-runtime-1.1.1\AndroidManifest.xml:17:1-33:12
-MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\93856ebd5a25b881f504e0a51b04b9fb\transformed\versionedparcelable-1.1.1\AndroidManifest.xml:17:1-27:12
-MERGED from [androidx.tracing:tracing:1.2.0] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\f5eec666405266026fed737c2e6e7bee\transformed\jetified-tracing-1.2.0\AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.interpolator:interpolator:1.0.0] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\366a029f0d4aa288ec3042b8c6d12c52\transformed\interpolator-1.0.0\AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.core:core-viewtree:1.0.0] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\3257fe4aa3e0414332d483c4f7c118f0\transformed\jetified-core-viewtree-1.0.0\AndroidManifest.xml:2:1-7:12
+ADDED from C:\Users\jewgeniuk.natalia\Documents\GitHub\PikiPrint\app\src\main\AndroidManifest.xml:2:1-37:12
+INJECTED from C:\Users\jewgeniuk.natalia\Documents\GitHub\PikiPrint\app\src\main\AndroidManifest.xml:2:1-37:12
+INJECTED from C:\Users\jewgeniuk.natalia\Documents\GitHub\PikiPrint\app\src\main\AndroidManifest.xml:2:1-37:12
+INJECTED from C:\Users\jewgeniuk.natalia\Documents\GitHub\PikiPrint\app\src\main\AndroidManifest.xml:2:1-37:12
+MERGED from [androidx.compose.material3:material3-android:1.3.1] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\3d01487fdf8b35b70a514628cbb7df99\transformed\jetified-material3-release\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.compose.material:material-android:1.7.5] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\cb99207ca62dcc680a8217dbe9f3f53f\transformed\jetified-material-release\AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.compose.material:material-ripple-android:1.7.5] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\77c8972be3e1eeb579e84acd1c69329d\transformed\jetified-material-ripple-release\AndroidManifest.xml:2:1-7:12
+MERGED from [io.coil-kt.coil3:coil-compose-android:3.0.4] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\a9454de5e88134e1eabfd86f7b6d7afd\transformed\jetified-coil-compose-release\AndroidManifest.xml:2:1-7:12
+MERGED from [io.coil-kt.coil3:coil-compose-core-android:3.0.4] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\cd97a6fd1571e9b6baca8fc5417ececd\transformed\jetified-coil-compose-core-release\AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.compose.foundation:foundation-android:1.7.5] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\5a29dcb9a94f43d8fa8a759d33227c2b\transformed\jetified-foundation-release\AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.compose.animation:animation-android:1.7.5] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\21e352034b7d9d92d08e84f06350aab5\transformed\jetified-animation-release\AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.compose.foundation:foundation-layout-android:1.7.5] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\32bfadb28b0660b9e356017eed88e7ca\transformed\jetified-foundation-layout-release\AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.compose.animation:animation-core-android:1.7.5] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\a7c551bc3144574a3b45dd09b939ab08\transformed\jetified-animation-core-release\AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.compose.ui:ui-tooling-data-android:1.7.5] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\81a788f662b6c32e69f7c274e5520a6b\transformed\jetified-ui-tooling-data-release\AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.compose.ui:ui-unit-android:1.7.5] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\9b6987496b99a2f522d88155c7e70ed4\transformed\jetified-ui-unit-release\AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.compose.ui:ui-geometry-android:1.7.5] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\5e52eeb964009bdcd207ebe4728884be\transformed\jetified-ui-geometry-release\AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.compose.ui:ui-util-android:1.7.5] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\9f1c5617dc9d73a7898b476a30bcf2e5\transformed\jetified-ui-util-release\AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.compose.ui:ui-text-android:1.7.5] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\f7d99cf3ffa3fde56b574dd55ea8ed6d\transformed\jetified-ui-text-release\AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.compose.ui:ui-tooling-preview-android:1.7.5] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\22a09c9e698d2a8c3160cf72cf9401bd\transformed\jetified-ui-tooling-preview-release\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.compose.ui:ui-tooling-android:1.7.5] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\d75a8323d541f455a0325d3bc71638b3\transformed\jetified-ui-tooling-release\AndroidManifest.xml:17:1-28:12
+MERGED from [androidx.compose.ui:ui-graphics-android:1.7.5] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\2129b0c8ddc3ceaf9bd505e052cb8748\transformed\jetified-ui-graphics-release\AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.compose.material:material-icons-extended-android:1.7.5] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\b8a8eaec24abf1d490ad5b2b8f4db9ae\transformed\jetified-material-icons-extended-release\AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.compose.material:material-icons-core-android:1.7.5] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\53719241edea732a0cff137f0fb7f365\transformed\jetified-material-icons-core-release\AndroidManifest.xml:2:1-7:12
+MERGED from [com.google.accompanist:accompanist-drawablepainter:0.36.0] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\4b8615e8d3b7ccfcc8b83565344c74a5\transformed\jetified-accompanist-drawablepainter-0.36.0\AndroidManifest.xml:17:1-23:12
+MERGED from [androidx.autofill:autofill:1.0.0] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\67cd4ec4048dec245fef3451c7d7fabd\transformed\jetified-autofill-1.0.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.graphics:graphics-path:1.0.1] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\5fbed3989540715a85d9c732ded6d871\transformed\jetified-graphics-path-1.0.1\AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.emoji2:emoji2:1.3.0] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\5cba80a7cccea2bb7f121b531cbfbf64\transformed\jetified-emoji2-1.3.0\AndroidManifest.xml:17:1-35:12
+MERGED from [androidx.customview:customview-poolingcontainer:1.0.0] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\dbf1dedf2990d91438f8393bfc75fc8b\transformed\jetified-customview-poolingcontainer-1.0.0\AndroidManifest.xml:17:1-23:12
+MERGED from [io.coil-kt.coil3:coil-android:3.0.4] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\6342312c7a92a29711c7d0f755456cbe\transformed\jetified-coil-release\AndroidManifest.xml:2:1-7:12
+MERGED from [io.coil-kt.coil3:coil-core-android:3.0.4] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\bd1068504e47eb224fcf5becbd33e420\transformed\jetified-coil-core-release\AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.savedstate:savedstate-ktx:1.2.1] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\da1feb4780c2b4ce604ead31cf02fd14\transformed\jetified-savedstate-ktx-1.2.1\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.savedstate:savedstate:1.2.1] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\8c2e66e0e654592e1c9a54e3b5515507\transformed\jetified-savedstate-1.2.1\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.8.7] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\6ba7149fe3e37cc9b2e7d74f719b3be3\transformed\lifecycle-livedata-core-2.8.7\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-android:2.8.7] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\717650f965931f86a7e80cce4370125e\transformed\jetified-lifecycle-viewmodel-release\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-runtime-ktx-android:2.8.7] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\ccef479f166c10d4b2df9050fb899c08\transformed\jetified-lifecycle-runtime-ktx-release\AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.lifecycle:lifecycle-runtime-compose-android:2.8.7] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\4aedc5e7118c7f0c56b1e553e7cc94d4\transformed\jetified-lifecycle-runtime-compose-release\AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.7] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\aaaed66222837f5fe06b683804ad7536\transformed\jetified-lifecycle-viewmodel-ktx-2.8.7\AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.lifecycle:lifecycle-process:2.8.7] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\a3ecad3f9d9eaa0ba9c36d0ff9c5b269\transformed\jetified-lifecycle-process-2.8.7\AndroidManifest.xml:17:1-35:12
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate:2.8.7] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\483baef37f23a4172c8145dd63edad15\transformed\jetified-lifecycle-viewmodel-savedstate-2.8.7\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.core:core-ktx:1.13.1] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\27e98582d8beb8b732f7de0937920909\transformed\jetified-core-ktx-1.13.1\AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.appcompat:appcompat-resources:1.7.0] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\351e1632392bd5bf2efa95968e98ed2d\transformed\jetified-appcompat-resources-1.7.0\AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\c6e6e75b3dcb6deb98d7e939702e0270\transformed\vectordrawable-animated-1.1.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.vectordrawable:vectordrawable:1.1.0] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\5ef9c24400a2bc677fd8e1d4b8eb902d\transformed\vectordrawable-1.1.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.core:core:1.13.1] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\45b7547a83bc1036e5b8c208aa23767c\transformed\core-1.13.1\AndroidManifest.xml:17:1-30:12
+MERGED from [androidx.lifecycle:lifecycle-runtime-android:2.8.7] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\764014791f6a038749515a3a8d880750\transformed\jetified-lifecycle-runtime-release\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-compose-android:2.8.7] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\d8a3a9b5fe8ce4f8de38f11fabc0f760\transformed\jetified-lifecycle-viewmodel-compose-release\AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.compose.ui:ui-android:1.7.5] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\3092afab1bb306e2b35202acb4fdf817\transformed\jetified-ui-release\AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.compose.ui:ui-test-manifest:1.7.5] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\d43a48876b16137016a2ccb96a6d42f2\transformed\jetified-ui-test-manifest-1.7.5\AndroidManifest.xml:17:1-28:12
+MERGED from [androidx.activity:activity:1.8.2] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\e5a1e8dd513f98b15ddbdeb92d2161a1\transformed\jetified-activity-1.8.2\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.activity:activity-ktx:1.8.2] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\c260c6513c03b08d68d4605afa3e3f44\transformed\jetified-activity-ktx-1.8.2\AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.activity:activity-compose:1.8.2] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\616dee5bc5788630f2725e8868cbf0d7\transformed\jetified-activity-compose-1.8.2\AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.room:room-runtime:2.6.1] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\487a887db878b210a76f1edef4bc374b\transformed\room-runtime-2.6.1\AndroidManifest.xml:17:1-31:12
+MERGED from [androidx.room:room-ktx:2.6.1] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\1e405a0c3faa12173da4aac02f197700\transformed\jetified-room-ktx-2.6.1\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.sqlite:sqlite-framework:2.4.0] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\1544462c220bfc88f1a17c5fed54c41e\transformed\sqlite-framework-2.4.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.sqlite:sqlite:2.4.0] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\ff396b6a31ab0bc208d8b0ee07673e20\transformed\sqlite-2.4.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.compose.runtime:runtime-android:1.7.5] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\f6a8422674aa502453562923b6800fa9\transformed\jetified-runtime-release\AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.compose.runtime:runtime-saveable-android:1.7.5] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\c1b5f9e1a4819d0637c005c441b6f5ac\transformed\jetified-runtime-saveable-release\AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\6c9fd6cb501da714de5fd2cb4f7099f5\transformed\versionedparcelable-1.1.1\AndroidManifest.xml:17:1-27:12
+MERGED from [androidx.annotation:annotation-experimental:1.4.1] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\918f3b0ee0a9ae68c4af289ccc97935e\transformed\jetified-annotation-experimental-1.4.1\AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.arch.core:core-runtime:2.2.0] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\01d7a11d4c11be4f05c6e828ff690be5\transformed\core-runtime-2.2.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.profileinstaller:profileinstaller:1.4.1] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\56f0665797163b788f043cbb9650a4d7\transformed\jetified-profileinstaller-1.4.1\AndroidManifest.xml:17:1-55:12
+MERGED from [androidx.startup:startup-runtime:1.1.1] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\5fa006a6379a9c094738e84630a13016\transformed\jetified-startup-runtime-1.1.1\AndroidManifest.xml:17:1-33:12
+MERGED from [androidx.tracing:tracing:1.0.0] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\3d290f5dd581b49062c1d120abc631e5\transformed\jetified-tracing-1.0.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.interpolator:interpolator:1.0.0] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\52ebc72c3e60680824116fe3f9b3ede8\transformed\interpolator-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.exifinterface:exifinterface:1.3.7] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\f9eefba041b1570f51a1670f5f7b0dfe\transformed\exifinterface-1.3.7\AndroidManifest.xml:17:1-24:12
 	package
 		ADDED from C:\Users\jewgeniuk.natalia\Documents\GitHub\PikiPrint\app\src\main\AndroidManifest.xml:3:5-30
 		INJECTED from C:\Users\jewgeniuk.natalia\Documents\GitHub\PikiPrint\app\src\main\AndroidManifest.xml
@@ -93,307 +90,303 @@ ADDED from C:\Users\jewgeniuk.natalia\Documents\GitHub\PikiPrint\app\src\main\An
 	android:name
 		ADDED from C:\Users\jewgeniuk.natalia\Documents\GitHub\PikiPrint\app\src\main\AndroidManifest.xml:5:22-74
 application
-ADDED from C:\Users\jewgeniuk.natalia\Documents\GitHub\PikiPrint\app\src\main\AndroidManifest.xml:7:5-33:19
-INJECTED from C:\Users\jewgeniuk.natalia\Documents\GitHub\PikiPrint\app\src\main\AndroidManifest.xml:7:5-33:19
-MERGED from [androidx.compose.ui:ui-tooling-android:1.9.4] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\07eab2356fdd8b30e1f897d937361483\transformed\jetified-ui-tooling\AndroidManifest.xml:22:5-26:19
-MERGED from [androidx.compose.ui:ui-tooling-android:1.9.4] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\07eab2356fdd8b30e1f897d937361483\transformed\jetified-ui-tooling\AndroidManifest.xml:22:5-26:19
-MERGED from [androidx.emoji2:emoji2:1.4.0] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\6e1c25ed914ca47fbf38b33962791db4\transformed\jetified-emoji2-1.4.0\AndroidManifest.xml:23:5-33:19
-MERGED from [androidx.emoji2:emoji2:1.4.0] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\6e1c25ed914ca47fbf38b33962791db4\transformed\jetified-emoji2-1.4.0\AndroidManifest.xml:23:5-33:19
-MERGED from [androidx.lifecycle:lifecycle-process:2.9.4] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\07ab6d63eaeba314b55e278e64b94eaf\transformed\jetified-lifecycle-process-2.9.4\AndroidManifest.xml:23:5-33:19
-MERGED from [androidx.lifecycle:lifecycle-process:2.9.4] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\07ab6d63eaeba314b55e278e64b94eaf\transformed\jetified-lifecycle-process-2.9.4\AndroidManifest.xml:23:5-33:19
-MERGED from [androidx.core:core:1.16.0] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\825f9ea6f7fbcd8b5bf1919f8c51e022\transformed\core-1.16.0\AndroidManifest.xml:28:5-89
-MERGED from [androidx.core:core:1.16.0] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\825f9ea6f7fbcd8b5bf1919f8c51e022\transformed\core-1.16.0\AndroidManifest.xml:28:5-89
-MERGED from [androidx.compose.ui:ui-test-manifest:1.9.4] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\ca4e5100368c3d6ba897ea193aec0344\transformed\jetified-ui-test-manifest-1.9.4\AndroidManifest.xml:22:5-27:19
-MERGED from [androidx.compose.ui:ui-test-manifest:1.9.4] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\ca4e5100368c3d6ba897ea193aec0344\transformed\jetified-ui-test-manifest-1.9.4\AndroidManifest.xml:22:5-27:19
-MERGED from [androidx.room:room-runtime:2.6.1] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\22d015ddbcb704082af82d887b9e6a9c\transformed\room-runtime-2.6.1\AndroidManifest.xml:23:5-29:19
-MERGED from [androidx.room:room-runtime:2.6.1] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\22d015ddbcb704082af82d887b9e6a9c\transformed\room-runtime-2.6.1\AndroidManifest.xml:23:5-29:19
-MERGED from [androidx.profileinstaller:profileinstaller:1.4.1] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\b79cf7b6a41bca0d08d811f23d44b91b\transformed\jetified-profileinstaller-1.4.1\AndroidManifest.xml:23:5-53:19
-MERGED from [androidx.profileinstaller:profileinstaller:1.4.1] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\b79cf7b6a41bca0d08d811f23d44b91b\transformed\jetified-profileinstaller-1.4.1\AndroidManifest.xml:23:5-53:19
-MERGED from [androidx.startup:startup-runtime:1.1.1] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\5fba1c733d7ad6074c799fdccff187ec\transformed\jetified-startup-runtime-1.1.1\AndroidManifest.xml:25:5-31:19
-MERGED from [androidx.startup:startup-runtime:1.1.1] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\5fba1c733d7ad6074c799fdccff187ec\transformed\jetified-startup-runtime-1.1.1\AndroidManifest.xml:25:5-31:19
-MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\93856ebd5a25b881f504e0a51b04b9fb\transformed\versionedparcelable-1.1.1\AndroidManifest.xml:24:5-25:19
-MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\93856ebd5a25b881f504e0a51b04b9fb\transformed\versionedparcelable-1.1.1\AndroidManifest.xml:24:5-25:19
+ADDED from C:\Users\jewgeniuk.natalia\Documents\GitHub\PikiPrint\app\src\main\AndroidManifest.xml:7:5-35:19
+INJECTED from C:\Users\jewgeniuk.natalia\Documents\GitHub\PikiPrint\app\src\main\AndroidManifest.xml:7:5-35:19
+MERGED from [androidx.compose.ui:ui-tooling-android:1.7.5] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\d75a8323d541f455a0325d3bc71638b3\transformed\jetified-ui-tooling-release\AndroidManifest.xml:22:5-26:19
+MERGED from [androidx.compose.ui:ui-tooling-android:1.7.5] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\d75a8323d541f455a0325d3bc71638b3\transformed\jetified-ui-tooling-release\AndroidManifest.xml:22:5-26:19
+MERGED from [androidx.emoji2:emoji2:1.3.0] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\5cba80a7cccea2bb7f121b531cbfbf64\transformed\jetified-emoji2-1.3.0\AndroidManifest.xml:23:5-33:19
+MERGED from [androidx.emoji2:emoji2:1.3.0] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\5cba80a7cccea2bb7f121b531cbfbf64\transformed\jetified-emoji2-1.3.0\AndroidManifest.xml:23:5-33:19
+MERGED from [androidx.lifecycle:lifecycle-process:2.8.7] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\a3ecad3f9d9eaa0ba9c36d0ff9c5b269\transformed\jetified-lifecycle-process-2.8.7\AndroidManifest.xml:23:5-33:19
+MERGED from [androidx.lifecycle:lifecycle-process:2.8.7] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\a3ecad3f9d9eaa0ba9c36d0ff9c5b269\transformed\jetified-lifecycle-process-2.8.7\AndroidManifest.xml:23:5-33:19
+MERGED from [androidx.core:core:1.13.1] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\45b7547a83bc1036e5b8c208aa23767c\transformed\core-1.13.1\AndroidManifest.xml:28:5-89
+MERGED from [androidx.core:core:1.13.1] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\45b7547a83bc1036e5b8c208aa23767c\transformed\core-1.13.1\AndroidManifest.xml:28:5-89
+MERGED from [androidx.compose.ui:ui-test-manifest:1.7.5] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\d43a48876b16137016a2ccb96a6d42f2\transformed\jetified-ui-test-manifest-1.7.5\AndroidManifest.xml:22:5-26:19
+MERGED from [androidx.compose.ui:ui-test-manifest:1.7.5] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\d43a48876b16137016a2ccb96a6d42f2\transformed\jetified-ui-test-manifest-1.7.5\AndroidManifest.xml:22:5-26:19
+MERGED from [androidx.room:room-runtime:2.6.1] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\487a887db878b210a76f1edef4bc374b\transformed\room-runtime-2.6.1\AndroidManifest.xml:23:5-29:19
+MERGED from [androidx.room:room-runtime:2.6.1] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\487a887db878b210a76f1edef4bc374b\transformed\room-runtime-2.6.1\AndroidManifest.xml:23:5-29:19
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\6c9fd6cb501da714de5fd2cb4f7099f5\transformed\versionedparcelable-1.1.1\AndroidManifest.xml:24:5-25:19
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\6c9fd6cb501da714de5fd2cb4f7099f5\transformed\versionedparcelable-1.1.1\AndroidManifest.xml:24:5-25:19
+MERGED from [androidx.profileinstaller:profileinstaller:1.4.1] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\56f0665797163b788f043cbb9650a4d7\transformed\jetified-profileinstaller-1.4.1\AndroidManifest.xml:23:5-53:19
+MERGED from [androidx.profileinstaller:profileinstaller:1.4.1] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\56f0665797163b788f043cbb9650a4d7\transformed\jetified-profileinstaller-1.4.1\AndroidManifest.xml:23:5-53:19
+MERGED from [androidx.startup:startup-runtime:1.1.1] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\5fa006a6379a9c094738e84630a13016\transformed\jetified-startup-runtime-1.1.1\AndroidManifest.xml:25:5-31:19
+MERGED from [androidx.startup:startup-runtime:1.1.1] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\5fa006a6379a9c094738e84630a13016\transformed\jetified-startup-runtime-1.1.1\AndroidManifest.xml:25:5-31:19
 	android:extractNativeLibs
 		INJECTED from C:\Users\jewgeniuk.natalia\Documents\GitHub\PikiPrint\app\src\main\AndroidManifest.xml
 	android:appComponentFactory
-		ADDED from [androidx.core:core:1.16.0] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\825f9ea6f7fbcd8b5bf1919f8c51e022\transformed\core-1.16.0\AndroidManifest.xml:28:18-86
+		ADDED from [androidx.core:core:1.13.1] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\45b7547a83bc1036e5b8c208aa23767c\transformed\core-1.13.1\AndroidManifest.xml:28:18-86
 	android:supportsRtl
-		ADDED from C:\Users\jewgeniuk.natalia\Documents\GitHub\PikiPrint\app\src\main\AndroidManifest.xml:10:9-35
+		ADDED from C:\Users\jewgeniuk.natalia\Documents\GitHub\PikiPrint\app\src\main\AndroidManifest.xml:12:9-35
 	android:label
-		ADDED from C:\Users\jewgeniuk.natalia\Documents\GitHub\PikiPrint\app\src\main\AndroidManifest.xml:9:9-41
+		ADDED from C:\Users\jewgeniuk.natalia\Documents\GitHub\PikiPrint\app\src\main\AndroidManifest.xml:11:9-41
+	android:roundIcon
+		ADDED from C:\Users\jewgeniuk.natalia\Documents\GitHub\PikiPrint\app\src\main\AndroidManifest.xml:10:9-54
+	android:icon
+		ADDED from C:\Users\jewgeniuk.natalia\Documents\GitHub\PikiPrint\app\src\main\AndroidManifest.xml:9:9-43
 	android:allowBackup
 		ADDED from C:\Users\jewgeniuk.natalia\Documents\GitHub\PikiPrint\app\src\main\AndroidManifest.xml:8:9-35
 	android:theme
-		ADDED from C:\Users\jewgeniuk.natalia\Documents\GitHub\PikiPrint\app\src\main\AndroidManifest.xml:11:9-41
+		ADDED from C:\Users\jewgeniuk.natalia\Documents\GitHub\PikiPrint\app\src\main\AndroidManifest.xml:13:9-41
 activity#com.example.app.MainActivity
-ADDED from C:\Users\jewgeniuk.natalia\Documents\GitHub\PikiPrint\app\src\main\AndroidManifest.xml:13:9-20:20
+ADDED from C:\Users\jewgeniuk.natalia\Documents\GitHub\PikiPrint\app\src\main\AndroidManifest.xml:15:9-22:20
 	android:exported
-		ADDED from C:\Users\jewgeniuk.natalia\Documents\GitHub\PikiPrint\app\src\main\AndroidManifest.xml:15:13-36
+		ADDED from C:\Users\jewgeniuk.natalia\Documents\GitHub\PikiPrint\app\src\main\AndroidManifest.xml:17:13-36
 	android:name
-		ADDED from C:\Users\jewgeniuk.natalia\Documents\GitHub\PikiPrint\app\src\main\AndroidManifest.xml:14:13-41
+		ADDED from C:\Users\jewgeniuk.natalia\Documents\GitHub\PikiPrint\app\src\main\AndroidManifest.xml:16:13-41
 intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
-ADDED from C:\Users\jewgeniuk.natalia\Documents\GitHub\PikiPrint\app\src\main\AndroidManifest.xml:16:13-19:29
+ADDED from C:\Users\jewgeniuk.natalia\Documents\GitHub\PikiPrint\app\src\main\AndroidManifest.xml:18:13-21:29
 action#android.intent.action.MAIN
-ADDED from C:\Users\jewgeniuk.natalia\Documents\GitHub\PikiPrint\app\src\main\AndroidManifest.xml:17:17-69
+ADDED from C:\Users\jewgeniuk.natalia\Documents\GitHub\PikiPrint\app\src\main\AndroidManifest.xml:19:17-69
 	android:name
-		ADDED from C:\Users\jewgeniuk.natalia\Documents\GitHub\PikiPrint\app\src\main\AndroidManifest.xml:17:25-66
+		ADDED from C:\Users\jewgeniuk.natalia\Documents\GitHub\PikiPrint\app\src\main\AndroidManifest.xml:19:25-66
 category#android.intent.category.LAUNCHER
-ADDED from C:\Users\jewgeniuk.natalia\Documents\GitHub\PikiPrint\app\src\main\AndroidManifest.xml:18:17-77
+ADDED from C:\Users\jewgeniuk.natalia\Documents\GitHub\PikiPrint\app\src\main\AndroidManifest.xml:20:17-77
 	android:name
-		ADDED from C:\Users\jewgeniuk.natalia\Documents\GitHub\PikiPrint\app\src\main\AndroidManifest.xml:18:27-74
+		ADDED from C:\Users\jewgeniuk.natalia\Documents\GitHub\PikiPrint\app\src\main\AndroidManifest.xml:20:27-74
 meta-data#android.support.FILE_PROVIDER_PATHS
-ADDED from C:\Users\jewgeniuk.natalia\Documents\GitHub\PikiPrint\app\src\main\AndroidManifest.xml:28:13-30:54
+ADDED from C:\Users\jewgeniuk.natalia\Documents\GitHub\PikiPrint\app\src\main\AndroidManifest.xml:30:13-32:54
 	android:resource
-		ADDED from C:\Users\jewgeniuk.natalia\Documents\GitHub\PikiPrint\app\src\main\AndroidManifest.xml:30:17-51
+		ADDED from C:\Users\jewgeniuk.natalia\Documents\GitHub\PikiPrint\app\src\main\AndroidManifest.xml:32:17-51
 	android:name
-		ADDED from C:\Users\jewgeniuk.natalia\Documents\GitHub\PikiPrint\app\src\main\AndroidManifest.xml:29:17-67
+		ADDED from C:\Users\jewgeniuk.natalia\Documents\GitHub\PikiPrint\app\src\main\AndroidManifest.xml:31:17-67
 uses-sdk
 INJECTED from C:\Users\jewgeniuk.natalia\Documents\GitHub\PikiPrint\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from C:\Users\jewgeniuk.natalia\Documents\GitHub\PikiPrint\app\src\main\AndroidManifest.xml
 INJECTED from C:\Users\jewgeniuk.natalia\Documents\GitHub\PikiPrint\app\src\main\AndroidManifest.xml
-MERGED from [androidx.compose.material3:material3-android:1.3.1] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\a274800db87243823b47c6b18a22a1b4\transformed\jetified-material3-release\AndroidManifest.xml:20:5-44
-MERGED from [androidx.compose.material3:material3-android:1.3.1] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\a274800db87243823b47c6b18a22a1b4\transformed\jetified-material3-release\AndroidManifest.xml:20:5-44
-MERGED from [androidx.compose.material:material-icons-extended-android:1.7.6] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\fe9ae22f5fa8619691d244f1b3376d9a\transformed\jetified-material-icons-extended-release\AndroidManifest.xml:5:5-44
-MERGED from [androidx.compose.material:material-icons-extended-android:1.7.6] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\fe9ae22f5fa8619691d244f1b3376d9a\transformed\jetified-material-icons-extended-release\AndroidManifest.xml:5:5-44
-MERGED from [androidx.compose.material:material-icons-core-android:1.7.6] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\a1a6b20e39215ce9aa3023a298d88677\transformed\jetified-material-icons-core-release\AndroidManifest.xml:5:5-44
-MERGED from [androidx.compose.material:material-icons-core-android:1.7.6] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\a1a6b20e39215ce9aa3023a298d88677\transformed\jetified-material-icons-core-release\AndroidManifest.xml:5:5-44
-MERGED from [io.coil-kt.coil3:coil-compose-android:3.4.0] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\d9f14e8723d39d837acffb47248f5258\transformed\jetified-coil-compose\AndroidManifest.xml:5:5-44
-MERGED from [io.coil-kt.coil3:coil-compose-android:3.4.0] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\d9f14e8723d39d837acffb47248f5258\transformed\jetified-coil-compose\AndroidManifest.xml:5:5-44
-MERGED from [io.coil-kt.coil3:coil-compose-core-android:3.4.0] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\b80316a563c6cfe71449594b40540658\transformed\jetified-coil-compose-core\AndroidManifest.xml:5:5-44
-MERGED from [io.coil-kt.coil3:coil-compose-core-android:3.4.0] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\b80316a563c6cfe71449594b40540658\transformed\jetified-coil-compose-core\AndroidManifest.xml:5:5-44
-MERGED from [com.google.accompanist:accompanist-drawablepainter:0.37.3] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\c63ec12085ad4bc47458b2bd23eaacc9\transformed\jetified-accompanist-drawablepainter-0.37.3\AndroidManifest.xml:21:5-44
-MERGED from [com.google.accompanist:accompanist-drawablepainter:0.37.3] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\c63ec12085ad4bc47458b2bd23eaacc9\transformed\jetified-accompanist-drawablepainter-0.37.3\AndroidManifest.xml:21:5-44
-MERGED from [androidx.compose.foundation:foundation-layout-android:1.9.4] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\51e922f76f374725b9b455e1b9bd8fd6\transformed\jetified-foundation-layout\AndroidManifest.xml:5:5-44
-MERGED from [androidx.compose.foundation:foundation-layout-android:1.9.4] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\51e922f76f374725b9b455e1b9bd8fd6\transformed\jetified-foundation-layout\AndroidManifest.xml:5:5-44
-MERGED from [androidx.compose.animation:animation-core-android:1.9.4] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\f65d4bf5eb83f5116eef767318721027\transformed\jetified-animation-core\AndroidManifest.xml:5:5-44
-MERGED from [androidx.compose.animation:animation-core-android:1.9.4] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\f65d4bf5eb83f5116eef767318721027\transformed\jetified-animation-core\AndroidManifest.xml:5:5-44
-MERGED from [androidx.compose.animation:animation-android:1.9.4] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\474c5ae5a789d52cbf69ef7bb9a33836\transformed\jetified-animation\AndroidManifest.xml:5:5-44
-MERGED from [androidx.compose.animation:animation-android:1.9.4] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\474c5ae5a789d52cbf69ef7bb9a33836\transformed\jetified-animation\AndroidManifest.xml:5:5-44
-MERGED from [androidx.compose.ui:ui-tooling-data-android:1.9.4] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\7c4c087ec419c9b1044567bb3e461415\transformed\jetified-ui-tooling-data\AndroidManifest.xml:5:5-44
-MERGED from [androidx.compose.ui:ui-tooling-data-android:1.9.4] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\7c4c087ec419c9b1044567bb3e461415\transformed\jetified-ui-tooling-data\AndroidManifest.xml:5:5-44
-MERGED from [androidx.compose.ui:ui-tooling-preview-android:1.9.4] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\2d1461866794b6c79f0f308f5fc71fa5\transformed\jetified-ui-tooling-preview\AndroidManifest.xml:20:5-44
-MERGED from [androidx.compose.ui:ui-tooling-preview-android:1.9.4] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\2d1461866794b6c79f0f308f5fc71fa5\transformed\jetified-ui-tooling-preview\AndroidManifest.xml:20:5-44
-MERGED from [androidx.compose.ui:ui-unit-android:1.9.4] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\d8e687eac254067fcb3da6c7ab3e74c0\transformed\jetified-ui-unit\AndroidManifest.xml:5:5-44
-MERGED from [androidx.compose.ui:ui-unit-android:1.9.4] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\d8e687eac254067fcb3da6c7ab3e74c0\transformed\jetified-ui-unit\AndroidManifest.xml:5:5-44
-MERGED from [androidx.compose.ui:ui-graphics-android:1.9.4] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\56aec690eef8b2aae1f6809bdb356455\transformed\jetified-ui-graphics-release\AndroidManifest.xml:5:5-44
-MERGED from [androidx.compose.ui:ui-graphics-android:1.9.4] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\56aec690eef8b2aae1f6809bdb356455\transformed\jetified-ui-graphics-release\AndroidManifest.xml:5:5-44
-MERGED from [androidx.compose.ui:ui-geometry-android:1.9.4] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\f57ccdb8ef7c068f73e1cfd632b63f45\transformed\jetified-ui-geometry\AndroidManifest.xml:5:5-44
-MERGED from [androidx.compose.ui:ui-geometry-android:1.9.4] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\f57ccdb8ef7c068f73e1cfd632b63f45\transformed\jetified-ui-geometry\AndroidManifest.xml:5:5-44
-MERGED from [androidx.compose.ui:ui-util-android:1.9.4] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\60eebdaa127d936682f9c6d37f7259e4\transformed\jetified-ui-util\AndroidManifest.xml:5:5-44
-MERGED from [androidx.compose.ui:ui-util-android:1.9.4] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\60eebdaa127d936682f9c6d37f7259e4\transformed\jetified-ui-util\AndroidManifest.xml:5:5-44
-MERGED from [androidx.compose.ui:ui-text-android:1.9.4] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\c0d631ccafeddd0b34fa23cc1517fea7\transformed\jetified-ui-text\AndroidManifest.xml:5:5-44
-MERGED from [androidx.compose.ui:ui-text-android:1.9.4] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\c0d631ccafeddd0b34fa23cc1517fea7\transformed\jetified-ui-text\AndroidManifest.xml:5:5-44
-MERGED from [androidx.compose.ui:ui-tooling-android:1.9.4] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\07eab2356fdd8b30e1f897d937361483\transformed\jetified-ui-tooling\AndroidManifest.xml:20:5-44
-MERGED from [androidx.compose.ui:ui-tooling-android:1.9.4] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\07eab2356fdd8b30e1f897d937361483\transformed\jetified-ui-tooling\AndroidManifest.xml:20:5-44
-MERGED from [androidx.compose.material:material-android:1.7.6] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\93438eed336bd79531beb6362933df20\transformed\jetified-material-release\AndroidManifest.xml:5:5-44
-MERGED from [androidx.compose.material:material-android:1.7.6] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\93438eed336bd79531beb6362933df20\transformed\jetified-material-release\AndroidManifest.xml:5:5-44
-MERGED from [androidx.compose.material:material-ripple-android:1.7.6] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\99492f41637985b971c1c0a41c9ce1dc\transformed\jetified-material-ripple-release\AndroidManifest.xml:5:5-44
-MERGED from [androidx.compose.material:material-ripple-android:1.7.6] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\99492f41637985b971c1c0a41c9ce1dc\transformed\jetified-material-ripple-release\AndroidManifest.xml:5:5-44
-MERGED from [androidx.compose.foundation:foundation-android:1.9.4] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\662df2854b941e70ea5fa3c5ade8b76a\transformed\jetified-foundation-release\AndroidManifest.xml:5:5-44
-MERGED from [androidx.compose.foundation:foundation-android:1.9.4] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\662df2854b941e70ea5fa3c5ade8b76a\transformed\jetified-foundation-release\AndroidManifest.xml:5:5-44
-MERGED from [io.coil-kt.coil3:coil-android:3.4.0] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\1ac0f8367247e16043cb6cab75f20606\transformed\jetified-coil\AndroidManifest.xml:5:5-44
-MERGED from [io.coil-kt.coil3:coil-android:3.4.0] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\1ac0f8367247e16043cb6cab75f20606\transformed\jetified-coil\AndroidManifest.xml:5:5-44
-MERGED from [io.coil-kt.coil3:coil-core-android:3.4.0] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\2c5caf0954d33327f1e34007a1db92fe\transformed\jetified-coil-core\AndroidManifest.xml:5:5-44
-MERGED from [io.coil-kt.coil3:coil-core-android:3.4.0] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\2c5caf0954d33327f1e34007a1db92fe\transformed\jetified-coil-core\AndroidManifest.xml:5:5-44
-MERGED from [androidx.customview:customview-poolingcontainer:1.0.0] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\e3aab1400cdd74052eac1abb2ed88be0\transformed\jetified-customview-poolingcontainer-1.0.0\AndroidManifest.xml:20:5-21:38
-MERGED from [androidx.customview:customview-poolingcontainer:1.0.0] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\e3aab1400cdd74052eac1abb2ed88be0\transformed\jetified-customview-poolingcontainer-1.0.0\AndroidManifest.xml:20:5-21:38
-MERGED from [androidx.emoji2:emoji2:1.4.0] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\6e1c25ed914ca47fbf38b33962791db4\transformed\jetified-emoji2-1.4.0\AndroidManifest.xml:21:5-44
-MERGED from [androidx.emoji2:emoji2:1.4.0] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\6e1c25ed914ca47fbf38b33962791db4\transformed\jetified-emoji2-1.4.0\AndroidManifest.xml:21:5-44
-MERGED from [androidx.lifecycle:lifecycle-process:2.9.4] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\07ab6d63eaeba314b55e278e64b94eaf\transformed\jetified-lifecycle-process-2.9.4\AndroidManifest.xml:21:5-44
-MERGED from [androidx.lifecycle:lifecycle-process:2.9.4] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\07ab6d63eaeba314b55e278e64b94eaf\transformed\jetified-lifecycle-process-2.9.4\AndroidManifest.xml:21:5-44
-MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.9.4] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\7bf39c1bb27805467bba50e90b61a4de\transformed\lifecycle-livedata-core-2.9.4\AndroidManifest.xml:20:5-44
-MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.9.4] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\7bf39c1bb27805467bba50e90b61a4de\transformed\lifecycle-livedata-core-2.9.4\AndroidManifest.xml:20:5-44
-MERGED from [androidx.lifecycle:lifecycle-runtime-ktx-android:2.9.4] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\8f067bf6a39432175cc4469ce58ae516\transformed\jetified-lifecycle-runtime-ktx\AndroidManifest.xml:5:5-44
-MERGED from [androidx.lifecycle:lifecycle-runtime-ktx-android:2.9.4] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\8f067bf6a39432175cc4469ce58ae516\transformed\jetified-lifecycle-runtime-ktx\AndroidManifest.xml:5:5-44
-MERGED from [androidx.lifecycle:lifecycle-viewmodel-android:2.9.4] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\0d211fdde19892e4386dc3ca924d1c11\transformed\jetified-lifecycle-viewmodel-release\AndroidManifest.xml:20:5-44
-MERGED from [androidx.lifecycle:lifecycle-viewmodel-android:2.9.4] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\0d211fdde19892e4386dc3ca924d1c11\transformed\jetified-lifecycle-viewmodel-release\AndroidManifest.xml:20:5-44
-MERGED from [androidx.compose.runtime:runtime-annotation-android:1.9.4] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\b8f1e4580ea63efc393ba8bc5a648536\transformed\jetified-runtime-annotation\AndroidManifest.xml:5:5-44
-MERGED from [androidx.compose.runtime:runtime-annotation-android:1.9.4] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\b8f1e4580ea63efc393ba8bc5a648536\transformed\jetified-runtime-annotation\AndroidManifest.xml:5:5-44
-MERGED from [androidx.savedstate:savedstate-ktx:1.3.3] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\5044a552a2471bed9cb563bd8c1e5d6a\transformed\jetified-savedstate-ktx-1.3.3\AndroidManifest.xml:5:5-44
-MERGED from [androidx.savedstate:savedstate-ktx:1.3.3] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\5044a552a2471bed9cb563bd8c1e5d6a\transformed\jetified-savedstate-ktx-1.3.3\AndroidManifest.xml:5:5-44
-MERGED from [androidx.savedstate:savedstate-android:1.3.3] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\71cc265c7918c7888fac13eeef9a9684\transformed\jetified-savedstate-release\AndroidManifest.xml:20:5-44
-MERGED from [androidx.savedstate:savedstate-android:1.3.3] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\71cc265c7918c7888fac13eeef9a9684\transformed\jetified-savedstate-release\AndroidManifest.xml:20:5-44
-MERGED from [androidx.savedstate:savedstate-compose-android:1.3.3] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\bdf6f7914fa33bf47cbd3cbcce1a7e9a\transformed\jetified-savedstate-compose\AndroidManifest.xml:5:5-44
-MERGED from [androidx.savedstate:savedstate-compose-android:1.3.3] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\bdf6f7914fa33bf47cbd3cbcce1a7e9a\transformed\jetified-savedstate-compose\AndroidManifest.xml:5:5-44
-MERGED from [androidx.compose.runtime:runtime-android:1.9.4] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\222a3fbc320fc6f900ba63bfdfa961e9\transformed\jetified-runtime\AndroidManifest.xml:5:5-44
-MERGED from [androidx.compose.runtime:runtime-android:1.9.4] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\222a3fbc320fc6f900ba63bfdfa961e9\transformed\jetified-runtime\AndroidManifest.xml:5:5-44
-MERGED from [androidx.compose.runtime:runtime-saveable-android:1.9.4] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\1496d33bf54e18b0e9e78b720453f2bc\transformed\jetified-runtime-saveable\AndroidManifest.xml:5:5-44
-MERGED from [androidx.compose.runtime:runtime-saveable-android:1.9.4] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\1496d33bf54e18b0e9e78b720453f2bc\transformed\jetified-runtime-saveable\AndroidManifest.xml:5:5-44
-MERGED from [androidx.lifecycle:lifecycle-runtime-compose-android:2.9.4] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\7d35305a922ab4c14409458f688d229d\transformed\jetified-lifecycle-runtime-compose-release\AndroidManifest.xml:5:5-44
-MERGED from [androidx.lifecycle:lifecycle-runtime-compose-android:2.9.4] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\7d35305a922ab4c14409458f688d229d\transformed\jetified-lifecycle-runtime-compose-release\AndroidManifest.xml:5:5-44
-MERGED from [androidx.lifecycle:lifecycle-viewmodel-ktx:2.9.4] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\119c4b5d73c683e67132f29ff5152bd4\transformed\jetified-lifecycle-viewmodel-ktx-2.9.4\AndroidManifest.xml:5:5-44
-MERGED from [androidx.lifecycle:lifecycle-viewmodel-ktx:2.9.4] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\119c4b5d73c683e67132f29ff5152bd4\transformed\jetified-lifecycle-viewmodel-ktx-2.9.4\AndroidManifest.xml:5:5-44
-MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate-android:2.9.4] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\a8db4076d7e092e596acba810d3950ca\transformed\jetified-lifecycle-viewmodel-savedstate-release\AndroidManifest.xml:20:5-44
-MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate-android:2.9.4] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\a8db4076d7e092e596acba810d3950ca\transformed\jetified-lifecycle-viewmodel-savedstate-release\AndroidManifest.xml:20:5-44
-MERGED from [androidx.core:core-ktx:1.16.0] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\a05d3208737947abf5d4a2631a178283\transformed\jetified-core-ktx-1.16.0\AndroidManifest.xml:5:5-44
-MERGED from [androidx.core:core-ktx:1.16.0] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\a05d3208737947abf5d4a2631a178283\transformed\jetified-core-ktx-1.16.0\AndroidManifest.xml:5:5-44
-MERGED from [androidx.appcompat:appcompat-resources:1.7.1] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\f444c5145ced67097c9ce622f04b8b27\transformed\jetified-appcompat-resources-1.7.1\AndroidManifest.xml:5:5-44
-MERGED from [androidx.appcompat:appcompat-resources:1.7.1] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\f444c5145ced67097c9ce622f04b8b27\transformed\jetified-appcompat-resources-1.7.1\AndroidManifest.xml:5:5-44
-MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\19ff70226563b794d07cb66a39ab1657\transformed\vectordrawable-animated-1.1.0\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\19ff70226563b794d07cb66a39ab1657\transformed\vectordrawable-animated-1.1.0\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.vectordrawable:vectordrawable:1.1.0] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\8ee09b8428a762d90cf8315c80dcc9c7\transformed\vectordrawable-1.1.0\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.vectordrawable:vectordrawable:1.1.0] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\8ee09b8428a762d90cf8315c80dcc9c7\transformed\vectordrawable-1.1.0\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.autofill:autofill:1.0.0] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\96d91dd5697211e94327181236d17f61\transformed\jetified-autofill-1.0.0\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.autofill:autofill:1.0.0] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\96d91dd5697211e94327181236d17f61\transformed\jetified-autofill-1.0.0\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.graphics:graphics-path:1.0.1] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\b5dbe623ca92f8c887e7c794528e46a3\transformed\jetified-graphics-path-1.0.1\AndroidManifest.xml:5:5-44
-MERGED from [androidx.graphics:graphics-path:1.0.1] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\b5dbe623ca92f8c887e7c794528e46a3\transformed\jetified-graphics-path-1.0.1\AndroidManifest.xml:5:5-44
-MERGED from [androidx.core:core:1.16.0] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\825f9ea6f7fbcd8b5bf1919f8c51e022\transformed\core-1.16.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.core:core:1.16.0] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\825f9ea6f7fbcd8b5bf1919f8c51e022\transformed\core-1.16.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.lifecycle:lifecycle-runtime-android:2.9.4] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\f4c6db953388778f751fccdb35126897\transformed\jetified-lifecycle-runtime-release\AndroidManifest.xml:20:5-44
-MERGED from [androidx.lifecycle:lifecycle-runtime-android:2.9.4] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\f4c6db953388778f751fccdb35126897\transformed\jetified-lifecycle-runtime-release\AndroidManifest.xml:20:5-44
-MERGED from [androidx.lifecycle:lifecycle-viewmodel-compose-android:2.9.4] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\cdd1e05d6c81cce842e40645f6b1c9bb\transformed\jetified-lifecycle-viewmodel-compose-release\AndroidManifest.xml:5:5-44
-MERGED from [androidx.lifecycle:lifecycle-viewmodel-compose-android:2.9.4] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\cdd1e05d6c81cce842e40645f6b1c9bb\transformed\jetified-lifecycle-viewmodel-compose-release\AndroidManifest.xml:5:5-44
-MERGED from [androidx.compose.ui:ui-android:1.9.4] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\94ecdfeb1f7a3a99fca8346498e25fd1\transformed\jetified-ui-release\AndroidManifest.xml:5:5-44
-MERGED from [androidx.compose.ui:ui-android:1.9.4] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\94ecdfeb1f7a3a99fca8346498e25fd1\transformed\jetified-ui-release\AndroidManifest.xml:5:5-44
-MERGED from [androidx.compose.ui:ui-test-manifest:1.9.4] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\ca4e5100368c3d6ba897ea193aec0344\transformed\jetified-ui-test-manifest-1.9.4\AndroidManifest.xml:20:5-44
-MERGED from [androidx.compose.ui:ui-test-manifest:1.9.4] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\ca4e5100368c3d6ba897ea193aec0344\transformed\jetified-ui-test-manifest-1.9.4\AndroidManifest.xml:20:5-44
-MERGED from [androidx.activity:activity:1.8.2] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\a5899d2b0f4a90804ffd3e5273af0d22\transformed\jetified-activity-1.8.2\AndroidManifest.xml:20:5-44
-MERGED from [androidx.activity:activity:1.8.2] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\a5899d2b0f4a90804ffd3e5273af0d22\transformed\jetified-activity-1.8.2\AndroidManifest.xml:20:5-44
-MERGED from [androidx.activity:activity-ktx:1.8.2] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\c3d254a61e9fc06438ced5b9f098f96b\transformed\jetified-activity-ktx-1.8.2\AndroidManifest.xml:5:5-44
-MERGED from [androidx.activity:activity-ktx:1.8.2] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\c3d254a61e9fc06438ced5b9f098f96b\transformed\jetified-activity-ktx-1.8.2\AndroidManifest.xml:5:5-44
-MERGED from [androidx.activity:activity-compose:1.8.2] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\c2a1f1519988eedda56c684d8e4fca4c\transformed\jetified-activity-compose-1.8.2\AndroidManifest.xml:5:5-44
-MERGED from [androidx.activity:activity-compose:1.8.2] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\c2a1f1519988eedda56c684d8e4fca4c\transformed\jetified-activity-compose-1.8.2\AndroidManifest.xml:5:5-44
-MERGED from [androidx.room:room-runtime:2.6.1] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\22d015ddbcb704082af82d887b9e6a9c\transformed\room-runtime-2.6.1\AndroidManifest.xml:21:5-44
-MERGED from [androidx.room:room-runtime:2.6.1] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\22d015ddbcb704082af82d887b9e6a9c\transformed\room-runtime-2.6.1\AndroidManifest.xml:21:5-44
-MERGED from [androidx.room:room-ktx:2.6.1] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\b0dd746fab92d0b1dc0787450e57f0e3\transformed\jetified-room-ktx-2.6.1\AndroidManifest.xml:20:5-44
-MERGED from [androidx.room:room-ktx:2.6.1] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\b0dd746fab92d0b1dc0787450e57f0e3\transformed\jetified-room-ktx-2.6.1\AndroidManifest.xml:20:5-44
-MERGED from [androidx.sqlite:sqlite-framework:2.4.0] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\3d22b4e5a706337f01dbb38e156b736e\transformed\sqlite-framework-2.4.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.sqlite:sqlite-framework:2.4.0] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\3d22b4e5a706337f01dbb38e156b736e\transformed\sqlite-framework-2.4.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.sqlite:sqlite:2.4.0] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\44cb813e97f4e699d7e0218c7a8ea22f\transformed\sqlite-2.4.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.sqlite:sqlite:2.4.0] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\44cb813e97f4e699d7e0218c7a8ea22f\transformed\sqlite-2.4.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.annotation:annotation-experimental:1.4.1] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\337d7b3eb5b4ded2e3789e9463edbc9d\transformed\jetified-annotation-experimental-1.4.1\AndroidManifest.xml:5:5-44
-MERGED from [androidx.annotation:annotation-experimental:1.4.1] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\337d7b3eb5b4ded2e3789e9463edbc9d\transformed\jetified-annotation-experimental-1.4.1\AndroidManifest.xml:5:5-44
-MERGED from [androidx.arch.core:core-runtime:2.2.0] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\be62be3bbcef20ef756f78070c47ff7c\transformed\core-runtime-2.2.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.arch.core:core-runtime:2.2.0] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\be62be3bbcef20ef756f78070c47ff7c\transformed\core-runtime-2.2.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.profileinstaller:profileinstaller:1.4.1] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\b79cf7b6a41bca0d08d811f23d44b91b\transformed\jetified-profileinstaller-1.4.1\AndroidManifest.xml:21:5-44
-MERGED from [androidx.profileinstaller:profileinstaller:1.4.1] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\b79cf7b6a41bca0d08d811f23d44b91b\transformed\jetified-profileinstaller-1.4.1\AndroidManifest.xml:21:5-44
-MERGED from [androidx.exifinterface:exifinterface:1.4.2] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\97f90a0f651b30c1d13ab45d4eaef87f\transformed\exifinterface-1.4.2\AndroidManifest.xml:5:5-44
-MERGED from [androidx.exifinterface:exifinterface:1.4.2] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\97f90a0f651b30c1d13ab45d4eaef87f\transformed\exifinterface-1.4.2\AndroidManifest.xml:5:5-44
-MERGED from [androidx.startup:startup-runtime:1.1.1] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\5fba1c733d7ad6074c799fdccff187ec\transformed\jetified-startup-runtime-1.1.1\AndroidManifest.xml:21:5-23:41
-MERGED from [androidx.startup:startup-runtime:1.1.1] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\5fba1c733d7ad6074c799fdccff187ec\transformed\jetified-startup-runtime-1.1.1\AndroidManifest.xml:21:5-23:41
-MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\93856ebd5a25b881f504e0a51b04b9fb\transformed\versionedparcelable-1.1.1\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\93856ebd5a25b881f504e0a51b04b9fb\transformed\versionedparcelable-1.1.1\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.tracing:tracing:1.2.0] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\f5eec666405266026fed737c2e6e7bee\transformed\jetified-tracing-1.2.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.tracing:tracing:1.2.0] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\f5eec666405266026fed737c2e6e7bee\transformed\jetified-tracing-1.2.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.interpolator:interpolator:1.0.0] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\366a029f0d4aa288ec3042b8c6d12c52\transformed\interpolator-1.0.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.interpolator:interpolator:1.0.0] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\366a029f0d4aa288ec3042b8c6d12c52\transformed\interpolator-1.0.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.core:core-viewtree:1.0.0] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\3257fe4aa3e0414332d483c4f7c118f0\transformed\jetified-core-viewtree-1.0.0\AndroidManifest.xml:5:5-44
-MERGED from [androidx.core:core-viewtree:1.0.0] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\3257fe4aa3e0414332d483c4f7c118f0\transformed\jetified-core-viewtree-1.0.0\AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.material3:material3-android:1.3.1] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\3d01487fdf8b35b70a514628cbb7df99\transformed\jetified-material3-release\AndroidManifest.xml:20:5-44
+MERGED from [androidx.compose.material3:material3-android:1.3.1] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\3d01487fdf8b35b70a514628cbb7df99\transformed\jetified-material3-release\AndroidManifest.xml:20:5-44
+MERGED from [androidx.compose.material:material-android:1.7.5] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\cb99207ca62dcc680a8217dbe9f3f53f\transformed\jetified-material-release\AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.material:material-android:1.7.5] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\cb99207ca62dcc680a8217dbe9f3f53f\transformed\jetified-material-release\AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.material:material-ripple-android:1.7.5] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\77c8972be3e1eeb579e84acd1c69329d\transformed\jetified-material-ripple-release\AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.material:material-ripple-android:1.7.5] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\77c8972be3e1eeb579e84acd1c69329d\transformed\jetified-material-ripple-release\AndroidManifest.xml:5:5-44
+MERGED from [io.coil-kt.coil3:coil-compose-android:3.0.4] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\a9454de5e88134e1eabfd86f7b6d7afd\transformed\jetified-coil-compose-release\AndroidManifest.xml:5:5-44
+MERGED from [io.coil-kt.coil3:coil-compose-android:3.0.4] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\a9454de5e88134e1eabfd86f7b6d7afd\transformed\jetified-coil-compose-release\AndroidManifest.xml:5:5-44
+MERGED from [io.coil-kt.coil3:coil-compose-core-android:3.0.4] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\cd97a6fd1571e9b6baca8fc5417ececd\transformed\jetified-coil-compose-core-release\AndroidManifest.xml:5:5-44
+MERGED from [io.coil-kt.coil3:coil-compose-core-android:3.0.4] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\cd97a6fd1571e9b6baca8fc5417ececd\transformed\jetified-coil-compose-core-release\AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.foundation:foundation-android:1.7.5] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\5a29dcb9a94f43d8fa8a759d33227c2b\transformed\jetified-foundation-release\AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.foundation:foundation-android:1.7.5] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\5a29dcb9a94f43d8fa8a759d33227c2b\transformed\jetified-foundation-release\AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.animation:animation-android:1.7.5] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\21e352034b7d9d92d08e84f06350aab5\transformed\jetified-animation-release\AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.animation:animation-android:1.7.5] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\21e352034b7d9d92d08e84f06350aab5\transformed\jetified-animation-release\AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.foundation:foundation-layout-android:1.7.5] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\32bfadb28b0660b9e356017eed88e7ca\transformed\jetified-foundation-layout-release\AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.foundation:foundation-layout-android:1.7.5] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\32bfadb28b0660b9e356017eed88e7ca\transformed\jetified-foundation-layout-release\AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.animation:animation-core-android:1.7.5] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\a7c551bc3144574a3b45dd09b939ab08\transformed\jetified-animation-core-release\AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.animation:animation-core-android:1.7.5] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\a7c551bc3144574a3b45dd09b939ab08\transformed\jetified-animation-core-release\AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.ui:ui-tooling-data-android:1.7.5] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\81a788f662b6c32e69f7c274e5520a6b\transformed\jetified-ui-tooling-data-release\AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.ui:ui-tooling-data-android:1.7.5] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\81a788f662b6c32e69f7c274e5520a6b\transformed\jetified-ui-tooling-data-release\AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.ui:ui-unit-android:1.7.5] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\9b6987496b99a2f522d88155c7e70ed4\transformed\jetified-ui-unit-release\AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.ui:ui-unit-android:1.7.5] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\9b6987496b99a2f522d88155c7e70ed4\transformed\jetified-ui-unit-release\AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.ui:ui-geometry-android:1.7.5] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\5e52eeb964009bdcd207ebe4728884be\transformed\jetified-ui-geometry-release\AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.ui:ui-geometry-android:1.7.5] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\5e52eeb964009bdcd207ebe4728884be\transformed\jetified-ui-geometry-release\AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.ui:ui-util-android:1.7.5] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\9f1c5617dc9d73a7898b476a30bcf2e5\transformed\jetified-ui-util-release\AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.ui:ui-util-android:1.7.5] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\9f1c5617dc9d73a7898b476a30bcf2e5\transformed\jetified-ui-util-release\AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.ui:ui-text-android:1.7.5] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\f7d99cf3ffa3fde56b574dd55ea8ed6d\transformed\jetified-ui-text-release\AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.ui:ui-text-android:1.7.5] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\f7d99cf3ffa3fde56b574dd55ea8ed6d\transformed\jetified-ui-text-release\AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.ui:ui-tooling-preview-android:1.7.5] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\22a09c9e698d2a8c3160cf72cf9401bd\transformed\jetified-ui-tooling-preview-release\AndroidManifest.xml:20:5-44
+MERGED from [androidx.compose.ui:ui-tooling-preview-android:1.7.5] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\22a09c9e698d2a8c3160cf72cf9401bd\transformed\jetified-ui-tooling-preview-release\AndroidManifest.xml:20:5-44
+MERGED from [androidx.compose.ui:ui-tooling-android:1.7.5] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\d75a8323d541f455a0325d3bc71638b3\transformed\jetified-ui-tooling-release\AndroidManifest.xml:20:5-44
+MERGED from [androidx.compose.ui:ui-tooling-android:1.7.5] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\d75a8323d541f455a0325d3bc71638b3\transformed\jetified-ui-tooling-release\AndroidManifest.xml:20:5-44
+MERGED from [androidx.compose.ui:ui-graphics-android:1.7.5] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\2129b0c8ddc3ceaf9bd505e052cb8748\transformed\jetified-ui-graphics-release\AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.ui:ui-graphics-android:1.7.5] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\2129b0c8ddc3ceaf9bd505e052cb8748\transformed\jetified-ui-graphics-release\AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.material:material-icons-extended-android:1.7.5] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\b8a8eaec24abf1d490ad5b2b8f4db9ae\transformed\jetified-material-icons-extended-release\AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.material:material-icons-extended-android:1.7.5] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\b8a8eaec24abf1d490ad5b2b8f4db9ae\transformed\jetified-material-icons-extended-release\AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.material:material-icons-core-android:1.7.5] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\53719241edea732a0cff137f0fb7f365\transformed\jetified-material-icons-core-release\AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.material:material-icons-core-android:1.7.5] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\53719241edea732a0cff137f0fb7f365\transformed\jetified-material-icons-core-release\AndroidManifest.xml:5:5-44
+MERGED from [com.google.accompanist:accompanist-drawablepainter:0.36.0] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\4b8615e8d3b7ccfcc8b83565344c74a5\transformed\jetified-accompanist-drawablepainter-0.36.0\AndroidManifest.xml:21:5-44
+MERGED from [com.google.accompanist:accompanist-drawablepainter:0.36.0] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\4b8615e8d3b7ccfcc8b83565344c74a5\transformed\jetified-accompanist-drawablepainter-0.36.0\AndroidManifest.xml:21:5-44
+MERGED from [androidx.autofill:autofill:1.0.0] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\67cd4ec4048dec245fef3451c7d7fabd\transformed\jetified-autofill-1.0.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.autofill:autofill:1.0.0] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\67cd4ec4048dec245fef3451c7d7fabd\transformed\jetified-autofill-1.0.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.graphics:graphics-path:1.0.1] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\5fbed3989540715a85d9c732ded6d871\transformed\jetified-graphics-path-1.0.1\AndroidManifest.xml:5:5-44
+MERGED from [androidx.graphics:graphics-path:1.0.1] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\5fbed3989540715a85d9c732ded6d871\transformed\jetified-graphics-path-1.0.1\AndroidManifest.xml:5:5-44
+MERGED from [androidx.emoji2:emoji2:1.3.0] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\5cba80a7cccea2bb7f121b531cbfbf64\transformed\jetified-emoji2-1.3.0\AndroidManifest.xml:21:5-44
+MERGED from [androidx.emoji2:emoji2:1.3.0] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\5cba80a7cccea2bb7f121b531cbfbf64\transformed\jetified-emoji2-1.3.0\AndroidManifest.xml:21:5-44
+MERGED from [androidx.customview:customview-poolingcontainer:1.0.0] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\dbf1dedf2990d91438f8393bfc75fc8b\transformed\jetified-customview-poolingcontainer-1.0.0\AndroidManifest.xml:20:5-21:38
+MERGED from [androidx.customview:customview-poolingcontainer:1.0.0] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\dbf1dedf2990d91438f8393bfc75fc8b\transformed\jetified-customview-poolingcontainer-1.0.0\AndroidManifest.xml:20:5-21:38
+MERGED from [io.coil-kt.coil3:coil-android:3.0.4] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\6342312c7a92a29711c7d0f755456cbe\transformed\jetified-coil-release\AndroidManifest.xml:5:5-44
+MERGED from [io.coil-kt.coil3:coil-android:3.0.4] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\6342312c7a92a29711c7d0f755456cbe\transformed\jetified-coil-release\AndroidManifest.xml:5:5-44
+MERGED from [io.coil-kt.coil3:coil-core-android:3.0.4] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\bd1068504e47eb224fcf5becbd33e420\transformed\jetified-coil-core-release\AndroidManifest.xml:5:5-44
+MERGED from [io.coil-kt.coil3:coil-core-android:3.0.4] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\bd1068504e47eb224fcf5becbd33e420\transformed\jetified-coil-core-release\AndroidManifest.xml:5:5-44
+MERGED from [androidx.savedstate:savedstate-ktx:1.2.1] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\da1feb4780c2b4ce604ead31cf02fd14\transformed\jetified-savedstate-ktx-1.2.1\AndroidManifest.xml:20:5-44
+MERGED from [androidx.savedstate:savedstate-ktx:1.2.1] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\da1feb4780c2b4ce604ead31cf02fd14\transformed\jetified-savedstate-ktx-1.2.1\AndroidManifest.xml:20:5-44
+MERGED from [androidx.savedstate:savedstate:1.2.1] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\8c2e66e0e654592e1c9a54e3b5515507\transformed\jetified-savedstate-1.2.1\AndroidManifest.xml:20:5-44
+MERGED from [androidx.savedstate:savedstate:1.2.1] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\8c2e66e0e654592e1c9a54e3b5515507\transformed\jetified-savedstate-1.2.1\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.8.7] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\6ba7149fe3e37cc9b2e7d74f719b3be3\transformed\lifecycle-livedata-core-2.8.7\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.8.7] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\6ba7149fe3e37cc9b2e7d74f719b3be3\transformed\lifecycle-livedata-core-2.8.7\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-android:2.8.7] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\717650f965931f86a7e80cce4370125e\transformed\jetified-lifecycle-viewmodel-release\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-android:2.8.7] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\717650f965931f86a7e80cce4370125e\transformed\jetified-lifecycle-viewmodel-release\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-runtime-ktx-android:2.8.7] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\ccef479f166c10d4b2df9050fb899c08\transformed\jetified-lifecycle-runtime-ktx-release\AndroidManifest.xml:5:5-44
+MERGED from [androidx.lifecycle:lifecycle-runtime-ktx-android:2.8.7] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\ccef479f166c10d4b2df9050fb899c08\transformed\jetified-lifecycle-runtime-ktx-release\AndroidManifest.xml:5:5-44
+MERGED from [androidx.lifecycle:lifecycle-runtime-compose-android:2.8.7] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\4aedc5e7118c7f0c56b1e553e7cc94d4\transformed\jetified-lifecycle-runtime-compose-release\AndroidManifest.xml:5:5-44
+MERGED from [androidx.lifecycle:lifecycle-runtime-compose-android:2.8.7] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\4aedc5e7118c7f0c56b1e553e7cc94d4\transformed\jetified-lifecycle-runtime-compose-release\AndroidManifest.xml:5:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.7] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\aaaed66222837f5fe06b683804ad7536\transformed\jetified-lifecycle-viewmodel-ktx-2.8.7\AndroidManifest.xml:5:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.7] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\aaaed66222837f5fe06b683804ad7536\transformed\jetified-lifecycle-viewmodel-ktx-2.8.7\AndroidManifest.xml:5:5-44
+MERGED from [androidx.lifecycle:lifecycle-process:2.8.7] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\a3ecad3f9d9eaa0ba9c36d0ff9c5b269\transformed\jetified-lifecycle-process-2.8.7\AndroidManifest.xml:21:5-44
+MERGED from [androidx.lifecycle:lifecycle-process:2.8.7] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\a3ecad3f9d9eaa0ba9c36d0ff9c5b269\transformed\jetified-lifecycle-process-2.8.7\AndroidManifest.xml:21:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate:2.8.7] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\483baef37f23a4172c8145dd63edad15\transformed\jetified-lifecycle-viewmodel-savedstate-2.8.7\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate:2.8.7] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\483baef37f23a4172c8145dd63edad15\transformed\jetified-lifecycle-viewmodel-savedstate-2.8.7\AndroidManifest.xml:20:5-44
+MERGED from [androidx.core:core-ktx:1.13.1] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\27e98582d8beb8b732f7de0937920909\transformed\jetified-core-ktx-1.13.1\AndroidManifest.xml:5:5-44
+MERGED from [androidx.core:core-ktx:1.13.1] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\27e98582d8beb8b732f7de0937920909\transformed\jetified-core-ktx-1.13.1\AndroidManifest.xml:5:5-44
+MERGED from [androidx.appcompat:appcompat-resources:1.7.0] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\351e1632392bd5bf2efa95968e98ed2d\transformed\jetified-appcompat-resources-1.7.0\AndroidManifest.xml:5:5-44
+MERGED from [androidx.appcompat:appcompat-resources:1.7.0] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\351e1632392bd5bf2efa95968e98ed2d\transformed\jetified-appcompat-resources-1.7.0\AndroidManifest.xml:5:5-44
+MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\c6e6e75b3dcb6deb98d7e939702e0270\transformed\vectordrawable-animated-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\c6e6e75b3dcb6deb98d7e939702e0270\transformed\vectordrawable-animated-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.vectordrawable:vectordrawable:1.1.0] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\5ef9c24400a2bc677fd8e1d4b8eb902d\transformed\vectordrawable-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.vectordrawable:vectordrawable:1.1.0] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\5ef9c24400a2bc677fd8e1d4b8eb902d\transformed\vectordrawable-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.core:core:1.13.1] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\45b7547a83bc1036e5b8c208aa23767c\transformed\core-1.13.1\AndroidManifest.xml:20:5-44
+MERGED from [androidx.core:core:1.13.1] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\45b7547a83bc1036e5b8c208aa23767c\transformed\core-1.13.1\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-runtime-android:2.8.7] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\764014791f6a038749515a3a8d880750\transformed\jetified-lifecycle-runtime-release\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-runtime-android:2.8.7] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\764014791f6a038749515a3a8d880750\transformed\jetified-lifecycle-runtime-release\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-compose-android:2.8.7] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\d8a3a9b5fe8ce4f8de38f11fabc0f760\transformed\jetified-lifecycle-viewmodel-compose-release\AndroidManifest.xml:5:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-compose-android:2.8.7] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\d8a3a9b5fe8ce4f8de38f11fabc0f760\transformed\jetified-lifecycle-viewmodel-compose-release\AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.ui:ui-android:1.7.5] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\3092afab1bb306e2b35202acb4fdf817\transformed\jetified-ui-release\AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.ui:ui-android:1.7.5] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\3092afab1bb306e2b35202acb4fdf817\transformed\jetified-ui-release\AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.ui:ui-test-manifest:1.7.5] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\d43a48876b16137016a2ccb96a6d42f2\transformed\jetified-ui-test-manifest-1.7.5\AndroidManifest.xml:20:5-44
+MERGED from [androidx.compose.ui:ui-test-manifest:1.7.5] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\d43a48876b16137016a2ccb96a6d42f2\transformed\jetified-ui-test-manifest-1.7.5\AndroidManifest.xml:20:5-44
+MERGED from [androidx.activity:activity:1.8.2] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\e5a1e8dd513f98b15ddbdeb92d2161a1\transformed\jetified-activity-1.8.2\AndroidManifest.xml:20:5-44
+MERGED from [androidx.activity:activity:1.8.2] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\e5a1e8dd513f98b15ddbdeb92d2161a1\transformed\jetified-activity-1.8.2\AndroidManifest.xml:20:5-44
+MERGED from [androidx.activity:activity-ktx:1.8.2] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\c260c6513c03b08d68d4605afa3e3f44\transformed\jetified-activity-ktx-1.8.2\AndroidManifest.xml:5:5-44
+MERGED from [androidx.activity:activity-ktx:1.8.2] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\c260c6513c03b08d68d4605afa3e3f44\transformed\jetified-activity-ktx-1.8.2\AndroidManifest.xml:5:5-44
+MERGED from [androidx.activity:activity-compose:1.8.2] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\616dee5bc5788630f2725e8868cbf0d7\transformed\jetified-activity-compose-1.8.2\AndroidManifest.xml:5:5-44
+MERGED from [androidx.activity:activity-compose:1.8.2] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\616dee5bc5788630f2725e8868cbf0d7\transformed\jetified-activity-compose-1.8.2\AndroidManifest.xml:5:5-44
+MERGED from [androidx.room:room-runtime:2.6.1] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\487a887db878b210a76f1edef4bc374b\transformed\room-runtime-2.6.1\AndroidManifest.xml:21:5-44
+MERGED from [androidx.room:room-runtime:2.6.1] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\487a887db878b210a76f1edef4bc374b\transformed\room-runtime-2.6.1\AndroidManifest.xml:21:5-44
+MERGED from [androidx.room:room-ktx:2.6.1] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\1e405a0c3faa12173da4aac02f197700\transformed\jetified-room-ktx-2.6.1\AndroidManifest.xml:20:5-44
+MERGED from [androidx.room:room-ktx:2.6.1] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\1e405a0c3faa12173da4aac02f197700\transformed\jetified-room-ktx-2.6.1\AndroidManifest.xml:20:5-44
+MERGED from [androidx.sqlite:sqlite-framework:2.4.0] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\1544462c220bfc88f1a17c5fed54c41e\transformed\sqlite-framework-2.4.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.sqlite:sqlite-framework:2.4.0] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\1544462c220bfc88f1a17c5fed54c41e\transformed\sqlite-framework-2.4.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.sqlite:sqlite:2.4.0] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\ff396b6a31ab0bc208d8b0ee07673e20\transformed\sqlite-2.4.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.sqlite:sqlite:2.4.0] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\ff396b6a31ab0bc208d8b0ee07673e20\transformed\sqlite-2.4.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.compose.runtime:runtime-android:1.7.5] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\f6a8422674aa502453562923b6800fa9\transformed\jetified-runtime-release\AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.runtime:runtime-android:1.7.5] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\f6a8422674aa502453562923b6800fa9\transformed\jetified-runtime-release\AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.runtime:runtime-saveable-android:1.7.5] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\c1b5f9e1a4819d0637c005c441b6f5ac\transformed\jetified-runtime-saveable-release\AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.runtime:runtime-saveable-android:1.7.5] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\c1b5f9e1a4819d0637c005c441b6f5ac\transformed\jetified-runtime-saveable-release\AndroidManifest.xml:5:5-44
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\6c9fd6cb501da714de5fd2cb4f7099f5\transformed\versionedparcelable-1.1.1\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\6c9fd6cb501da714de5fd2cb4f7099f5\transformed\versionedparcelable-1.1.1\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.annotation:annotation-experimental:1.4.1] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\918f3b0ee0a9ae68c4af289ccc97935e\transformed\jetified-annotation-experimental-1.4.1\AndroidManifest.xml:5:5-44
+MERGED from [androidx.annotation:annotation-experimental:1.4.1] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\918f3b0ee0a9ae68c4af289ccc97935e\transformed\jetified-annotation-experimental-1.4.1\AndroidManifest.xml:5:5-44
+MERGED from [androidx.arch.core:core-runtime:2.2.0] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\01d7a11d4c11be4f05c6e828ff690be5\transformed\core-runtime-2.2.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.arch.core:core-runtime:2.2.0] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\01d7a11d4c11be4f05c6e828ff690be5\transformed\core-runtime-2.2.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.profileinstaller:profileinstaller:1.4.1] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\56f0665797163b788f043cbb9650a4d7\transformed\jetified-profileinstaller-1.4.1\AndroidManifest.xml:21:5-44
+MERGED from [androidx.profileinstaller:profileinstaller:1.4.1] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\56f0665797163b788f043cbb9650a4d7\transformed\jetified-profileinstaller-1.4.1\AndroidManifest.xml:21:5-44
+MERGED from [androidx.startup:startup-runtime:1.1.1] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\5fa006a6379a9c094738e84630a13016\transformed\jetified-startup-runtime-1.1.1\AndroidManifest.xml:21:5-23:41
+MERGED from [androidx.startup:startup-runtime:1.1.1] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\5fa006a6379a9c094738e84630a13016\transformed\jetified-startup-runtime-1.1.1\AndroidManifest.xml:21:5-23:41
+MERGED from [androidx.tracing:tracing:1.0.0] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\3d290f5dd581b49062c1d120abc631e5\transformed\jetified-tracing-1.0.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.tracing:tracing:1.0.0] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\3d290f5dd581b49062c1d120abc631e5\transformed\jetified-tracing-1.0.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.interpolator:interpolator:1.0.0] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\52ebc72c3e60680824116fe3f9b3ede8\transformed\interpolator-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.interpolator:interpolator:1.0.0] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\52ebc72c3e60680824116fe3f9b3ede8\transformed\interpolator-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.exifinterface:exifinterface:1.3.7] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\f9eefba041b1570f51a1670f5f7b0dfe\transformed\exifinterface-1.3.7\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.exifinterface:exifinterface:1.3.7] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\f9eefba041b1570f51a1670f5f7b0dfe\transformed\exifinterface-1.3.7\AndroidManifest.xml:20:5-22:41
 	android:targetSdkVersion
 		INJECTED from C:\Users\jewgeniuk.natalia\Documents\GitHub\PikiPrint\app\src\main\AndroidManifest.xml
 	android:minSdkVersion
 		INJECTED from C:\Users\jewgeniuk.natalia\Documents\GitHub\PikiPrint\app\src\main\AndroidManifest.xml
 activity#androidx.compose.ui.tooling.PreviewActivity
-ADDED from [androidx.compose.ui:ui-tooling-android:1.9.4] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\07eab2356fdd8b30e1f897d937361483\transformed\jetified-ui-tooling\AndroidManifest.xml:23:9-25:39
+ADDED from [androidx.compose.ui:ui-tooling-android:1.7.5] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\d75a8323d541f455a0325d3bc71638b3\transformed\jetified-ui-tooling-release\AndroidManifest.xml:23:9-25:39
 	android:exported
-		ADDED from [androidx.compose.ui:ui-tooling-android:1.9.4] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\07eab2356fdd8b30e1f897d937361483\transformed\jetified-ui-tooling\AndroidManifest.xml:25:13-36
+		ADDED from [androidx.compose.ui:ui-tooling-android:1.7.5] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\d75a8323d541f455a0325d3bc71638b3\transformed\jetified-ui-tooling-release\AndroidManifest.xml:25:13-36
 	android:name
-		ADDED from [androidx.compose.ui:ui-tooling-android:1.9.4] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\07eab2356fdd8b30e1f897d937361483\transformed\jetified-ui-tooling\AndroidManifest.xml:24:13-71
+		ADDED from [androidx.compose.ui:ui-tooling-android:1.7.5] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\d75a8323d541f455a0325d3bc71638b3\transformed\jetified-ui-tooling-release\AndroidManifest.xml:24:13-71
 provider#androidx.startup.InitializationProvider
-ADDED from [androidx.emoji2:emoji2:1.4.0] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\6e1c25ed914ca47fbf38b33962791db4\transformed\jetified-emoji2-1.4.0\AndroidManifest.xml:24:9-32:20
-MERGED from [androidx.lifecycle:lifecycle-process:2.9.4] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\07ab6d63eaeba314b55e278e64b94eaf\transformed\jetified-lifecycle-process-2.9.4\AndroidManifest.xml:24:9-32:20
-MERGED from [androidx.lifecycle:lifecycle-process:2.9.4] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\07ab6d63eaeba314b55e278e64b94eaf\transformed\jetified-lifecycle-process-2.9.4\AndroidManifest.xml:24:9-32:20
-MERGED from [androidx.profileinstaller:profileinstaller:1.4.1] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\b79cf7b6a41bca0d08d811f23d44b91b\transformed\jetified-profileinstaller-1.4.1\AndroidManifest.xml:24:9-32:20
-MERGED from [androidx.profileinstaller:profileinstaller:1.4.1] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\b79cf7b6a41bca0d08d811f23d44b91b\transformed\jetified-profileinstaller-1.4.1\AndroidManifest.xml:24:9-32:20
-MERGED from [androidx.startup:startup-runtime:1.1.1] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\5fba1c733d7ad6074c799fdccff187ec\transformed\jetified-startup-runtime-1.1.1\AndroidManifest.xml:26:9-30:34
-MERGED from [androidx.startup:startup-runtime:1.1.1] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\5fba1c733d7ad6074c799fdccff187ec\transformed\jetified-startup-runtime-1.1.1\AndroidManifest.xml:26:9-30:34
+ADDED from [androidx.emoji2:emoji2:1.3.0] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\5cba80a7cccea2bb7f121b531cbfbf64\transformed\jetified-emoji2-1.3.0\AndroidManifest.xml:24:9-32:20
+MERGED from [androidx.lifecycle:lifecycle-process:2.8.7] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\a3ecad3f9d9eaa0ba9c36d0ff9c5b269\transformed\jetified-lifecycle-process-2.8.7\AndroidManifest.xml:24:9-32:20
+MERGED from [androidx.lifecycle:lifecycle-process:2.8.7] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\a3ecad3f9d9eaa0ba9c36d0ff9c5b269\transformed\jetified-lifecycle-process-2.8.7\AndroidManifest.xml:24:9-32:20
+MERGED from [androidx.profileinstaller:profileinstaller:1.4.1] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\56f0665797163b788f043cbb9650a4d7\transformed\jetified-profileinstaller-1.4.1\AndroidManifest.xml:24:9-32:20
+MERGED from [androidx.profileinstaller:profileinstaller:1.4.1] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\56f0665797163b788f043cbb9650a4d7\transformed\jetified-profileinstaller-1.4.1\AndroidManifest.xml:24:9-32:20
+MERGED from [androidx.startup:startup-runtime:1.1.1] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\5fa006a6379a9c094738e84630a13016\transformed\jetified-startup-runtime-1.1.1\AndroidManifest.xml:26:9-30:34
+MERGED from [androidx.startup:startup-runtime:1.1.1] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\5fa006a6379a9c094738e84630a13016\transformed\jetified-startup-runtime-1.1.1\AndroidManifest.xml:26:9-30:34
 	tools:node
-		ADDED from [androidx.emoji2:emoji2:1.4.0] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\6e1c25ed914ca47fbf38b33962791db4\transformed\jetified-emoji2-1.4.0\AndroidManifest.xml:28:13-31
+		ADDED from [androidx.emoji2:emoji2:1.3.0] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\5cba80a7cccea2bb7f121b531cbfbf64\transformed\jetified-emoji2-1.3.0\AndroidManifest.xml:28:13-31
 	android:authorities
-		ADDED from [androidx.emoji2:emoji2:1.4.0] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\6e1c25ed914ca47fbf38b33962791db4\transformed\jetified-emoji2-1.4.0\AndroidManifest.xml:26:13-68
+		ADDED from [androidx.emoji2:emoji2:1.3.0] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\5cba80a7cccea2bb7f121b531cbfbf64\transformed\jetified-emoji2-1.3.0\AndroidManifest.xml:26:13-68
 	android:exported
-		ADDED from [androidx.emoji2:emoji2:1.4.0] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\6e1c25ed914ca47fbf38b33962791db4\transformed\jetified-emoji2-1.4.0\AndroidManifest.xml:27:13-37
+		ADDED from [androidx.emoji2:emoji2:1.3.0] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\5cba80a7cccea2bb7f121b531cbfbf64\transformed\jetified-emoji2-1.3.0\AndroidManifest.xml:27:13-37
 	android:name
-		ADDED from [androidx.emoji2:emoji2:1.4.0] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\6e1c25ed914ca47fbf38b33962791db4\transformed\jetified-emoji2-1.4.0\AndroidManifest.xml:25:13-67
+		ADDED from [androidx.emoji2:emoji2:1.3.0] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\5cba80a7cccea2bb7f121b531cbfbf64\transformed\jetified-emoji2-1.3.0\AndroidManifest.xml:25:13-67
 meta-data#androidx.emoji2.text.EmojiCompatInitializer
-ADDED from [androidx.emoji2:emoji2:1.4.0] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\6e1c25ed914ca47fbf38b33962791db4\transformed\jetified-emoji2-1.4.0\AndroidManifest.xml:29:13-31:52
+ADDED from [androidx.emoji2:emoji2:1.3.0] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\5cba80a7cccea2bb7f121b531cbfbf64\transformed\jetified-emoji2-1.3.0\AndroidManifest.xml:29:13-31:52
 	android:value
-		ADDED from [androidx.emoji2:emoji2:1.4.0] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\6e1c25ed914ca47fbf38b33962791db4\transformed\jetified-emoji2-1.4.0\AndroidManifest.xml:31:17-49
+		ADDED from [androidx.emoji2:emoji2:1.3.0] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\5cba80a7cccea2bb7f121b531cbfbf64\transformed\jetified-emoji2-1.3.0\AndroidManifest.xml:31:17-49
 	android:name
-		ADDED from [androidx.emoji2:emoji2:1.4.0] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\6e1c25ed914ca47fbf38b33962791db4\transformed\jetified-emoji2-1.4.0\AndroidManifest.xml:30:17-75
+		ADDED from [androidx.emoji2:emoji2:1.3.0] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\5cba80a7cccea2bb7f121b531cbfbf64\transformed\jetified-emoji2-1.3.0\AndroidManifest.xml:30:17-75
 meta-data#androidx.lifecycle.ProcessLifecycleInitializer
-ADDED from [androidx.lifecycle:lifecycle-process:2.9.4] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\07ab6d63eaeba314b55e278e64b94eaf\transformed\jetified-lifecycle-process-2.9.4\AndroidManifest.xml:29:13-31:52
+ADDED from [androidx.lifecycle:lifecycle-process:2.8.7] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\a3ecad3f9d9eaa0ba9c36d0ff9c5b269\transformed\jetified-lifecycle-process-2.8.7\AndroidManifest.xml:29:13-31:52
 	android:value
-		ADDED from [androidx.lifecycle:lifecycle-process:2.9.4] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\07ab6d63eaeba314b55e278e64b94eaf\transformed\jetified-lifecycle-process-2.9.4\AndroidManifest.xml:31:17-49
+		ADDED from [androidx.lifecycle:lifecycle-process:2.8.7] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\a3ecad3f9d9eaa0ba9c36d0ff9c5b269\transformed\jetified-lifecycle-process-2.8.7\AndroidManifest.xml:31:17-49
 	android:name
-		ADDED from [androidx.lifecycle:lifecycle-process:2.9.4] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\07ab6d63eaeba314b55e278e64b94eaf\transformed\jetified-lifecycle-process-2.9.4\AndroidManifest.xml:30:17-78
+		ADDED from [androidx.lifecycle:lifecycle-process:2.8.7] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\a3ecad3f9d9eaa0ba9c36d0ff9c5b269\transformed\jetified-lifecycle-process-2.8.7\AndroidManifest.xml:30:17-78
 permission#${applicationId}.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION
-ADDED from [androidx.core:core:1.16.0] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\825f9ea6f7fbcd8b5bf1919f8c51e022\transformed\core-1.16.0\AndroidManifest.xml:22:5-24:47
+ADDED from [androidx.core:core:1.13.1] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\45b7547a83bc1036e5b8c208aa23767c\transformed\core-1.13.1\AndroidManifest.xml:22:5-24:47
 	android:protectionLevel
-		ADDED from [androidx.core:core:1.16.0] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\825f9ea6f7fbcd8b5bf1919f8c51e022\transformed\core-1.16.0\AndroidManifest.xml:24:9-44
+		ADDED from [androidx.core:core:1.13.1] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\45b7547a83bc1036e5b8c208aa23767c\transformed\core-1.13.1\AndroidManifest.xml:24:9-44
 	android:name
-		ADDED from [androidx.core:core:1.16.0] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\825f9ea6f7fbcd8b5bf1919f8c51e022\transformed\core-1.16.0\AndroidManifest.xml:23:9-81
+		ADDED from [androidx.core:core:1.13.1] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\45b7547a83bc1036e5b8c208aa23767c\transformed\core-1.13.1\AndroidManifest.xml:23:9-81
 permission#com.example.app.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION
-ADDED from [androidx.core:core:1.16.0] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\825f9ea6f7fbcd8b5bf1919f8c51e022\transformed\core-1.16.0\AndroidManifest.xml:22:5-24:47
+ADDED from [androidx.core:core:1.13.1] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\45b7547a83bc1036e5b8c208aa23767c\transformed\core-1.13.1\AndroidManifest.xml:22:5-24:47
 	android:protectionLevel
-		ADDED from [androidx.core:core:1.16.0] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\825f9ea6f7fbcd8b5bf1919f8c51e022\transformed\core-1.16.0\AndroidManifest.xml:24:9-44
+		ADDED from [androidx.core:core:1.13.1] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\45b7547a83bc1036e5b8c208aa23767c\transformed\core-1.13.1\AndroidManifest.xml:24:9-44
 	android:name
-		ADDED from [androidx.core:core:1.16.0] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\825f9ea6f7fbcd8b5bf1919f8c51e022\transformed\core-1.16.0\AndroidManifest.xml:23:9-81
+		ADDED from [androidx.core:core:1.13.1] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\45b7547a83bc1036e5b8c208aa23767c\transformed\core-1.13.1\AndroidManifest.xml:23:9-81
 uses-permission#${applicationId}.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION
-ADDED from [androidx.core:core:1.16.0] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\825f9ea6f7fbcd8b5bf1919f8c51e022\transformed\core-1.16.0\AndroidManifest.xml:26:5-97
+ADDED from [androidx.core:core:1.13.1] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\45b7547a83bc1036e5b8c208aa23767c\transformed\core-1.13.1\AndroidManifest.xml:26:5-97
 	android:name
-		ADDED from [androidx.core:core:1.16.0] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\825f9ea6f7fbcd8b5bf1919f8c51e022\transformed\core-1.16.0\AndroidManifest.xml:26:22-94
+		ADDED from [androidx.core:core:1.13.1] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\45b7547a83bc1036e5b8c208aa23767c\transformed\core-1.13.1\AndroidManifest.xml:26:22-94
 uses-permission#com.example.app.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION
-ADDED from [androidx.core:core:1.16.0] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\825f9ea6f7fbcd8b5bf1919f8c51e022\transformed\core-1.16.0\AndroidManifest.xml:26:5-97
+ADDED from [androidx.core:core:1.13.1] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\45b7547a83bc1036e5b8c208aa23767c\transformed\core-1.13.1\AndroidManifest.xml:26:5-97
 	android:name
-		ADDED from [androidx.core:core:1.16.0] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\825f9ea6f7fbcd8b5bf1919f8c51e022\transformed\core-1.16.0\AndroidManifest.xml:26:22-94
+		ADDED from [androidx.core:core:1.13.1] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\45b7547a83bc1036e5b8c208aa23767c\transformed\core-1.13.1\AndroidManifest.xml:26:22-94
 activity#androidx.activity.ComponentActivity
-ADDED from [androidx.compose.ui:ui-test-manifest:1.9.4] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\ca4e5100368c3d6ba897ea193aec0344\transformed\jetified-ui-test-manifest-1.9.4\AndroidManifest.xml:23:9-26:79
+ADDED from [androidx.compose.ui:ui-test-manifest:1.7.5] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\d43a48876b16137016a2ccb96a6d42f2\transformed\jetified-ui-test-manifest-1.7.5\AndroidManifest.xml:23:9-25:39
 	android:exported
-		ADDED from [androidx.compose.ui:ui-test-manifest:1.9.4] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\ca4e5100368c3d6ba897ea193aec0344\transformed\jetified-ui-test-manifest-1.9.4\AndroidManifest.xml:25:13-36
-	android:theme
-		ADDED from [androidx.compose.ui:ui-test-manifest:1.9.4] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\ca4e5100368c3d6ba897ea193aec0344\transformed\jetified-ui-test-manifest-1.9.4\AndroidManifest.xml:26:13-76
+		ADDED from [androidx.compose.ui:ui-test-manifest:1.7.5] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\d43a48876b16137016a2ccb96a6d42f2\transformed\jetified-ui-test-manifest-1.7.5\AndroidManifest.xml:25:13-36
 	android:name
-		ADDED from [androidx.compose.ui:ui-test-manifest:1.9.4] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\ca4e5100368c3d6ba897ea193aec0344\transformed\jetified-ui-test-manifest-1.9.4\AndroidManifest.xml:24:13-63
+		ADDED from [androidx.compose.ui:ui-test-manifest:1.7.5] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\d43a48876b16137016a2ccb96a6d42f2\transformed\jetified-ui-test-manifest-1.7.5\AndroidManifest.xml:24:13-63
 service#androidx.room.MultiInstanceInvalidationService
-ADDED from [androidx.room:room-runtime:2.6.1] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\22d015ddbcb704082af82d887b9e6a9c\transformed\room-runtime-2.6.1\AndroidManifest.xml:24:9-28:63
+ADDED from [androidx.room:room-runtime:2.6.1] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\487a887db878b210a76f1edef4bc374b\transformed\room-runtime-2.6.1\AndroidManifest.xml:24:9-28:63
 	android:exported
-		ADDED from [androidx.room:room-runtime:2.6.1] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\22d015ddbcb704082af82d887b9e6a9c\transformed\room-runtime-2.6.1\AndroidManifest.xml:27:13-37
+		ADDED from [androidx.room:room-runtime:2.6.1] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\487a887db878b210a76f1edef4bc374b\transformed\room-runtime-2.6.1\AndroidManifest.xml:27:13-37
 	tools:ignore
-		ADDED from [androidx.room:room-runtime:2.6.1] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\22d015ddbcb704082af82d887b9e6a9c\transformed\room-runtime-2.6.1\AndroidManifest.xml:28:13-60
+		ADDED from [androidx.room:room-runtime:2.6.1] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\487a887db878b210a76f1edef4bc374b\transformed\room-runtime-2.6.1\AndroidManifest.xml:28:13-60
 	android:directBootAware
-		ADDED from [androidx.room:room-runtime:2.6.1] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\22d015ddbcb704082af82d887b9e6a9c\transformed\room-runtime-2.6.1\AndroidManifest.xml:26:13-43
+		ADDED from [androidx.room:room-runtime:2.6.1] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\487a887db878b210a76f1edef4bc374b\transformed\room-runtime-2.6.1\AndroidManifest.xml:26:13-43
 	android:name
-		ADDED from [androidx.room:room-runtime:2.6.1] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\22d015ddbcb704082af82d887b9e6a9c\transformed\room-runtime-2.6.1\AndroidManifest.xml:25:13-74
+		ADDED from [androidx.room:room-runtime:2.6.1] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\487a887db878b210a76f1edef4bc374b\transformed\room-runtime-2.6.1\AndroidManifest.xml:25:13-74
 meta-data#androidx.profileinstaller.ProfileInstallerInitializer
-ADDED from [androidx.profileinstaller:profileinstaller:1.4.1] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\b79cf7b6a41bca0d08d811f23d44b91b\transformed\jetified-profileinstaller-1.4.1\AndroidManifest.xml:29:13-31:52
+ADDED from [androidx.profileinstaller:profileinstaller:1.4.1] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\56f0665797163b788f043cbb9650a4d7\transformed\jetified-profileinstaller-1.4.1\AndroidManifest.xml:29:13-31:52
 	android:value
-		ADDED from [androidx.profileinstaller:profileinstaller:1.4.1] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\b79cf7b6a41bca0d08d811f23d44b91b\transformed\jetified-profileinstaller-1.4.1\AndroidManifest.xml:31:17-49
+		ADDED from [androidx.profileinstaller:profileinstaller:1.4.1] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\56f0665797163b788f043cbb9650a4d7\transformed\jetified-profileinstaller-1.4.1\AndroidManifest.xml:31:17-49
 	android:name
-		ADDED from [androidx.profileinstaller:profileinstaller:1.4.1] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\b79cf7b6a41bca0d08d811f23d44b91b\transformed\jetified-profileinstaller-1.4.1\AndroidManifest.xml:30:17-85
+		ADDED from [androidx.profileinstaller:profileinstaller:1.4.1] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\56f0665797163b788f043cbb9650a4d7\transformed\jetified-profileinstaller-1.4.1\AndroidManifest.xml:30:17-85
 receiver#androidx.profileinstaller.ProfileInstallReceiver
-ADDED from [androidx.profileinstaller:profileinstaller:1.4.1] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\b79cf7b6a41bca0d08d811f23d44b91b\transformed\jetified-profileinstaller-1.4.1\AndroidManifest.xml:34:9-52:20
+ADDED from [androidx.profileinstaller:profileinstaller:1.4.1] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\56f0665797163b788f043cbb9650a4d7\transformed\jetified-profileinstaller-1.4.1\AndroidManifest.xml:34:9-52:20
 	android:enabled
-		ADDED from [androidx.profileinstaller:profileinstaller:1.4.1] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\b79cf7b6a41bca0d08d811f23d44b91b\transformed\jetified-profileinstaller-1.4.1\AndroidManifest.xml:37:13-35
+		ADDED from [androidx.profileinstaller:profileinstaller:1.4.1] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\56f0665797163b788f043cbb9650a4d7\transformed\jetified-profileinstaller-1.4.1\AndroidManifest.xml:37:13-35
 	android:exported
-		ADDED from [androidx.profileinstaller:profileinstaller:1.4.1] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\b79cf7b6a41bca0d08d811f23d44b91b\transformed\jetified-profileinstaller-1.4.1\AndroidManifest.xml:38:13-36
+		ADDED from [androidx.profileinstaller:profileinstaller:1.4.1] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\56f0665797163b788f043cbb9650a4d7\transformed\jetified-profileinstaller-1.4.1\AndroidManifest.xml:38:13-36
 	android:permission
-		ADDED from [androidx.profileinstaller:profileinstaller:1.4.1] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\b79cf7b6a41bca0d08d811f23d44b91b\transformed\jetified-profileinstaller-1.4.1\AndroidManifest.xml:39:13-57
+		ADDED from [androidx.profileinstaller:profileinstaller:1.4.1] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\56f0665797163b788f043cbb9650a4d7\transformed\jetified-profileinstaller-1.4.1\AndroidManifest.xml:39:13-57
 	android:directBootAware
-		ADDED from [androidx.profileinstaller:profileinstaller:1.4.1] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\b79cf7b6a41bca0d08d811f23d44b91b\transformed\jetified-profileinstaller-1.4.1\AndroidManifest.xml:36:13-44
+		ADDED from [androidx.profileinstaller:profileinstaller:1.4.1] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\56f0665797163b788f043cbb9650a4d7\transformed\jetified-profileinstaller-1.4.1\AndroidManifest.xml:36:13-44
 	android:name
-		ADDED from [androidx.profileinstaller:profileinstaller:1.4.1] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\b79cf7b6a41bca0d08d811f23d44b91b\transformed\jetified-profileinstaller-1.4.1\AndroidManifest.xml:35:13-76
+		ADDED from [androidx.profileinstaller:profileinstaller:1.4.1] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\56f0665797163b788f043cbb9650a4d7\transformed\jetified-profileinstaller-1.4.1\AndroidManifest.xml:35:13-76
 intent-filter#action:name:androidx.profileinstaller.action.INSTALL_PROFILE
-ADDED from [androidx.profileinstaller:profileinstaller:1.4.1] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\b79cf7b6a41bca0d08d811f23d44b91b\transformed\jetified-profileinstaller-1.4.1\AndroidManifest.xml:40:13-42:29
+ADDED from [androidx.profileinstaller:profileinstaller:1.4.1] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\56f0665797163b788f043cbb9650a4d7\transformed\jetified-profileinstaller-1.4.1\AndroidManifest.xml:40:13-42:29
 action#androidx.profileinstaller.action.INSTALL_PROFILE
-ADDED from [androidx.profileinstaller:profileinstaller:1.4.1] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\b79cf7b6a41bca0d08d811f23d44b91b\transformed\jetified-profileinstaller-1.4.1\AndroidManifest.xml:41:17-91
+ADDED from [androidx.profileinstaller:profileinstaller:1.4.1] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\56f0665797163b788f043cbb9650a4d7\transformed\jetified-profileinstaller-1.4.1\AndroidManifest.xml:41:17-91
 	android:name
-		ADDED from [androidx.profileinstaller:profileinstaller:1.4.1] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\b79cf7b6a41bca0d08d811f23d44b91b\transformed\jetified-profileinstaller-1.4.1\AndroidManifest.xml:41:25-88
+		ADDED from [androidx.profileinstaller:profileinstaller:1.4.1] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\56f0665797163b788f043cbb9650a4d7\transformed\jetified-profileinstaller-1.4.1\AndroidManifest.xml:41:25-88
 intent-filter#action:name:androidx.profileinstaller.action.SKIP_FILE
-ADDED from [androidx.profileinstaller:profileinstaller:1.4.1] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\b79cf7b6a41bca0d08d811f23d44b91b\transformed\jetified-profileinstaller-1.4.1\AndroidManifest.xml:43:13-45:29
+ADDED from [androidx.profileinstaller:profileinstaller:1.4.1] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\56f0665797163b788f043cbb9650a4d7\transformed\jetified-profileinstaller-1.4.1\AndroidManifest.xml:43:13-45:29
 action#androidx.profileinstaller.action.SKIP_FILE
-ADDED from [androidx.profileinstaller:profileinstaller:1.4.1] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\b79cf7b6a41bca0d08d811f23d44b91b\transformed\jetified-profileinstaller-1.4.1\AndroidManifest.xml:44:17-85
+ADDED from [androidx.profileinstaller:profileinstaller:1.4.1] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\56f0665797163b788f043cbb9650a4d7\transformed\jetified-profileinstaller-1.4.1\AndroidManifest.xml:44:17-85
 	android:name
-		ADDED from [androidx.profileinstaller:profileinstaller:1.4.1] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\b79cf7b6a41bca0d08d811f23d44b91b\transformed\jetified-profileinstaller-1.4.1\AndroidManifest.xml:44:25-82
+		ADDED from [androidx.profileinstaller:profileinstaller:1.4.1] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\56f0665797163b788f043cbb9650a4d7\transformed\jetified-profileinstaller-1.4.1\AndroidManifest.xml:44:25-82
 intent-filter#action:name:androidx.profileinstaller.action.SAVE_PROFILE
-ADDED from [androidx.profileinstaller:profileinstaller:1.4.1] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\b79cf7b6a41bca0d08d811f23d44b91b\transformed\jetified-profileinstaller-1.4.1\AndroidManifest.xml:46:13-48:29
+ADDED from [androidx.profileinstaller:profileinstaller:1.4.1] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\56f0665797163b788f043cbb9650a4d7\transformed\jetified-profileinstaller-1.4.1\AndroidManifest.xml:46:13-48:29
 action#androidx.profileinstaller.action.SAVE_PROFILE
-ADDED from [androidx.profileinstaller:profileinstaller:1.4.1] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\b79cf7b6a41bca0d08d811f23d44b91b\transformed\jetified-profileinstaller-1.4.1\AndroidManifest.xml:47:17-88
+ADDED from [androidx.profileinstaller:profileinstaller:1.4.1] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\56f0665797163b788f043cbb9650a4d7\transformed\jetified-profileinstaller-1.4.1\AndroidManifest.xml:47:17-88
 	android:name
-		ADDED from [androidx.profileinstaller:profileinstaller:1.4.1] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\b79cf7b6a41bca0d08d811f23d44b91b\transformed\jetified-profileinstaller-1.4.1\AndroidManifest.xml:47:25-85
+		ADDED from [androidx.profileinstaller:profileinstaller:1.4.1] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\56f0665797163b788f043cbb9650a4d7\transformed\jetified-profileinstaller-1.4.1\AndroidManifest.xml:47:25-85
 intent-filter#action:name:androidx.profileinstaller.action.BENCHMARK_OPERATION
-ADDED from [androidx.profileinstaller:profileinstaller:1.4.1] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\b79cf7b6a41bca0d08d811f23d44b91b\transformed\jetified-profileinstaller-1.4.1\AndroidManifest.xml:49:13-51:29
+ADDED from [androidx.profileinstaller:profileinstaller:1.4.1] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\56f0665797163b788f043cbb9650a4d7\transformed\jetified-profileinstaller-1.4.1\AndroidManifest.xml:49:13-51:29
 action#androidx.profileinstaller.action.BENCHMARK_OPERATION
-ADDED from [androidx.profileinstaller:profileinstaller:1.4.1] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\b79cf7b6a41bca0d08d811f23d44b91b\transformed\jetified-profileinstaller-1.4.1\AndroidManifest.xml:50:17-95
+ADDED from [androidx.profileinstaller:profileinstaller:1.4.1] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\56f0665797163b788f043cbb9650a4d7\transformed\jetified-profileinstaller-1.4.1\AndroidManifest.xml:50:17-95
 	android:name
-		ADDED from [androidx.profileinstaller:profileinstaller:1.4.1] C:\Users\jewgeniuk.natalia\.gradle\caches\transforms-3\b79cf7b6a41bca0d08d811f23d44b91b\transformed\jetified-profileinstaller-1.4.1\AndroidManifest.xml:50:25-92
+		ADDED from [androidx.profileinstaller:profileinstaller:1.4.1] C:\Users\jewgeniuk.natalia\.gradle\caches\8.10.2\transforms\56f0665797163b788f043cbb9650a4d7\transformed\jetified-profileinstaller-1.4.1\AndroidManifest.xml:50:25-92

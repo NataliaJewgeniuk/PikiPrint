@@ -106,6 +106,8 @@ import com.example.app.utils.shareQuoteImage
 import com.example.app.viewmodels.AppViewModel
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
+import androidx.compose.ui.layout.ContentScale
+import coil3.compose.AsyncImage
 
 /*************** Formato argentino visible ***************/
 /*
@@ -1307,6 +1309,7 @@ private fun DetailMockupTopBar(
 }
 
 /*************** Hero visual del producto ***************/
+/*************** Hero visual del producto ***************/
 @Composable
 private fun ProductHeroPlaceholder(
     order: Order
@@ -1333,48 +1336,57 @@ private fun ProductHeroPlaceholder(
             .kawaiiShadow(),
         contentAlignment = Alignment.Center
     ) {
-        Column(
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
-            Box(
-                modifier = Modifier
-                    .size(112.dp)
-                    .clip(RoundedCornerShape(36.dp))
-                    .background(PikiWhite.copy(alpha = 0.72f))
-                    .border(
-                        width = 2.dp,
-                        color = PikiClay.copy(alpha = 0.18f),
-                        shape = RoundedCornerShape(36.dp)
-                    ),
-                contentAlignment = Alignment.Center
+        if (order.imageUri.isNotBlank()) {
+            AsyncImage(
+                model = order.imageUri,
+                contentDescription = "Imagen del pedido",
+                modifier = Modifier.fillMaxSize(),
+                contentScale = ContentScale.Crop
+            )
+        } else {
+            Column(
+                horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                Icon(
-                    imageVector = Icons.Outlined.Inventory2,
-                    contentDescription = null,
-                    tint = PikiClay.copy(alpha = 0.68f),
-                    modifier = Modifier.size(48.dp)
+                Box(
+                    modifier = Modifier
+                        .size(112.dp)
+                        .clip(RoundedCornerShape(36.dp))
+                        .background(PikiWhite.copy(alpha = 0.72f))
+                        .border(
+                            width = 2.dp,
+                            color = PikiClay.copy(alpha = 0.18f),
+                            shape = RoundedCornerShape(36.dp)
+                        ),
+                    contentAlignment = Alignment.Center
+                ) {
+                    Icon(
+                        imageVector = Icons.Outlined.Inventory2,
+                        contentDescription = null,
+                        tint = PikiClay.copy(alpha = 0.68f),
+                        modifier = Modifier.size(48.dp)
+                    )
+                }
+
+                Spacer(modifier = Modifier.height(14.dp))
+
+                Text(
+                    text = order.title,
+                    style = MaterialTheme.typography.titleMedium,
+                    color = PikiWood,
+                    fontWeight = FontWeight.ExtraBold,
+                    maxLines = 1,
+                    overflow = TextOverflow.Ellipsis
+                )
+
+                Spacer(modifier = Modifier.height(4.dp))
+
+                Text(
+                    text = "Espacio reservado para la foto del producto",
+                    style = MaterialTheme.typography.labelSmall,
+                    color = PikiMutedText,
+                    fontWeight = FontWeight.ExtraBold
                 )
             }
-
-            Spacer(modifier = Modifier.height(14.dp))
-
-            Text(
-                text = order.title,
-                style = MaterialTheme.typography.titleMedium,
-                color = PikiWood,
-                fontWeight = FontWeight.ExtraBold,
-                maxLines = 1,
-                overflow = TextOverflow.Ellipsis
-            )
-
-            Spacer(modifier = Modifier.height(4.dp))
-
-            Text(
-                text = "Espacio reservado para la foto del producto",
-                style = MaterialTheme.typography.labelSmall,
-                color = PikiMutedText,
-                fontWeight = FontWeight.ExtraBold
-            )
         }
     }
 }
@@ -1696,6 +1708,7 @@ private fun TechnicalMiniLine(
 }
 
 /*************** Imagen grande / placeholder ***************/
+/*************** Imagen grande / placeholder ***************/
 @Composable
 private fun ProductLargePreview(
     order: Order
@@ -1721,15 +1734,25 @@ private fun ProductLargePreview(
             ),
         contentAlignment = Alignment.Center
     ) {
-        Icon(
-            imageVector = Icons.Outlined.Inventory2,
-            contentDescription = null,
-            tint = PikiClay.copy(alpha = 0.58f),
-            modifier = Modifier.size(54.dp)
-        )
+        if (order.imageUri.isNotBlank()) {
+            AsyncImage(
+                model = order.imageUri,
+                contentDescription = "Imagen del pedido",
+                modifier = Modifier.fillMaxSize(),
+                contentScale = ContentScale.Crop
+            )
+        } else {
+            Icon(
+                imageVector = Icons.Outlined.Inventory2,
+                contentDescription = null,
+                tint = PikiClay.copy(alpha = 0.58f),
+                modifier = Modifier.size(54.dp)
+            )
+        }
     }
 }
 
+/*************** Imagen pequeña / placeholder ***************/
 /*************** Imagen pequeña / placeholder ***************/
 @Composable
 private fun ProductSmallPreview(
@@ -1755,12 +1778,21 @@ private fun ProductSmallPreview(
             ),
         contentAlignment = Alignment.Center
     ) {
-        Icon(
-            imageVector = Icons.Outlined.Inventory2,
-            contentDescription = null,
-            tint = PikiClay.copy(alpha = 0.62f),
-            modifier = Modifier.size(34.dp)
-        )
+        if (order.imageUri.isNotBlank()) {
+            AsyncImage(
+                model = order.imageUri,
+                contentDescription = "Imagen del pedido",
+                modifier = Modifier.fillMaxSize(),
+                contentScale = ContentScale.Crop
+            )
+        } else {
+            Icon(
+                imageVector = Icons.Outlined.Inventory2,
+                contentDescription = null,
+                tint = PikiClay.copy(alpha = 0.62f),
+                modifier = Modifier.size(34.dp)
+            )
+        }
     }
 }
 

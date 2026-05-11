@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="ic_launcher_background">#EAD3D3</color>
+    <color name="piki_border">#E9E1D2</color>
+    <color name="piki_clay">#B98B5F</color>
+    <color name="piki_leaf">#A8D5A2</color>
+    <color name="piki_leaf_dark">#6E9A6A</color>
+    <color name="piki_paper">#FDF5E4</color>
+    <color name="piki_paper_dark">#F4EEDC</color>
+    <color name="piki_paper_light">#FFFDF8</color>
+    <color name="piki_sky">#B7DFF0</color>
+    <color name="piki_sky_dark">#4B7285</color>
+    <color name="piki_wood">#4A3B2A</color>
+    <color name="piki_wood_soft">#8B6B4A</color>
+    <string name="app_name">3D Kawaii Tracker</string>
+    <style name="Theme.App" parent="android:Theme.Material.Light.NoActionBar"/>
+</resources>
