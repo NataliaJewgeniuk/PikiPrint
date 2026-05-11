@@ -1,15 +1,23 @@
 [
     {
+        "merged": "C:\\Users\\jewgeniuk.natalia\\.gradle\\daemon\\8.10.2\\com.example.app-debug-54:\\drawable_piki_empty_orders.png.flat",
+        "source": "C:\\Users\\jewgeniuk.natalia\\.gradle\\daemon\\8.10.2\\com.example.app-main-56:\\drawable\\piki_empty_orders.png"
+    },
+    {
         "merged": "C:\\Users\\jewgeniuk.natalia\\.gradle\\daemon\\8.10.2\\com.example.app-debug-54:\\mipmap-xxhdpi_ic_launcher.webp.flat",
         "source": "C:\\Users\\jewgeniuk.natalia\\.gradle\\daemon\\8.10.2\\com.example.app-main-56:\\mipmap-xxhdpi\\ic_launcher.webp"
     },
     {
-        "merged": "com.example.app-debug-54:/mipmap-xhdpi_ic_launcher_monochrome.webp.flat",
-        "source": "com.example.app-main-56:/mipmap-xhdpi/ic_launcher_monochrome.webp"
+        "merged": "C:\\Users\\jewgeniuk.natalia\\.gradle\\daemon\\8.10.2\\com.example.app-debug-54:\\drawable_piki_status_pending.png.flat",
+        "source": "C:\\Users\\jewgeniuk.natalia\\.gradle\\daemon\\8.10.2\\com.example.app-main-56:\\drawable\\piki_status_pending.png"
     },
     {
         "merged": "C:\\Users\\jewgeniuk.natalia\\.gradle\\daemon\\8.10.2\\com.example.app-debug-54:\\mipmap-hdpi_ic_launcher_round.webp.flat",
         "source": "C:\\Users\\jewgeniuk.natalia\\.gradle\\daemon\\8.10.2\\com.example.app-main-56:\\mipmap-hdpi\\ic_launcher_round.webp"
+    },
+    {
+        "merged": "C:\\Users\\jewgeniuk.natalia\\.gradle\\daemon\\8.10.2\\com.example.app-debug-54:\\drawable_caratula.png.flat",
+        "source": "C:\\Users\\jewgeniuk.natalia\\.gradle\\daemon\\8.10.2\\com.example.app-main-56:\\drawable\\caratula.png"
     },
     {
         "merged": "C:\\Users\\jewgeniuk.natalia\\.gradle\\daemon\\8.10.2\\com.example.app-debug-54:\\mipmap-hdpi_ic_launcher_foreground.webp.flat",
@@ -40,12 +48,12 @@
         "source": "C:\\Users\\jewgeniuk.natalia\\.gradle\\daemon\\8.10.2\\com.example.app-main-56:\\font\\plus_jakarta_sans_semibold.ttf"
     },
     {
-        "merged": "com.example.app-debug-54:/mipmap-anydpi-v26_ic_launcher_round.xml.flat",
-        "source": "com.example.app-main-56:/mipmap-anydpi-v26/ic_launcher_round.xml"
+        "merged": "C:\\Users\\jewgeniuk.natalia\\.gradle\\daemon\\8.10.2\\com.example.app-debug-54:\\mipmap-mdpi_ic_launcher_monochrome.webp.flat",
+        "source": "C:\\Users\\jewgeniuk.natalia\\.gradle\\daemon\\8.10.2\\com.example.app-main-56:\\mipmap-mdpi\\ic_launcher_monochrome.webp"
     },
     {
-        "merged": "com.example.app-debug-54:/mipmap-anydpi-v26_ic_launcher.xml.flat",
-        "source": "com.example.app-main-56:/mipmap-anydpi-v26/ic_launcher.xml"
+        "merged": "C:\\Users\\jewgeniuk.natalia\\.gradle\\daemon\\8.10.2\\com.example.app-debug-54:\\mipmap-hdpi_ic_launcher_monochrome.webp.flat",
+        "source": "C:\\Users\\jewgeniuk.natalia\\.gradle\\daemon\\8.10.2\\com.example.app-main-56:\\mipmap-hdpi\\ic_launcher_monochrome.webp"
     },
     {
         "merged": "C:\\Users\\jewgeniuk.natalia\\.gradle\\daemon\\8.10.2\\com.example.app-debug-54:\\font_plus_jakarta_sans_extrabolditalic.ttf.flat",
@@ -56,28 +64,32 @@
         "source": "C:\\Users\\jewgeniuk.natalia\\.gradle\\daemon\\8.10.2\\com.example.app-main-56:\\font\\lexend_extrabold.ttf"
     },
     {
-        "merged": "C:\\Users\\jewgeniuk.natalia\\.gradle\\daemon\\8.10.2\\com.example.app-debug-54:\\font_plus_jakarta_sans_mediumitalic.ttf.flat",
-        "source": "C:\\Users\\jewgeniuk.natalia\\.gradle\\daemon\\8.10.2\\com.example.app-main-56:\\font\\plus_jakarta_sans_mediumitalic.ttf"
-    },
-    {
-        "merged": "C:\\Users\\jewgeniuk.natalia\\.gradle\\daemon\\8.10.2\\com.example.app-debug-54:\\mipmap-xhdpi_ic_launcher_foreground.webp.flat",
-        "source": "C:\\Users\\jewgeniuk.natalia\\.gradle\\daemon\\8.10.2\\com.example.app-main-56:\\mipmap-xhdpi\\ic_launcher_foreground.webp"
-    },
-    {
-        "merged": "C:\\Users\\jewgeniuk.natalia\\.gradle\\daemon\\8.10.2\\com.example.app-debug-54:\\mipmap-xxhdpi_ic_launcher_foreground.webp.flat",
-        "source": "C:\\Users\\jewgeniuk.natalia\\.gradle\\daemon\\8.10.2\\com.example.app-main-56:\\mipmap-xxhdpi\\ic_launcher_foreground.webp"
+        "merged": "C:\\Users\\jewgeniuk.natalia\\.gradle\\daemon\\8.10.2\\com.example.app-debug-54:\\mipmap-xxhdpi_ic_launcher_monochrome.webp.flat",
+        "source": "C:\\Users\\jewgeniuk.natalia\\.gradle\\daemon\\8.10.2\\com.example.app-main-56:\\mipmap-xxhdpi\\ic_launcher_monochrome.webp"
     },
     {
         "merged": "C:\\Users\\jewgeniuk.natalia\\.gradle\\daemon\\8.10.2\\com.example.app-debug-54:\\drawable_dino_calculadora.png.flat",
         "source": "C:\\Users\\jewgeniuk.natalia\\.gradle\\daemon\\8.10.2\\com.example.app-main-56:\\drawable\\dino_calculadora.png"
     },
     {
-        "merged": "C:\\Users\\jewgeniuk.natalia\\.gradle\\daemon\\8.10.2\\com.example.app-debug-54:\\xml_data_extraction_rules.xml.flat",
-        "source": "C:\\Users\\jewgeniuk.natalia\\.gradle\\daemon\\8.10.2\\com.example.app-main-56:\\xml\\data_extraction_rules.xml"
+        "merged": "C:\\Users\\jewgeniuk.natalia\\.gradle\\daemon\\8.10.2\\com.example.app-debug-54:\\mipmap-xxhdpi_ic_launcher_foreground.webp.flat",
+        "source": "C:\\Users\\jewgeniuk.natalia\\.gradle\\daemon\\8.10.2\\com.example.app-main-56:\\mipmap-xxhdpi\\ic_launcher_foreground.webp"
     },
     {
-        "merged": "com.example.app-debug-54:/mipmap-xxhdpi_ic_launcher_monochrome.webp.flat",
-        "source": "com.example.app-main-56:/mipmap-xxhdpi/ic_launcher_monochrome.webp"
+        "merged": "C:\\Users\\jewgeniuk.natalia\\.gradle\\daemon\\8.10.2\\com.example.app-debug-54:\\mipmap-xhdpi_ic_launcher_foreground.webp.flat",
+        "source": "C:\\Users\\jewgeniuk.natalia\\.gradle\\daemon\\8.10.2\\com.example.app-main-56:\\mipmap-xhdpi\\ic_launcher_foreground.webp"
+    },
+    {
+        "merged": "C:\\Users\\jewgeniuk.natalia\\.gradle\\daemon\\8.10.2\\com.example.app-debug-54:\\font_plus_jakarta_sans_mediumitalic.ttf.flat",
+        "source": "C:\\Users\\jewgeniuk.natalia\\.gradle\\daemon\\8.10.2\\com.example.app-main-56:\\font\\plus_jakarta_sans_mediumitalic.ttf"
+    },
+    {
+        "merged": "C:\\Users\\jewgeniuk.natalia\\.gradle\\daemon\\8.10.2\\com.example.app-debug-54:\\drawable_piki_order_placeholder.png.flat",
+        "source": "C:\\Users\\jewgeniuk.natalia\\.gradle\\daemon\\8.10.2\\com.example.app-main-56:\\drawable\\piki_order_placeholder.png"
+    },
+    {
+        "merged": "C:\\Users\\jewgeniuk.natalia\\.gradle\\daemon\\8.10.2\\com.example.app-debug-54:\\xml_data_extraction_rules.xml.flat",
+        "source": "C:\\Users\\jewgeniuk.natalia\\.gradle\\daemon\\8.10.2\\com.example.app-main-56:\\xml\\data_extraction_rules.xml"
     },
     {
         "merged": "C:\\Users\\jewgeniuk.natalia\\.gradle\\daemon\\8.10.2\\com.example.app-debug-54:\\font_lexend_lack.ttf.flat",
@@ -108,12 +120,24 @@
         "source": "C:\\Users\\jewgeniuk.natalia\\.gradle\\daemon\\8.10.2\\com.example.app-main-56:\\mipmap-xhdpi\\ic_launcher.webp"
     },
     {
+        "merged": "com.example.app-debug-54:/drawable_piki_status_done.png.flat",
+        "source": "com.example.app-main-56:/drawable/piki_status_done.png"
+    },
+    {
+        "merged": "C:\\Users\\jewgeniuk.natalia\\.gradle\\daemon\\8.10.2\\com.example.app-debug-54:\\drawable_piki_header.png.flat",
+        "source": "C:\\Users\\jewgeniuk.natalia\\.gradle\\daemon\\8.10.2\\com.example.app-main-56:\\drawable\\piki_header.png"
+    },
+    {
         "merged": "C:\\Users\\jewgeniuk.natalia\\.gradle\\daemon\\8.10.2\\com.example.app-debug-54:\\mipmap-anydpi-v26_ic_launcher.xml.flat",
         "source": "C:\\Users\\jewgeniuk.natalia\\.gradle\\daemon\\8.10.2\\com.example.app-main-56:\\mipmap-anydpi-v26\\ic_launcher.xml"
     },
     {
         "merged": "C:\\Users\\jewgeniuk.natalia\\.gradle\\daemon\\8.10.2\\com.example.app-debug-54:\\mipmap-mdpi_ic_launcher_foreground.webp.flat",
         "source": "C:\\Users\\jewgeniuk.natalia\\.gradle\\daemon\\8.10.2\\com.example.app-main-56:\\mipmap-mdpi\\ic_launcher_foreground.webp"
+    },
+    {
+        "merged": "com.example.app-debug-54:/drawable_piki_status_printing.png.flat",
+        "source": "com.example.app-main-56:/drawable/piki_status_printing.png"
     },
     {
         "merged": "C:\\Users\\jewgeniuk.natalia\\.gradle\\daemon\\8.10.2\\com.example.app-debug-54:\\mipmap-anydpi-v26_ic_launcher_round.xml.flat",
@@ -124,8 +148,12 @@
         "source": "C:\\Users\\jewgeniuk.natalia\\.gradle\\daemon\\8.10.2\\com.example.app-main-56:\\font\\lexend_medium.ttf"
     },
     {
-        "merged": "com.example.app-debug-54:/mipmap-hdpi_ic_launcher_monochrome.webp.flat",
-        "source": "com.example.app-main-56:/mipmap-hdpi/ic_launcher_monochrome.webp"
+        "merged": "com.example.app-debug-54:/drawable_piki_status_canceled.png.flat",
+        "source": "com.example.app-main-56:/drawable/piki_status_canceled.png"
+    },
+    {
+        "merged": "C:\\Users\\jewgeniuk.natalia\\.gradle\\daemon\\8.10.2\\com.example.app-debug-54:\\drawable_piki_status_done.png.flat",
+        "source": "C:\\Users\\jewgeniuk.natalia\\.gradle\\daemon\\8.10.2\\com.example.app-main-56:\\drawable\\piki_status_done.png"
     },
     {
         "merged": "C:\\Users\\jewgeniuk.natalia\\.gradle\\daemon\\8.10.2\\com.example.app-debug-54:\\xml_file_paths.xml.flat",
@@ -140,8 +168,8 @@
         "source": "C:\\Users\\jewgeniuk.natalia\\.gradle\\daemon\\8.10.2\\com.example.app-main-56:\\font\\plus_jakarta_sans_regular.ttf"
     },
     {
-        "merged": "com.example.app-debug-54:/mipmap-mdpi_ic_launcher_monochrome.webp.flat",
-        "source": "com.example.app-main-56:/mipmap-mdpi/ic_launcher_monochrome.webp"
+        "merged": "C:\\Users\\jewgeniuk.natalia\\.gradle\\daemon\\8.10.2\\com.example.app-debug-54:\\drawable_piki_status_printing.png.flat",
+        "source": "C:\\Users\\jewgeniuk.natalia\\.gradle\\daemon\\8.10.2\\com.example.app-main-56:\\drawable\\piki_status_printing.png"
     },
     {
         "merged": "C:\\Users\\jewgeniuk.natalia\\.gradle\\daemon\\8.10.2\\com.example.app-debug-54:\\font_plus_jakarta_sans_bold.ttf.flat",
@@ -152,12 +180,24 @@
         "source": "C:\\Users\\jewgeniuk.natalia\\.gradle\\daemon\\8.10.2\\com.example.app-main-56:\\font\\plus_jakarta_sans_lightitalic.ttf"
     },
     {
+        "merged": "com.example.app-debug-54:/drawable_piki_status_pending.png.flat",
+        "source": "com.example.app-main-56:/drawable/piki_status_pending.png"
+    },
+    {
         "merged": "C:\\Users\\jewgeniuk.natalia\\.gradle\\daemon\\8.10.2\\com.example.app-debug-54:\\font_plus_jakarta_sans_bolditalic.ttf.flat",
         "source": "C:\\Users\\jewgeniuk.natalia\\.gradle\\daemon\\8.10.2\\com.example.app-main-56:\\font\\plus_jakarta_sans_bolditalic.ttf"
     },
     {
         "merged": "C:\\Users\\jewgeniuk.natalia\\.gradle\\daemon\\8.10.2\\com.example.app-debug-54:\\font_plus_jakarta_sans_extralightitalic.ttf.flat",
         "source": "C:\\Users\\jewgeniuk.natalia\\.gradle\\daemon\\8.10.2\\com.example.app-main-56:\\font\\plus_jakarta_sans_extralightitalic.ttf"
+    },
+    {
+        "merged": "C:\\Users\\jewgeniuk.natalia\\.gradle\\daemon\\8.10.2\\com.example.app-debug-54:\\drawable_piki_status_canceled.png.flat",
+        "source": "C:\\Users\\jewgeniuk.natalia\\.gradle\\daemon\\8.10.2\\com.example.app-main-56:\\drawable\\piki_status_canceled.png"
+    },
+    {
+        "merged": "C:\\Users\\jewgeniuk.natalia\\.gradle\\daemon\\8.10.2\\com.example.app-debug-54:\\mipmap-xxxhdpi_ic_launcher_monochrome.webp.flat",
+        "source": "C:\\Users\\jewgeniuk.natalia\\.gradle\\daemon\\8.10.2\\com.example.app-main-56:\\mipmap-xxxhdpi\\ic_launcher_monochrome.webp"
     },
     {
         "merged": "C:\\Users\\jewgeniuk.natalia\\.gradle\\daemon\\8.10.2\\com.example.app-debug-54:\\mipmap-xxxhdpi_ic_launcher.webp.flat",
@@ -180,12 +220,12 @@
         "source": "C:\\Users\\jewgeniuk.natalia\\.gradle\\daemon\\8.10.2\\com.example.app-main-56:\\font\\plus_jakarta_sans_semibolditalic.ttf"
     },
     {
-        "merged": "C:\\Users\\jewgeniuk.natalia\\.gradle\\daemon\\8.10.2\\com.example.app-debug-54:\\font_plus_jakarta_sans_light.ttf.flat",
-        "source": "C:\\Users\\jewgeniuk.natalia\\.gradle\\daemon\\8.10.2\\com.example.app-main-56:\\font\\plus_jakarta_sans_light.ttf"
+        "merged": "C:\\Users\\jewgeniuk.natalia\\.gradle\\daemon\\8.10.2\\com.example.app-debug-54:\\mipmap-xhdpi_ic_launcher_monochrome.webp.flat",
+        "source": "C:\\Users\\jewgeniuk.natalia\\.gradle\\daemon\\8.10.2\\com.example.app-main-56:\\mipmap-xhdpi\\ic_launcher_monochrome.webp"
     },
     {
-        "merged": "com.example.app-debug-54:/mipmap-xxxhdpi_ic_launcher_monochrome.webp.flat",
-        "source": "com.example.app-main-56:/mipmap-xxxhdpi/ic_launcher_monochrome.webp"
+        "merged": "C:\\Users\\jewgeniuk.natalia\\.gradle\\daemon\\8.10.2\\com.example.app-debug-54:\\font_plus_jakarta_sans_light.ttf.flat",
+        "source": "C:\\Users\\jewgeniuk.natalia\\.gradle\\daemon\\8.10.2\\com.example.app-main-56:\\font\\plus_jakarta_sans_light.ttf"
     },
     {
         "merged": "C:\\Users\\jewgeniuk.natalia\\.gradle\\daemon\\8.10.2\\com.example.app-debug-54:\\mipmap-xxxhdpi_ic_launcher_round.webp.flat",
@@ -210,5 +250,9 @@
     {
         "merged": "C:\\Users\\jewgeniuk.natalia\\.gradle\\daemon\\8.10.2\\com.example.app-debug-54:\\font_lexend_extralight.ttf.flat",
         "source": "C:\\Users\\jewgeniuk.natalia\\.gradle\\daemon\\8.10.2\\com.example.app-main-56:\\font\\lexend_extralight.ttf"
+    },
+    {
+        "merged": "C:\\Users\\jewgeniuk.natalia\\.gradle\\daemon\\8.10.2\\com.example.app-debug-54:\\drawable_piki_header_2.png.flat",
+        "source": "C:\\Users\\jewgeniuk.natalia\\.gradle\\daemon\\8.10.2\\com.example.app-main-56:\\drawable\\piki_header_2.png"
     }
 ]
