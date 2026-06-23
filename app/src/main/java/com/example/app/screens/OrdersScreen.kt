@@ -54,6 +54,7 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.material3.rememberModalBottomSheetState
+import androidx.compose.material.icons.outlined.Image
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -908,29 +909,37 @@ private fun TechnicalWebCell(
     }
 }
 
-/*************** Imagen premium de estado ***************/
-/*
-    Reemplaza la pastilla textual de estado por una imagen.
-
-    La imagen ya debe incluir:
-    - ilustración;
-    - texto del estado;
-    - color/acento visual.
-
-    Usamos ContentScale.Fit para no cortar el texto.
-*/
-/*************** Imagen premium de estado ***************/
+/*************** Etiqueta de estado tipo botón ***************/
 @Composable
 private fun PremiumStatusPill(
     status: OrderStatus,
     modifier: Modifier = Modifier
 ) {
-    Image(
-        painter = painterResource(id = statusImageRes(status)),
-        contentDescription = statusLabelPlain(status),
+    val (backgroundColor, textColor) = when (status) {
+        OrderStatus.PENDING -> PikiPendingBg to PikiWood
+        OrderStatus.PRINTING -> PikiSky to PikiWood
+        OrderStatus.DONE -> PikiLeaf to PikiWood
+        OrderStatus.CANCELED -> PikiCanceledBg to PikiCanceledText
+    }
+
+    Surface(
         modifier = modifier,
-        contentScale = ContentScale.Fit
-    )
+        color = backgroundColor,
+        shape = RoundedCornerShape(999.dp),
+        border = BorderStroke(
+            width = 2.dp,
+            color = PikiWhite.copy(alpha = 0.6f)
+        )
+    ) {
+        Text(
+            text = statusLabelPlain(status),
+            modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp),
+            style = MaterialTheme.typography.labelMedium,
+            fontWeight = FontWeight.ExtraBold,
+            color = textColor,
+            textAlign = TextAlign.Center
+        )
+    }
 }
 
 /*************** BottomSheet de detalle ***************/
@@ -1297,13 +1306,11 @@ private fun ProductHeroPlaceholder(
                 contentScale = ContentScale.Crop
             )
         } else {
-            Image(
-                painter = painterResource(id = R.drawable.piki_order_placeholder),
+            Icon(
+                imageVector = Icons.Outlined.Image,
                 contentDescription = "Pedido sin imagen",
-                modifier = Modifier
-                    .fillMaxSize()
-                    .padding(8.dp),
-                contentScale = ContentScale.Fit
+                tint = PikiClay.copy(alpha = 0.4f),
+                modifier = Modifier.size(64.dp)
             )
         }
     }
@@ -1657,11 +1664,11 @@ private fun ProductLargePreview(
                 contentScale = ContentScale.Crop
             )
         } else {
-            Image(
-                painter = painterResource(id = R.drawable.piki_order_placeholder),
+            Icon(
+                imageVector = Icons.Outlined.Image,
                 contentDescription = "Pedido sin imagen",
-                modifier = Modifier.fillMaxSize(),
-                contentScale = ContentScale.Crop
+                tint = PikiClay.copy(alpha = 0.3f),
+                modifier = Modifier.size(32.dp)
             )
         }
     }
@@ -1696,11 +1703,11 @@ private fun ProductSmallPreview(
                 contentScale = ContentScale.Crop
             )
         } else {
-            Image(
-                painter = painterResource(id = R.drawable.piki_order_placeholder),
+            Icon(
+                imageVector = Icons.Outlined.Image,
                 contentDescription = "Pedido sin imagen",
-                modifier = Modifier.fillMaxSize(),
-                contentScale = ContentScale.Crop
+                tint = PikiClay.copy(alpha = 0.3f),
+                modifier = Modifier.size(32.dp)
             )
         }
     }
@@ -2838,23 +2845,6 @@ private fun obtenerNombreImpresora(
     }
 }
 
-/*************** Imagen asociada al estado ***************/
-/*
-    Devuelve el recurso gráfico correspondiente a cada estado del pedido.
-
-    No cambia la lógica del estado.
-    Solo cambia cómo se representa visualmente en pantalla.
-*/
-private fun statusImageRes(
-    status: OrderStatus
-): Int {
-    return when (status) {
-        OrderStatus.PENDING -> R.drawable.piki_status_pending
-        OrderStatus.PRINTING -> R.drawable.piki_status_printing
-        OrderStatus.DONE -> R.drawable.piki_status_done
-        OrderStatus.CANCELED -> R.drawable.piki_status_canceled
-    }
-}
 
 /*************** Header visual del pedido ***************/
 /*
@@ -2912,10 +2902,7 @@ private fun OrderIdentityHeader(
         }
 
         PremiumStatusPill(
-            status = order.status,
-            modifier = Modifier
-                .width(150.dp)
-                .aspectRatio(675f / 370f)
+            status = order.status
         )
     }
 }
