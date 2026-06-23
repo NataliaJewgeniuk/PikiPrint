@@ -54,6 +54,7 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.material3.rememberModalBottomSheetState
+import androidx.compose.material.icons.outlined.Image
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -77,16 +78,11 @@ import com.example.app.models.Order
 import com.example.app.models.OrderStatus
 import com.example.app.models.PaymentType
 import com.example.app.models.QuoteSettings
-import com.example.app.ui.components.PikiOutlinedButton
-import com.example.app.ui.components.PikiPrimaryButton
-import com.example.app.ui.components.PikiSecondaryButton
 import com.example.app.ui.components.kawaiiShadow
 import com.example.app.ui.theme.PikiCanceledBg
 import com.example.app.ui.theme.PikiCanceledText
 import com.example.app.ui.theme.PikiClay
 import com.example.app.ui.theme.PikiCreamLine
-import com.example.app.ui.theme.PikiDoneBg
-import com.example.app.ui.theme.PikiDoneText
 import com.example.app.ui.theme.PikiLeaf
 import com.example.app.ui.theme.PikiLeafDark
 import com.example.app.ui.theme.PikiMutedText
@@ -94,9 +90,6 @@ import com.example.app.ui.theme.PikiPaper
 import com.example.app.ui.theme.PikiPaperDark
 import com.example.app.ui.theme.PikiPaperLight
 import com.example.app.ui.theme.PikiPendingBg
-import com.example.app.ui.theme.PikiPendingText
-import com.example.app.ui.theme.PikiPrintingBg
-import com.example.app.ui.theme.PikiPrintingText
 import com.example.app.ui.theme.PikiSky
 import com.example.app.ui.theme.PikiSkyDark
 import com.example.app.ui.theme.PikiWhite
@@ -108,6 +101,9 @@ import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 import androidx.compose.ui.layout.ContentScale
 import coil3.compose.AsyncImage
+import androidx.compose.foundation.Image
+import androidx.compose.ui.res.painterResource
+import com.example.app.R
 
 /*************** Formato argentino visible ***************/
 /*
@@ -182,9 +178,7 @@ fun OrdersScreen(
             .fillMaxSize()
             .background(PikiPaper)
     ) {
-        PikiLightTopBar(
-            onSettings = onGoToSettings
-        )
+        PikiLightTopBar()
 
         Column(
             modifier = Modifier
@@ -399,13 +393,39 @@ fun OrdersScreen(
 }
 
 /*************** Top bar liviana estilo web ***************/
+/*************** Cabecera con imagen personalizada ***************/
+/*
+    Esta cabecera reemplaza:
+    - el texto "PikiPrint";
+    - el ícono circular de persona/configuración.
+
+    Ahora es solamente una imagen decorativa.
+    No tiene acción de click porque Ajustes ya es accesible desde otro lugar.
+*/
+/*************** Cabecera con imagen personalizada ***************/
+/*************** Cabecera con imagen personalizada ***************/
+/*
+    Esta cabecera reemplaza:
+    - el texto "PikiPrint";
+    - el ícono circular de persona/configuración.
+
+    Ahora es solamente una imagen decorativa.
+    No tiene acción de click porque Ajustes ya es accesible desde otro lugar.
+*/
+/*************** Cabecera con imagen completa ***************/
+/*
+    La imagen ocupa todo el topbar.
+
+    ContentScale.Crop:
+    - llena todo el ancho y alto disponibles;
+    - no deja márgenes vacíos;
+    - puede recortar un poco los bordes si la proporción no coincide.
+*/
 @Composable
-private fun PikiLightTopBar(
-    onSettings: () -> Unit
-) {
+private fun PikiLightTopBar() {
     Surface(
         modifier = Modifier.fillMaxWidth(),
-        color = PikiWhite.copy(alpha = 0.42f),
+        color = PikiPaper,
         tonalElevation = 0.dp,
         shadowElevation = 0.dp
     ) {
@@ -414,44 +434,21 @@ private fun PikiLightTopBar(
                 .fillMaxWidth()
                 .statusBarsPadding()
         ) {
-            Row(
+            Box(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(76.dp)
-                    .padding(horizontal = 24.dp),
-                horizontalArrangement = Arrangement.SpaceBetween,
-                verticalAlignment = Alignment.CenterVertically
+                    .height(180.dp)
+                    .clip(RoundedCornerShape(bottomStart = 28.dp, bottomEnd = 28.dp))
+                    .background(PikiPaper),
+                contentAlignment = Alignment.Center
             ) {
-                Text(
-                    text = "PikiPrint",
-                    style = MaterialTheme.typography.headlineSmall,
-                    fontWeight = FontWeight.ExtraBold,
-                    color = PikiClay
+                Image(
+                    //painter = painterResource(id = R.drawable.piki_header), //celular
+                    painter = painterResource(id = R.drawable.piki_header_2), //tablet
+                    contentDescription = "PikiPrint",
+                    modifier = Modifier.fillMaxSize(),
+                    contentScale = ContentScale.Crop
                 )
-
-                Box(
-                    modifier = Modifier
-                        .size(48.dp)
-                        .clip(RoundedCornerShape(999.dp))
-                        .background(PikiWhite)
-                        .border(
-                            width = 2.dp,
-                            color = PikiClay.copy(alpha = 0.75f),
-                            shape = RoundedCornerShape(999.dp)
-                        )
-                        .kawaiiShadow()
-                        .clickable {
-                            onSettings()
-                        },
-                    contentAlignment = Alignment.Center
-                ) {
-                    Icon(
-                        imageVector = Icons.Outlined.AccountCircle,
-                        contentDescription = "Configuración",
-                        tint = PikiClay,
-                        modifier = Modifier.size(27.dp)
-                    )
-                }
             }
 
             HorizontalDivider(
@@ -592,14 +589,7 @@ private fun DoneOrderCard(
     OrderCardContainer(
         onClick = onClick
     ) {
-        OrderHeaderRow(
-            order = order,
-            refFirst = true
-        )
-
-        Spacer(modifier = Modifier.height(14.dp))
-
-        OrderTitleAndClient(
+        OrderIdentityHeader(
             order = order
         )
 
@@ -637,14 +627,7 @@ private fun PrintingOrderCard(
     OrderCardContainer(
         onClick = onClick
     ) {
-        OrderHeaderRow(
-            order = order,
-            refFirst = true
-        )
-
-        Spacer(modifier = Modifier.height(14.dp))
-
-        OrderTitleAndClient(
+        OrderIdentityHeader(
             order = order
         )
 
@@ -690,6 +673,7 @@ private fun PrintingOrderCard(
 }
 
 /*************** Pedido pendiente ***************/
+/*************** Pedido pendiente ***************/
 @Composable
 private fun PendingOrderCard(
     order: Order,
@@ -700,38 +684,25 @@ private fun PendingOrderCard(
     OrderCardContainer(
         onClick = onClick
     ) {
-        Row(
-            modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.SpaceBetween,
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-            PremiumStatusPill(
-                status = order.status
-            )
+        OrderIdentityHeader(
+            order = order
+        )
 
-            Text(
-                text = "#${obtenerRefPedido(order)}",
-                style = MaterialTheme.typography.labelSmall,
-                letterSpacing = 1.2.sp,
-                fontWeight = FontWeight.ExtraBold,
-                color = PikiClay.copy(alpha = 0.58f)
-            )
-        }
+        /*************** Imagen del pedido ***************/
+        /*
+            Muestra la imagen cargada para el pedido.
 
+            Si ProductLargePreview ya tiene fallback interno,
+            cuando no haya imagen va a mostrar el placeholder que tengas definido.
+        */
         Spacer(modifier = Modifier.height(16.dp))
 
-        Text(
-            text = order.title,
-            style = MaterialTheme.typography.headlineSmall,
-            fontWeight = FontWeight.ExtraBold,
-            color = PikiWood,
-            maxLines = 3,
-            overflow = TextOverflow.Ellipsis,
-            lineHeight = 30.sp
+        ProductLargePreview(
+            order = order
         )
 
         if (order.notes.isNotBlank()) {
-            Spacer(modifier = Modifier.height(10.dp))
+            Spacer(modifier = Modifier.height(14.dp))
 
             Text(
                 text = order.notes,
@@ -743,12 +714,6 @@ private fun PendingOrderCard(
                 overflow = TextOverflow.Ellipsis
             )
         }
-
-        Spacer(modifier = Modifier.height(16.dp))
-
-        OrderClientLine(
-            clientName = order.clientName
-        )
 
         Spacer(modifier = Modifier.height(16.dp))
 
@@ -785,14 +750,7 @@ private fun CanceledOrderCard(
     OrderCardContainer(
         onClick = onClick
     ) {
-        OrderHeaderRow(
-            order = order,
-            refFirst = true
-        )
-
-        Spacer(modifier = Modifier.height(14.dp))
-
-        OrderTitleAndClient(
+        OrderIdentityHeader(
             order = order
         )
 
@@ -951,39 +909,35 @@ private fun TechnicalWebCell(
     }
 }
 
-/*************** Pastilla premium de estado ***************/
+/*************** Etiqueta de estado tipo botón ***************/
 @Composable
 private fun PremiumStatusPill(
-    status: OrderStatus
+    status: OrderStatus,
+    modifier: Modifier = Modifier
 ) {
-    val background = when (status) {
-        OrderStatus.PENDING -> PikiPendingBg.copy(alpha = 0.72f)
-        OrderStatus.PRINTING -> PikiPrintingBg.copy(alpha = 0.82f)
-        OrderStatus.DONE -> PikiDoneBg.copy(alpha = 0.82f)
-        OrderStatus.CANCELED -> PikiCanceledBg.copy(alpha = 0.82f)
-    }
-
-    val textColor = when (status) {
-        OrderStatus.PENDING -> PikiPendingText
-        OrderStatus.PRINTING -> PikiPrintingText
-        OrderStatus.DONE -> PikiDoneText
-        OrderStatus.CANCELED -> PikiCanceledText
+    val (backgroundColor, textColor) = when (status) {
+        OrderStatus.PENDING -> PikiPendingBg to PikiWood
+        OrderStatus.PRINTING -> PikiSky to PikiWood
+        OrderStatus.DONE -> PikiLeaf to PikiWood
+        OrderStatus.CANCELED -> PikiCanceledBg to PikiCanceledText
     }
 
     Surface(
+        modifier = modifier,
+        color = backgroundColor,
         shape = RoundedCornerShape(999.dp),
-        color = background,
         border = BorderStroke(
-            width = 1.5.dp,
-            color = PikiClay.copy(alpha = 0.35f)
+            width = 2.dp,
+            color = PikiWhite.copy(alpha = 0.6f)
         )
     ) {
         Text(
             text = statusLabelPlain(status),
-            modifier = Modifier.padding(horizontal = 14.dp, vertical = 6.dp),
-            style = MaterialTheme.typography.labelSmall,
+            modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp),
+            style = MaterialTheme.typography.labelMedium,
             fontWeight = FontWeight.ExtraBold,
-            color = textColor
+            color = textColor,
+            textAlign = TextAlign.Center
         )
     }
 }
@@ -1309,7 +1263,15 @@ private fun DetailMockupTopBar(
 }
 
 /*************** Hero visual del producto ***************/
-/*************** Hero visual del producto ***************/
+/*
+    Se usa en el detalle del pedido.
+
+    Si el pedido tiene imagen:
+    - muestra la imagen real cargada.
+
+    Si el pedido no tiene imagen:
+    - muestra piki_order_placeholder.
+*/
 @Composable
 private fun ProductHeroPlaceholder(
     order: Order
@@ -1344,49 +1306,12 @@ private fun ProductHeroPlaceholder(
                 contentScale = ContentScale.Crop
             )
         } else {
-            Column(
-                horizontalAlignment = Alignment.CenterHorizontally
-            ) {
-                Box(
-                    modifier = Modifier
-                        .size(112.dp)
-                        .clip(RoundedCornerShape(36.dp))
-                        .background(PikiWhite.copy(alpha = 0.72f))
-                        .border(
-                            width = 2.dp,
-                            color = PikiClay.copy(alpha = 0.18f),
-                            shape = RoundedCornerShape(36.dp)
-                        ),
-                    contentAlignment = Alignment.Center
-                ) {
-                    Icon(
-                        imageVector = Icons.Outlined.Inventory2,
-                        contentDescription = null,
-                        tint = PikiClay.copy(alpha = 0.68f),
-                        modifier = Modifier.size(48.dp)
-                    )
-                }
-
-                Spacer(modifier = Modifier.height(14.dp))
-
-                Text(
-                    text = order.title,
-                    style = MaterialTheme.typography.titleMedium,
-                    color = PikiWood,
-                    fontWeight = FontWeight.ExtraBold,
-                    maxLines = 1,
-                    overflow = TextOverflow.Ellipsis
-                )
-
-                Spacer(modifier = Modifier.height(4.dp))
-
-                Text(
-                    text = "Espacio reservado para la foto del producto",
-                    style = MaterialTheme.typography.labelSmall,
-                    color = PikiMutedText,
-                    fontWeight = FontWeight.ExtraBold
-                )
-            }
+            Icon(
+                imageVector = Icons.Outlined.Image,
+                contentDescription = "Pedido sin imagen",
+                tint = PikiClay.copy(alpha = 0.4f),
+                modifier = Modifier.size(64.dp)
+            )
         }
     }
 }
@@ -1519,7 +1444,7 @@ private fun OrderCardContainer(
 }
 
 /*************** Header común: REF + estado ***************/
-@Composable
+/*@Composable
 private fun OrderHeaderRow(
     order: Order,
     refFirst: Boolean
@@ -1577,7 +1502,7 @@ private fun OrderTitleAndClient(
     OrderClientLine(
         clientName = order.clientName
     )
-}
+}*/
 
 /*************** Línea de cliente ***************/
 @Composable
@@ -1708,7 +1633,12 @@ private fun TechnicalMiniLine(
 }
 
 /*************** Imagen grande / placeholder ***************/
-/*************** Imagen grande / placeholder ***************/
+/*
+    Muestra la imagen real del pedido si existe.
+
+    Si el pedido todavía no tiene imagen cargada,
+    muestra una imagen placeholder personalizada.
+*/
 @Composable
 private fun ProductLargePreview(
     order: Order
@@ -1718,15 +1648,7 @@ private fun ProductLargePreview(
             .fillMaxWidth()
             .height(178.dp)
             .clip(RoundedCornerShape(32.dp))
-            .background(
-                Brush.radialGradient(
-                    colors = listOf(
-                        PikiSky.copy(alpha = 0.34f),
-                        PikiWhite,
-                        PikiPaperDark
-                    )
-                )
-            )
+            .background(PikiWhite)
             .border(
                 width = 2.dp,
                 color = PikiClay.copy(alpha = 0.28f),
@@ -1743,17 +1665,20 @@ private fun ProductLargePreview(
             )
         } else {
             Icon(
-                imageVector = Icons.Outlined.Inventory2,
-                contentDescription = null,
-                tint = PikiClay.copy(alpha = 0.58f),
-                modifier = Modifier.size(54.dp)
+                imageVector = Icons.Outlined.Image,
+                contentDescription = "Pedido sin imagen",
+                tint = PikiClay.copy(alpha = 0.3f),
+                modifier = Modifier.size(32.dp)
             )
         }
     }
 }
 
 /*************** Imagen pequeña / placeholder ***************/
-/*************** Imagen pequeña / placeholder ***************/
+/*
+    Versión compacta para tarjetas donde la imagen acompaña
+    otra información, como progreso o datos de impresora.
+*/
 @Composable
 private fun ProductSmallPreview(
     order: Order,
@@ -1762,15 +1687,7 @@ private fun ProductSmallPreview(
     Box(
         modifier = modifier
             .clip(RoundedCornerShape(26.dp))
-            .background(
-                Brush.radialGradient(
-                    colors = listOf(
-                        PikiSky.copy(alpha = 0.30f),
-                        PikiWhite,
-                        PikiPaperDark
-                    )
-                )
-            )
+            .background(PikiWhite)
             .border(
                 width = 1.5.dp,
                 color = PikiClay.copy(alpha = 0.24f),
@@ -1787,10 +1704,10 @@ private fun ProductSmallPreview(
             )
         } else {
             Icon(
-                imageVector = Icons.Outlined.Inventory2,
-                contentDescription = null,
-                tint = PikiClay.copy(alpha = 0.62f),
-                modifier = Modifier.size(34.dp)
+                imageVector = Icons.Outlined.Image,
+                contentDescription = "Pedido sin imagen",
+                tint = PikiClay.copy(alpha = 0.3f),
+                modifier = Modifier.size(32.dp)
             )
         }
     }
@@ -2703,52 +2620,46 @@ private fun PikiSearchField(
 }
 
 /*************** Estado vacío: sin pedidos ***************/
+/*************** Estado vacío: sin pedidos ***************/
+/*
+    Se muestra cuando todavía no hay pedidos cargados.
+
+    La imagen ya incluye:
+    - ilustración;
+    - título;
+    - texto secundario.
+
+    Por eso no repetimos textos en Compose.
+*/
 @Composable
 private fun EmptyOrdersState() {
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .padding(top = 72.dp),
+            .padding(top = 26.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Box(
-            modifier = Modifier
-                .size(112.dp)
-                .clip(RoundedCornerShape(36.dp))
-                .background(PikiWhite)
-                .border(
-                    width = 2.dp,
-                    color = PikiClay.copy(alpha = 0.18f),
-                    shape = RoundedCornerShape(36.dp)
-                ),
-            contentAlignment = Alignment.Center
-        ) {
-            Icon(
-                imageVector = Icons.Outlined.Inventory2,
-                contentDescription = null,
-                tint = PikiClay.copy(alpha = 0.65f),
-                modifier = Modifier.size(48.dp)
+
+            Image(
+                painter = painterResource(id = R.drawable.piki_empty_orders),
+                contentDescription = "Todavía no hay pedidos",
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(330.dp)
+                    .padding(10.dp)
+                    .clip(RoundedCornerShape(30.dp)),
+                contentScale = ContentScale.Fit
             )
-        }
+            Spacer(modifier = Modifier.height(8.dp))
 
-        Spacer(modifier = Modifier.height(24.dp))
+            Text(
+                text = "Cuando guardes presupuestos,\nvan a aparecer en este mural.",
+                textAlign = TextAlign.Center,
+                color = PikiMutedText,
+                fontWeight = FontWeight.Bold,
+                lineHeight = 22.sp
+            )
 
-        Text(
-            text = "Todavía no hay pedidos",
-            style = MaterialTheme.typography.headlineSmall,
-            fontWeight = FontWeight.ExtraBold,
-            color = PikiWood
-        )
-
-        Spacer(modifier = Modifier.height(8.dp))
-
-        Text(
-            text = "Cuando guardes presupuestos,\nvan a aparecer en este mural.",
-            textAlign = TextAlign.Center,
-            color = PikiMutedText,
-            fontWeight = FontWeight.Bold,
-            lineHeight = 22.sp
-        )
     }
 }
 
@@ -2931,5 +2842,67 @@ private fun obtenerNombreImpresora(
 ): String {
     return order.printerNameSnapshot.ifBlank {
         obtenerNombreImpresora(order)
+    }
+}
+
+
+/*************** Header visual del pedido ***************/
+/*
+    Estructura nueva de la tarjeta:
+
+    Izquierda:
+    - REF del pedido
+    - nombre del pedido
+    - cliente
+
+    Derecha:
+    - imagen del estado
+
+    Así la imagen de estado no compite con el ID.
+*/
+@Composable
+private fun OrderIdentityHeader(
+    order: Order
+) {
+    Row(
+        modifier = Modifier.fillMaxWidth(),
+        horizontalArrangement = Arrangement.SpaceBetween,
+        verticalAlignment = Alignment.Top
+    ) {
+        Column(
+            modifier = Modifier
+                .weight(1f)
+                .padding(end = 14.dp)
+        ) {
+            Text(
+                text = "#${obtenerRefPedido(order)}",
+                style = MaterialTheme.typography.labelSmall,
+                letterSpacing = 1.2.sp,
+                fontWeight = FontWeight.ExtraBold,
+                color = PikiClay.copy(alpha = 0.68f)
+            )
+
+            Spacer(modifier = Modifier.height(7.dp))
+
+            Text(
+                text = order.title,
+                style = MaterialTheme.typography.headlineSmall,
+                fontWeight = FontWeight.ExtraBold,
+                color = PikiWood,
+                maxLines = 2,
+                overflow = TextOverflow.Ellipsis,
+                lineHeight = 30.sp
+            )
+
+            Spacer(modifier = Modifier.height(10.dp))
+
+            OrderClientLine(
+                clientName = order.clientName
+            )
+        }
+
+        PremiumStatusPill(
+            status = order.status
+        )
     }
 }

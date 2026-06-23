@@ -59,6 +59,7 @@ dimen notification_subtext_size
 dimen notification_top_pad
 dimen notification_top_pad_large_text
 drawable abc_vector_test
+drawable caratula
 drawable dino_calculadora
 drawable dino_calculadora2
 drawable ic_call_answer
@@ -81,6 +82,14 @@ drawable notification_template_icon_bg
 drawable notification_template_icon_low_bg
 drawable notification_tile_bg
 drawable notify_panel_notification_icon_bg
+drawable piki_empty_orders
+drawable piki_header
+drawable piki_header_2
+drawable piki_order_placeholder
+drawable piki_status_canceled
+drawable piki_status_done
+drawable piki_status_pending
+drawable piki_status_printing
 font lexend_bold
 font lexend_extrabold
 font lexend_extralight
